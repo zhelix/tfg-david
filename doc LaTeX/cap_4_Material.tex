@@ -1,0 +1,276 @@
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\chapter{Material}
+\label{material}
+
+Para la realización el montaje del \textit{Spaning-Tree-Protocol} (STP) se han utilizado dispositivos \textbf{RouterBOARD RB9512N}, cableado \textit{ethernet} CAT-5E y equipos portátiles propios para realizar las configuraciones correspondientes.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{rboard}
+	\caption{RouterBOARD RB9512N}
+	\label{rboard}
+	\bigskip
+\end{figure}
+
+Como enlace a internet, el personal docente ha configurado un \textbf{RouterBOARD RB2011UAS}, en modo AP y NAT hacia el exterior.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{rboard2}
+	\caption{RouterBOARD RB2011UAS}
+	\label{rboard2}
+	\bigskip
+\end{figure}
+
+\chapter{Configuración}
+\label{cap4}
+
+En este capítulo de comentan las distintas configuraciones que tendremos en los equipos utilizados, necesarias para poder realizar las pruebas de funcionamiento posteriormente en el capítulo 5, donde veremos diferentes ventajas e inconvenientes relacionados con el protocolo.
+
+\section{Configuración de la red}
+
+Se ha decidido crear dos arquitecturas de red diferentes, una básica mas simple, y una ampliada.
+
+Físicamente el montaje de equipos queda de la siguiente forma \autoref{f41}.
+
+Tendremos un router MikroTik dedicado a conectar con otra red, la cual permitirá el acceso a Internet de los equipos de nuestra LAN. Este dispositivo local, se configurara con el valor mínimo para garantizarle la mejor prioridad, asi ejercerá el rol de '\textit{Root Bridge}' sobre el resto de dispositivos. Además, se configurara un servidor DHCP para que atribuya direcciones IP de forma automática a todos los dispositivos interconectados en su red.
+
+Solo tendremos habilitado la interfaz \textit{wireless} en el dispositivo principal, ya que los dispositivos se han interconectado mediante ethernet.
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.40\textwidth]{f41}
+	\caption{Fotografía de la instalación}
+	\label{f41}
+	\bigskip
+\end{figure}
+
+\clearpage
+\subsection{Arquitectura básica}
+
+Podemos ver en la \autoref{f42} el esquema lógico de la conexión de los cuatro equipos MikroTik utilizados.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.9\textwidth]{f42}
+	\caption{Montaje básico de STP y detalle}
+	\label{f42}
+	\bigskip
+\end{figure}
+
+Los equipos portátiles personales utilizados para las pruebas se conectan al puerto ether5 de cada router, para poder acceder a configurar los mismos. Como disponemos de servidor DHCP no será necesario configurar ninguna IP ya que se realiza de forma automática.
+
+Los equipos portátiles personales se conectan al puerto ether5 de cada equipo, para poder entrar a configurar los mismos, como tenemos servidor DHCP no será necesario configurar ninguna IP.
+\clearpage
+
+\subsection{Arquitectura básica + diagonal}
+
+Se han añadido dos conexiones adicionales al montaje básico, estableciendo dos nuevos enlaces y incrementando la redundancia en la configuración de la arquitectura para configurar STP. Se puede apreciar el detalle como vemos en la \autoref{diagonal}.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.9\textwidth]{diagonal}
+	\caption{Montaje básico + diagonal de STP y detalle}
+	\label{diagonal}
+	\bigskip
+\end{figure}
+
+\clearpage
+\section{Configuración inicial}
+
+\subsection{Configuración \textit{Wireless}}
+
+En el dispositivo MikroTik17, se ha configurado primero la red \textit{wireless}, con las siguientes opciones:
+
+\begin{itemize}
+	\item Interfaz en \textbf{wlan1} \autoref{cwifi}.
+	\item Perfil de seguridad en \autoref{sprof}.
+	\item IP: 10.10.10.17 en  \autoref{f43}
+	\item \textit{Default gateway} al 10.10.10.100.
+\end{itemize}
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{f43}
+	\caption{Configuración de la IP de la interfaz \textbf{wlan1}}
+	\label{f43}
+	\bigskip
+\end{figure}
+
+Seguidamente, se ha configurado la interfaz \textit{wireless} para poder conectarse al \textit{Access-Point} y así disponer de Internet en los distintos equipos cliente.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{cwifi}
+	\caption{Configurar conexión \textit{wireless} al AP.}
+	\label{cwifi}
+	\bigskip
+\end{figure}
+
+Se ha modificado además el \textit{security profile} de la red.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{sprof}
+	\caption{Configuración del \textit{security profile} de la red.}
+	\label{sprof}
+	\bigskip
+\end{figure}
+
+\clearpage
+\subsection{Configuración de los otros dispositivos}
+
+En el resto de dispositivos, los puertos existente en cada uno de ellos se agruparan como un solo \textit{bridge}, donde se aplicará la configuración del protocolo STP. Además, en el \textit{router} principal, en este caso el MikroTik17, ejecutara un servidor DHCP para la configuración automática de direcciones IP.
+
+Estamos utilizando los siguientes dispositivos MikroTik proporcionados por el personal docente:
+\begin{table}[ht!]
+	\begin{center}
+		\caption{Dispositivos utilizados y identificadores}
+		\label{t421}
+		\begin{tabular}{*4c} \toprule \textbf{Dispositivo $n$} & \textit{\textbf{Identity}} & \textbf{IP} & \textbf{RouterOS Ver.} \\ \toprule
+01 & \textbf{MK01} - Bañuls & 192.168.1.1 & 6.28 \\
+15 & \textbf{MK15} - Torres & 192.168.1.15 & 6.28 \\
+16 & \textbf{MK16} - Rodriguez & 192.168.1.16 & 6.28 \\
+17 & \textbf{MK17} - Ibiza & 192.168.1.17 & 6.32 \\
+			\toprule
+		\end{tabular}
+	\end{center}
+\end{table}
+
+Se ha utilizado el dispositivo MikroTik17 para conectar a través del AP \textit{wireless} externo, ademas, se encargara del NAT y de dar servicio de DHCP.
+
+Inicialmente, se ha configurado un \textit{bridge} en todos los dispositivos para todas las interfaces \textit{ethernet}.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{birdge1}
+	\caption{Creación del nuevo \textit{bridge}.}
+	\label{birdge1}
+	\bigskip
+\end{figure}
+
+Una vez creado el '\textit{bridge}' nos aparecerá como vemos en la \autoref{f46}.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{f46}
+	\caption{Visualización del nuevo \textit{bridge}.}
+	\label{f46}
+	\bigskip
+\end{figure}
+
+Accedemos a la pestaña 'Ports' y añadimos las interfaces del Mikrotik al \textit{bridge}.
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{f48}
+	\caption{Configuración de puertos del \textit{bridge}.}
+	\label{f48}
+	\bigskip
+\end{figure}
+
+Despues se le ha asignado una dirección IP al \textit{bridge}, de las comentadas en la \autoref{t421}, con esta configuración podremos acceder por IP a los dispositivos.
+
+No se han configurado las rutas por defecto de los otros dispositivos, ya que no es necesaria.
+
+Se ha configurado y levantado también un servidor DHCP en la interfaz \textit{bridge1}, sirviendo IP's desde  192.168.1.\textbf{100}-\textbf{150}, de esta forma, no es necesario configurar ninguna dirección en ningún equipo de la red.
+
+Una vez realizada la conexión entre dispositivos de manera correcta, es posible observar un mal funcionamiento en nuestra red, ya que se pueden haber creado ya bucles que saturen la red y los dispositivos
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.60\textwidth]{ping}
+	\caption{Ping al DNS de Google.}
+	\label{ping}
+	\bigskip
+\end{figure}
+
+%\clearpage
+\section{Configuración STP / RSTP}
+
+El siguiente paso será la configuración propia del protocolo STP. En equipos MikroTik, RouterOS dispone de gran cantidad de herramientas avanzadas de configuración de redes, entre ellas, el protocolo de \textit{routing} STP ademas de la versión mejorada RSTP.
+
+\subsection{Configuración \textit{out-of-the-box} de RSTP }
+\label{box}
+
+Partiendo un de un \textit{bridge} creado en cada dispositivo, con IP para poder gestionar los dispositivos desde Winbox, vamos a proceder a configurar el protocolo de RSTP.
+
+Cabe destacar, que para un funcionamiento adecuado de la red, debemos establecer una prioridad mas alta para un equipo en concreto, este equipo es el que se encarga de enrutar todo el tráfico hacia otra red y hacer NAT. 
+
+Accediendo al menú \textit{Bridges} en RouterOS, podemos configurar en cada uno que haga uso del protocolo del caso práctico, el cual se deberá de configurar en todos los \textit{bridges} de cada equipo, donde además, en el \textit{router} que actuará como raíz (\textit{root bridge}), en nuestro caso el MikroTik17, se deberá de modificar el valor \textit{priority} a un valor más bajo para especificar que esta será la "salida" mas prioritaria de nuestra red al exterior.
+
+Por lo que en este dispositivo será en el que estableceremos una prioridad manual como vemos en la \autoref{p4096}.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{p4096}
+	\caption{Esableciendo la prioridad del dispositivo principal a 4096.}
+	\label{p4096}
+	\bigskip
+\end{figure}
+
+
+Iremos a la gestión del \textit{bridge} y establecemos el '\textit{Protocol Mode}' como RSTP y la prioridad del \textit{bridge}.
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{f45}
+	\caption{Configuración protocolo RSTP y prioridad del \textit{bridge}.}
+	\label{f45}
+	\bigskip
+\end{figure}
+
+Cuando configuremos todos los \textit{bridges} de los 4 dispositivos routers, deberíamos comprobar que después de un tiempo de convergencia la red funciona de forma estable y que todos los dispositivos pueden tener acceso a Internet, lo más práctico realizando PING sobre cualquier dirección.
+
+
+\subsection{Configuración para evitar otro dispositivo con STP no autorizado}
+
+Para evitar que cualquier usuario conecte un switch con STP activado y una prioridad más alta que nuestro \textit{bridge}, tenemos que configurar en el puerto de usuario un parámetro para definir que a esa interfaz se va a conectar un extremo, por lo que no será necesario trabajar con STP a partir de ese punto.
+
+En la interfaz en concreto, vamos a establecer el parámetro \textit{\textbf{Edge=Yes}} como vemos en la  \autoref{edgeyes}
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{edgeyes}
+	\caption{Establecer Edge=Yes.}
+	\label{edgeyes}
+	\bigskip
+\end{figure}
+
+Ahora ya evitamos que el dispositivo conectado a esa interfaz, trabaje por STP. Ya tendríamos el problema solucionado, pero si en dos puertos que tenemos \textbf{\textit{Edge=YES}} creamos un bucle, bloquearemos el dispositivo.
+
+En el punto siguiente, veremos como evitar bucles en la parte del cliente.
+
+\subsection{Configuración para evitar bucles en el clientes}
+\label{horizon4}
+
+Si creamos un bucle en interfaces Edge=Yes, bloquearemos el dispositivo, ya que se va a generar un bucle infinito de tráfico. Podemos evitar esto modificando unos parámetros.
+
+Activaremos la opción de \textbf{\textit{horizon}}, y estableceremos el mismo número. Evitaremos que se generen bucles, pero no vamos a poder tener comunicación entre estos dos dispositivos, en nuestro caso se ha establecido \textit{Horizon=1} en dos interfaces del equipo, \textit{ether1} y \textit{ether2}, como se puede ver en la \autoref{horizon1}.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.60\textwidth]{horizon1}
+	\caption{Establecer Edge=Yes.}
+	\label{horizon1}
+	\bigskip
+\end{figure}
+
+\clearpage
+\subsection{Configuración del \textit{path cost}}
+\label{pathcost}
+Una opción interesante en STP es poder establecer el coste de los caminos, con fin de optimizar la red y decidir por donde nos interesa mas llevar el tráfico.
+
+Es posible que tengamos 2 caminos diferentes para llegar a un mismo destino, por lo que podemos configurar la interfaz y establecer un coste del camino (\textit{Path cost}).
+
+En el siguiente ejemplo(\autoref{pcost9}), se ha configurado un \textit{path cost} de 99999, por lo que primero se utilizaran caminos con un \textit{path cost} <99999.\\[0.5cm]
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{pcost9}
+	\caption{Configurando \textit{path cost} muy elevado.}
+	\label{pcost9}
+	\bigskip
+\end{figure}
+
+
+
+\subsection{Bucle para \textit{Backup Port}}
+\label{backuport}
+Podemos crear bucles entre puertos configurados como STP, automáticamente el dispositivo asignara dicho puerto como \textit{Backup Port}, en caso de fallar una conexión, seguirá funcionado como \textit{Backup Port}, como vemos en la \autoref{backup}.
+
+\begin{figure}[h!]\centering
+	\incluyeGrafico[width=0.45\textwidth]{backup}
+	\caption{Configurando \textit{path cost} muy elevado.}
+	\label{backup}
+	\bigskip
+\end{figure}
+
+
+
+
+
+

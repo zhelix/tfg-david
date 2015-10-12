@@ -1,0 +1,44 @@
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\chapter{¿Qué \textit{Spanning-Tree-Protocol}?}
+
+\section{STP (\textit{Spanning Tree Protocol})}
+
+En comunicaciones, STP (del inglés \textit{Spanning Tree Protocol}) es un protocolo de red de nivel 2 del modelo OSI (capa de enlace de datos).
+
+Su función es la de gestionar la presencia de bucles en topologías de red debido a la existencia de enlaces redundantes, necesarios en muchos casos para garantizar la alta disponibilidad entre los dispositivos de una arquitectura de comunicacion.
+
+Los bucles impiden el funcionamiento normal de la red puesto que los dispositivos de interconexión de nivel de enlace de datos reenvían indefinidamente las tramas broadcast y multicast, creando así un bucle infinito que consume tanto el ancho de banda de la red como CPU de los dispositivos de enrutamiento.
+
+Al no existir un campo TTL (tiempo de vida) en las tramas de capa 2, éstas se quedan atrapadas indefinidamente hasta que un administrador de sistemas rompa el bucle. Un router, por el contrario, sí podría evitar este tipo de reenvíos indefinidos. La solución consiste en permitir la existencia de enlaces físicos redundantes, pero creando una topología lógica libre de bucles. STP calcula una única ruta libre de bucles entre los dispositivos de la red pero manteniendo los enlaces redundantes desactivados como reserva, con el fin de activarlos en caso de fallo.
+
+Si la configuración de STP cambia, o si un segmento en la red redundante llega a ser inalcanzable, el algoritmo reconfigura los enlaces y restablece la conectividad, activando uno de los enlaces de reserva.
+
+El protocolo RSTP o STP, se basan en el algoritmo de caminos mínimos de Dijkstra, aplicado en el árbol lógico obtenido a partir de la configuración de red física, normalmente en estructura de malla para la alta disponibilidad, ademas, transforma una red física con forma de malla, en la que existen bucles, por una red lógica en forma de árbol (libre de bucles). Los puentes se comunican mediante mensajes de configuración llamados \textit{Bridge Protocol Data Units}(BPDU).
+
+El protocolo establece identificadores por puente y elige el que tiene la prioridad más alta (el número más bajo de prioridad numérica), como el puente raíz (\textit{Root Bridge}), normalmente el equipo con mas carga dentro de la red. Este puente raíz establecerá el camino de menor coste para todas las redes y en caso de cambios dentro de la arquitectura de red, el protocolo RSTP recalcula una nueva topología libre de redundancia dentro de un periodo de tiempo de convergencia.
+
+El tráfico se redigirá desde cada puerto en función de dos parámetros principales: prioridad y dirección MAC.
+
+La prioridad de cada \textit{bridge}, se determina  en función del que tiene la prioridad mas alta después del \textit{Root Bridge}, que es el menor valor numérico después del\textit{ Root Bridge}. Ademas, se dispone de un parámetro configurable: el \textit{Span path cost}, que se puede utilizar para redirigir el trafico a través de los nodos de la configuración.
+
+En caso de obtener el mismo coste en dos puertos, la prioridad se determinara en función del menor valor de MAC.
+
+Para resolver el problema se utiliza el protocolo de routing, \textit{Spanning Tree Protocol} (STP) así como sus variantes.
+
+STP se ha convertido en el protocolo preferido para prevenir bucles de \textit{layer 2} en topologías que incluyen redundancia aunque se pueden encontrar problemas que como: tiempos de convergencia demasiados altos y una configuración que puede complicarse si no se conoce bien el principio de funcionamiento.
+
+\begin{itemize}
+	\item STP (\textbf{802.1d}): impide bucles usando un \textit{"timer"}.
+	\item Rapid Spanning Tree (RSTP - \textbf{802.1w}).
+\end{itemize}
+
+\section{RSTP \textit{(Rapid Spanning Tree Protocol)}}
+
+Rapid Spanning Tree Protocol (RSTP) es un protocolo de red de la segunda capa OSI, (nivel de enlace de datos), que gestiona enlaces redundantes. Especificado en IEEE 802.1w, es una evolución del \textit{Spanning tree Protocol} (STP), reemplazándolo en la edición 2004 del 802.1d. RSTP reduce significativamente el tiempo de convergencia de la topología de la red cuando ocurre un cambio en la topología.
+
+Se ha convertido en el protocolo preferido para prevenir bucles de capa 2 en topologías que incluyen redundancia. Además de que el 802.1w contiene mejoras, retiene compatibilidad con su antecesor 802.1D dejando algunos parámetros sin cambiar. Por ejemplo, RSTP mantiene el mismo formato de BPDU que STP sólo que cambia el campo de versión, el cual se le asigna el valor de 2.
+
+RSTP también define el concepto de \textit{edge-port}, el cual también se menciona en STP como \textit{PortFast}, en donde el puerto se configura como tal cuando se sabe que nunca será conectado hacia otro switch de manera que pasa inmediatamente al estado de direccionamiento sin esperar los pasos intermedios del algoritmo –etapas de escucha y aprendizaje- los cuales consumen tiempo. El tipo de enlace es detectado automáticamente, pero puede ser configurado explícitamente para hacer más rápida la convergencia.

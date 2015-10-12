@@ -1,0 +1,15 @@
+Esta práctica corresponde a la asignatura Configuración, administración y gestión de redes, Se ha realizado la instalación y configuración de una red LAN con 4 dispositivos, interconectados mediante tecnologia inalámbrica y cableada.
+
+Un dispositivo de esta red se encargara de realizar la conexion a internet mediante Wifi sobre otro equipo externo, y ademas sera el encargado de proporcionar conexion al resto de equipos interconectados entre si.
+
+En la segunda parte de la red, interconectada para alta disponibilidad mediande cableado, se estudiara el problema de bucles internos dentro de la LAN debido a que dicha configuración y conexion tendrá enlaces redundantes que provocaran la saturacion de la misma bajo mensajes de broadcast que no hallaran su destino. Dicho problema se resolverá en la practica a través de un protocolo de red, Spanning Tree Protocol (STP), indicado para resolver este problema.
+
+Toda la configuración se ha realizado utilizando equipos MikroTik, ya que su sistema operativo RouterOS tiene funciones avanzadas que permiten implementar protocolos de routing, caso de estudio en la siguiente practica.
+
+En el siguiente documento se realizara una introduccion a la implementacion y configuracion del protoclo STP asi como el estudio de algunos problemas.
+
+En la parte inalámbrica la puerta de enlace ya estaba configurada y el equipo que debía salir a internet es el que configurara un servidor DHCP para dar servicio a los clientes, conectados a los otros routers.
+
+En la parte cableada el STP se encarga de impedir bucles gracias a que generara una ruta en la que se redirigiran los paquetes evitando su retorno o reenvío a través del circulo, claro que una mala configuración de este protocolo puede hacer que hayan fallos en los que se pueda bloquear toda la red.
+
+Por ultimo se van a comentar los problemas que han ocurrido por una mala configuración de los dispositivos, los resultados obtenidos después de la configuración y una conclusión de la práctica.

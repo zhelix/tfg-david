@@ -1,0 +1,67 @@
+diff a/Memoria STP/5. Proves i resultats.txt b/Memoria STP/5. Proves i resultats.txt	(rejected hunks)
+@@ -1,50 +0,50 @@
+-1. Montaje de la arquitectura de red entre los dispositivos y garantizar acceso a internet para los equipos conectados en cada uno de los routers.
++1. Montaje de la arquitectura de red entre los dispositivos y garantizar acceso a Internet para los equipos conectados en cada uno de los routers.
+ 
+-Las conexiones se realizaran siguiendo el esquema de la siguiente imagen, donde el MikroTik17 actuara como salida a la red de Internet mediante un bridge inalambrico a otro dispositivo externo. Para garantizar un esquema de alta disponibilidad, se mantendra que cada router disponga de conexion a dos routers alternos, para que en caso de que falle uno colindante, se pueda seguir manteniendo acceso a la raiz de la red para asi mantener la conexion.
++Las conexiones se realizarán siguiendo el esquema de la siguiente imagen, donde el MikroTik17 actuará como salida a la red de Internet mediante un bridge inalámbrico a otro dispositivo externo. Para garantizar un esquema de alta disponibilidad, se mantendrá que cada router disponga de conexión a dos routers alternos, para que en caso de que falle uno colindante, se pueda seguir manteniendo acceso a la raíz de la red para asi mantener la conexión.
+ 
+ //IBIZA REVISA AÇO// 	|
+ ///IBIZA REVISA AÇO// 	|
+ //IBIZA REVISA AÇO//	V
+-En el resto de dispositivos, los puertos existente en cada uno de ellos se agruparan como un solo bridge, donde se aplicara la configuracion del protocolo STP. Ademas, en el router principal, en este caso el MikroTik17, ejecutara un servidor DHCP para la configuración automatica de direcciones IP y asi facilitar la identificacion y el acceso a las diferentes maquinas conectadas.
++En el resto de dispositivos, los puertos existente en cada uno de ellos se agruparan como un solo bridge, donde se aplicará la configuración del protocolo STP. Además, en el router principal, en este caso el MikroTik17, ejecutara un servidor DHCP para la configuración automática de direcciones IP y asi facilitar la identificación y el acceso a las diferentes máquinas conectadas.
+ //IBIZA REVISA AÇO// 	A
+ ///IBIZA REVISA AÇO// 	|
+ //IBIZA REVISA AÇO//	|
+ 
+-Una vez realizada la conexion entre dispositivos de manera correcta, es posible que ya observemos un malfuncionamiento en nuestra arquitectura de red, ya que se pueden haber creado bucles que saturen la red. Cuando tengamos la conexion realizada deberiamos mediante la herramienta PING desde todos los equipos conectados a la red que se puede acceder a Internet obteniendo respuesta, desconectando algun equipo si se requiere. En nuestro caso, el PING se ha realizado sobre el servidor DNS de la compañia Google.
++Una vez realizada la conexión entre dispositivos de manera correcta, es posible observar un mal funcionamiento en nuestra arquitectura de red, ya que se pueden haber creado bucles que saturen la red. Cuando tengamos la conexión realizada deberíamos mediante la herramienta PING desde todos los equipos conectados a la red que se puede acceder a Internet obteniendo respuesta, desconectando algún equipo si se requiere. En nuestro caso, el PING se ha realizado sobre el servidor DNS de la compañía Google.
+ 
+ (Image del ping)
+ 
+ 2. Configurar el STP.
+ 
+-El siguiente paso sera la configuracion propia del protocolo STP. En equipos MikroTik, RouterOS dispone de gran cantidad de herramientas avanzadas de configuracion de redes, entre ellas, el protocolo de routing STP.
++El siguiente paso será la configuración propia del protocolo STP. En equipos MikroTik, RouterOS dispone de gran cantidad de herramientas avanzadas de configuración de redes, entre ellas, el protocolo de routing STP.
+ 
+-Accediendo al menu Bridges en RouterOS, podemos configurar en cada uno que haga uso del protocolo del caso practico, el cual se debera de configurar en todos los bridges de cada equipo, donde ademas, en el router que actuara como raiz (root bridge) en nuestro caso el MikroTik17, se debera de modificar el valor de Priority a un valor mas bajo para especificar que esta sera la "salida" de nuestra red al exterior.
++Accediendo al menú Bridges en RouterOS, podemos configurar en cada uno que haga uso del protocolo del caso práctico, el cual se deberá de configurar en todos los bridges de cada equipo, donde además, en el router que actuará como raíz (root bridge) en nuestro caso el MikroTik17, se deberá de modificar el valor de Priority a un valor más bajo para especificar que esta será la "salida" de nuestra red al exterior.
+ 
+-Cuando configuremos todos los bridges de los 4 dispositivos routers, deberiamos comprobar que despues de un tiempo de convergencia la red funciona de forma estable y que todos los dispostivos pueden tener acceso a Internet, lo mas practico realizando de nuevo PING sobre cualquier direccion.
++Cuando configuremos todos los bridges de los 4 dispositivos routers, deberíamos comprobar que después de un tiempo de convergencia la red funciona de forma estable y que todos los dispositivos pueden tener acceso a Internet, lo más práctico realizando de nuevo PING sobre cualquier direccion.
+ 
+ 3. Desactivar el STP en modo Seguro.
+ 
+-Una vez tengamos configurada de forma correcta el protocolo en todos los dispositivos y todos tengan acceso a Internet, desactivaremos dentro del modo seguro de RouterOS el protocolo STP para ver como se altera el comportamiento normal de la red y se efectua un bloqueo de los dispositivos al poco tiempo de su funcionamiento.
++Una vez tengamos configurada de forma correcta el protocolo en todos los dispositivos y todos tengan acceso a Internet, desactivaremos dentro del modo seguro de RouterOS el protocolo STP para ver cómo se altera el comportamiento normal de la red y se efectúa un bloqueo de los dispositivos al poco tiempo de su funcionamiento.
+ 
+-El modo seguro garantizara que si la configuracion aplicada dentro de este modo cierra la sesion SAFE de forma inesperada, se cargara la ultima configuracion buena conocida, la anterior con STP, de esta forma, si algun dispositivo entra en saturacion por caer dentro de la redundancia de la red, se rectificara a la configuracion anterior que era plenamente funcional para poder volver a acceder a cada uno de los routers.
++El modo seguro garantiza que si la configuración aplicada dentro de este modo cierra la sesión SAFE de forma inesperada, se cargará la ultima configuracion buena conocida, la anterior con STP, de esta forma, si algún dispositivo entra en saturación por caer dentro de la redundancia de la red, se rectifica a la configuración anterior que era plenamente funcional para poder volver a acceder a cada uno de los routers.
+ 
+ 4. Quitar la conexión entre dos routers.
+ 
+-Para ver como se reestablece el cauce de datos por la red frente a la caída de un equipo o desconexión de un enlace de red, se realizara la siguiente prueba.
+-Con los dispositivos plenamente funcionales bajo el protocolo STP, se desconectara el cable que conecta el equipo Mikrotik1 con el Mikrotik16, donde esta conexion es la predeterminada o 'root port' para el dispositivo Mikrotik16, siendo el puerto principal para salida de este dispositivo.
++Para ver como se reestablece el cauce de datos por la red frente a la caída de un equipo o desconexión de un enlace de red, se realizará la siguiente prueba.
++Con los dispositivos plenamente funcionales bajo el protocolo STP, se desconectara el cable que conecta el equipo Mikrotik1 con el Mikrotik16, donde esta conexión es la predeterminada o 'root port' para el dispositivo Mikrotik16, siendo el puerto principal para salida de este dispositivo.
+ 
+-Para comprobar como se mantiene la disponibilidad de la conexion a pesar de la desconexion o caida de un equipo colindante, se realizara un PING continuo desde el equipo conectado al MikroTik16, y acto seguido se desconectara el enlace entre los dos routers.
++Para comprobar cómo se mantiene la disponibilidad de la conexión a pesar de la desconexión o caída de un equipo colindante, se realizará un PING continuo desde el equipo conectado al MikroTik16, y acto seguido se desconectara el enlace entre los dos routers.
+ 
+-Si todo esta correctamente configurado, una vez retiremos el cable, en el terminal donde se esta realizando el PING podremos observar una perdida de paquetes o direccion inalcanzable por unos momentos, pero posteriormente, despues de un tiempo de convergencia la conexion se deberia de reanudar y continuar con el trafico anterior de forma normal.
++Si todo está correctamente configurado, una vez retiremos el cable, en el terminal donde se está realizando el PING podremos observar una perdida de paquetes o direccion inalcanzable por unos momentos, pero posteriormente, después de un tiempo de convergencia la conexión se debería de reanudar y continuar con el tráfico anterior de forma normal.
+ 
+ Imatge (ping  equip conectat al 16 troquelant.png)
+ 
+-5. Conectar cableado adicional entre dispositivos para observar el redireccionamiento de trafico automatico.
++5. Conectar cableado adicional entre dispositivos para observar el redireccionamiento de tráfico automatico.
+ 
+ 5.5 Modificar el valor de PATH COST.
+ 
+ - Gestionar prioridades de STP.
+-	Vamos a relaizar un cambio en el parametro de 'Path cost' para modificar el camino que tomarán los datos.
++	Vamos a realizar un cambio en el parámetro de 'Path cost' para modificar el camino que tomarán los datos.
+ 	
+ 	El 'Path cost' inicial de todos los interfaces es de 10 como podemos ver en la siguiente imagen.
+ 	(foto -> winbox screens\pathcost winbox 1)

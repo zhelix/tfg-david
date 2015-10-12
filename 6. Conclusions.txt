@@ -1,0 +1,20 @@
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+% ---------------------------------------------------------------------
+
+\chapter{Conclusion}
+
+\section{Despues de la pràctica...}
+
+Después de realizar la práctica hemos entendido los problemas que se encuentran en una red cableada con soporte para alta-disponibilidad donde coexisten diferentes formas de llegar a un mismo destino, entendiendo como poder solucionar esto mediante la utilización del protocolo (R)STP.
+
+Se ha visto diferentes formas de eliminar problemas que puedan surgir en nuestra red , como 
+con la creación de bucles mediante la conexión de los extremos de un cable de red en un mismo dispositivo (al Mikrotik). Eliminar el posible problema que crea de que se conecte un switch de forma intrusiva en la red.
+
+Además de entender el funcionamiento y configuración de una red con el protocolo STP, con la realización de la práctica hemos podido utilizar dispositivos Mikrotik y haciendo uso de ellos, viendo de forma práctica la configuración de los mismos de una forma pragmática.
+
+En cuanto a la práctica, si no se aplica el protocolo correctamente, este tendrá facilidad a fallar pues como se ha visto que con un equipo que ya no tenga el STP, la red ya no funcionara y si este no está debidamente configurado puede dar problemas al uso de usuarios inexpertos.
+
+Comentar ademas que despues de ver en una red simple en la que solo entran en juego 4 routers, en una red más amplia (por ejemplo la red de una empresa) se puede apreciar que a medida que aumenta los elementos a configurar con el STP aumenta la complejidad ya que habría que decidir qué caminos ha de elegir la trama.
+
+Así que podemos resumir que en la presente práctica hemos aprendido el funcionamiento del protocolo (R)STP y a configurar dispositivos Mikrotik.

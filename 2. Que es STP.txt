@@ -1,0 +1,32 @@
+2.STP (Spanning Tree Protocol):
+
+En comunicaciones, STP (del inglés Spanning Tree Protocol) es un protocolo de red de nivel 2 del modelo OSI (capa de enlace de datos).
+
+Su función es la de gestionar la presencia de bucles en topologías de red debido a la existencia de enlaces redundantes (necesarios en muchos casos para garantizar la disponibilidad de las conexiones).
+
+Los bucles impiden el funcionamiento normal de la red puesto que los paquetes se replican de forma ininterrumpida. Al no existir un campo TTL(tiempo de vida) en las tramas de capa 2, éstas se queden conmutando indefinidamente entre los switches o equipos de la configuracion.
+
+Para resolver el problema se utiliza el protocolo de routing, Spanning Tree Protocol (STP) asi como sus variantes.
+
+-STP (802.1d): impide bucles usando un "timer".
+-Rapid Spanning Tree (RSTP - 802.1w).
+
+2.1. Rapid Spanning Tree Protocol (RSTP):
+
+Al igual que el STP, RSTP es un protocolo de red de la segunda capa (enlace de datos) del modelo OSI, donde gestiona los posibles enlaces redundantes que aparezcan sobre cada bridge de la configuracion.
+
+RSTP es la evolución del Spanning Tree Protocol (STP), donde impide bucles coordinándose con sus vecinos, adaptándose a los cambios de una manera más rapida que en la version anterior.
+
+El protocolo RSTP establece identificadores por bridge, donde calcula una topologia sin bucles basandose en costes de enlaces y prioridades y elige el que tiene la prioridad más alta dentro de la configuracion. Ademas, en caso de cambios dentro de la arquitectura de red, el protocolo RSTP recalcula una nueva topologia libre de redundancia dentro de un periodo de tiempo de convergencia.
+
+El algoritmo aplicado se basa en el algoritmo de caminos minimos de Dijkstra, aplicado en el arbol logico obtenido a partir de la configuracion de red fisica, normalmente en estructura de malla para la alta disponibilidad. Esta basado en un intercambio de mensajes de configuracion: BPDU - Bridge Protocol Data Unit, donde cada bridge es actualizado con la ultima version de los cambios realizados en la topologia de red.
+
+Dentro de esta configuracion de prioridades, RSTP selecciona el puente raíz (Root Bridge), normalmente el equipo que disponga de mayor carga dentro de la red, el cual establecerá el camino de menor coste hacia el resto de bridges. El trafico se redigira desde cada puerto en funcion de dos parametros: prioridad y direccion MAC.
+
+La prioridad de cada bridge, se determina  en funcion del que tiene la prioridad mas alta despues del Root Bridge, que es el menor valor numerico despues del Root Bridge. Ademas, se dispone de un parámetro configurable: el Span path cost, que se puede utilizar para redirigir el trafico a traves de los nodos de la configuracion.
+
+En todos los bridges que componen la red, se elegirá un "root port", el cual tendrá el menor coste(acumulado) hasta el "root birdge", en caso de obtener el mismo coste en dos puertos, la prioridad se determinara en funcion del menor valor de MAC.
+
+RSTP se ha convertido en el protocolo preferido para prevenir bucles de capa 2 en topologías que incluyen redundancia aunque se pueden encontrar problemas que como: tiempos de convergencia demasiados altos y una configuracion que puede complicarse si no se conoce bien el principio de funcionamiento.
+
+

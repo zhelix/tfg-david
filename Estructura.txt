@@ -1,0 +1,13 @@
+——————Estructura del treball
+
+Configuración, Administración y Gestión de Redes.
+Módulo 2: Spanning Tree
+
+0. portada,index,index de figures
+1. Introduccio
+2. Que es STP
+3. Objectius
+4. Material utilitzat i montage ( escenari )
+5. Proves realitzades i resultats.
+6. Conclusions
+7. Bibliografia ( Wiki de MikroTik )
