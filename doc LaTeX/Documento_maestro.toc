@@ -1,35 +1,33 @@
 \boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
 \defcounter {refsection}{0}\relax 
 \select@language {spanish}
-\contentsline {chapter}{\numberline {1}\IeC {\textquestiondown }Qu\IeC {\'e} \textit {Spanning-Tree-Protocol}?}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}STP (\textit {Spanning Tree Protocol})}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}RSTP \textit {(Rapid Spanning Tree Protocol)}}{2}{section.1.2}
-\contentsline {chapter}{\numberline {2}\IeC {\textquestiondown }Qu\IeC {\'e} \textit {Spanning-Tree-Protocol}?}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}STP (\textit {Spanning Tree Protocol})}{3}{section.2.1}
-\contentsline {section}{\numberline {2.2}RSTP \textit {(Rapid Spanning Tree Protocol)}}{4}{section.2.2}
-\contentsline {chapter}{\numberline {3}Objetivos }{5}{chapter.3}
-\contentsline {chapter}{\numberline {4}Material}{6}{chapter.4}
-\contentsline {chapter}{\numberline {5}Configuraci\IeC {\'o}n}{7}{chapter.5}
-\contentsline {section}{\numberline {5.1}Configuraci\IeC {\'o}n de la red}{7}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Arquitectura b\IeC {\'a}sica}{8}{subsection.5.1.1}
-\contentsline {subsection}{\numberline {5.1.2}Arquitectura b\IeC {\'a}sica + diagonal}{9}{subsection.5.1.2}
-\contentsline {section}{\numberline {5.2}Configuraci\IeC {\'o}n inicial}{10}{section.5.2}
-\contentsline {subsection}{\numberline {5.2.1}Configuraci\IeC {\'o}n \textit {Wireless}}{10}{subsection.5.2.1}
-\contentsline {subsection}{\numberline {5.2.2}Configuraci\IeC {\'o}n de los otros dispositivos}{12}{subsection.5.2.2}
-\contentsline {section}{\numberline {5.3}Configuraci\IeC {\'o}n STP / RSTP}{14}{section.5.3}
-\contentsline {subsection}{\numberline {5.3.1}Configuraci\IeC {\'o}n \textit {out-of-the-box} de RSTP }{14}{subsection.5.3.1}
-\contentsline {subsection}{\numberline {5.3.2}Configuraci\IeC {\'o}n para evitar otro dispositivo con STP no autorizado}{15}{subsection.5.3.2}
-\contentsline {subsection}{\numberline {5.3.3}Configuraci\IeC {\'o}n para evitar bucles en el clientes}{16}{subsection.5.3.3}
-\contentsline {subsection}{\numberline {5.3.4}Configuraci\IeC {\'o}n del \textit {path cost}}{17}{subsection.5.3.4}
-\contentsline {subsection}{\numberline {5.3.5}Bucle para \textit {Backup Port}}{17}{subsection.5.3.5}
-\contentsline {chapter}{\numberline {6}Pruebas y resultados}{18}{chapter.6}
-\contentsline {section}{\numberline {6.1}Introducci\IeC {\'o}n}{18}{section.6.1}
-\contentsline {section}{\numberline {6.2}Desactivar el STP en modo Seguro.}{19}{section.6.2}
-\contentsline {section}{\numberline {6.3}Desconectar un enlace.}{19}{section.6.3}
-\contentsline {section}{\numberline {6.4}Modificar el valor de \textit {path cost}}{20}{section.6.4}
-\contentsline {section}{\numberline {6.5}Proteger la integridad de la estructura cuando se a\IeC {\~n}ada un dispositivo en un extremo de la red configurado con STP (\textit {edge})}{21}{section.6.5}
-\contentsline {section}{\numberline {6.6}Proteger la estructura cuando un posible usuario cree un lazo cerrado entre dos puertos (\textit {horizon})}{22}{section.6.6}
-\contentsline {section}{\numberline {6.7}A\IeC {\~n}adir enlace para tener redundancia (\textit {Backup Port})}{23}{section.6.7}
-\contentsline {section}{\numberline {6.8}Evitar los dos problemas anteriores combinados.}{24}{section.6.8}
-\contentsline {chapter}{\numberline {7}Conclusiones}{25}{chapter.7}
+\contentsline {chapter}{\numberline {1}Introducci\IeC {\'o}n}{1}{chapter.1}
+\contentsline {chapter}{\numberline {2}\IeC {\textquestiondown }Qu\IeC {\'e} \textit {Spanning-Tree-Protocol}?}{2}{chapter.2}
+\contentsline {section}{\numberline {2.1}STP (\textit {Spanning Tree Protocol})}{2}{section.2.1}
+\contentsline {section}{\numberline {2.2}RSTP \textit {(Rapid Spanning Tree Protocol)}}{3}{section.2.2}
+\contentsline {chapter}{\numberline {3}Objetivos }{4}{chapter.3}
+\contentsline {chapter}{\numberline {4}Material}{5}{chapter.4}
+\contentsline {chapter}{\numberline {5}Configuraci\IeC {\'o}n}{6}{chapter.5}
+\contentsline {section}{\numberline {5.1}Configuraci\IeC {\'o}n de la red}{6}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Arquitectura b\IeC {\'a}sica}{7}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}Arquitectura b\IeC {\'a}sica + diagonal}{8}{subsection.5.1.2}
+\contentsline {section}{\numberline {5.2}Configuraci\IeC {\'o}n inicial}{9}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Configuraci\IeC {\'o}n \textit {Wireless}}{9}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Configuraci\IeC {\'o}n de los otros dispositivos}{11}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Configuraci\IeC {\'o}n STP / RSTP}{13}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}Configuraci\IeC {\'o}n \textit {out-of-the-box} de RSTP }{13}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}Configuraci\IeC {\'o}n para evitar otro dispositivo con STP no autorizado}{14}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}Configuraci\IeC {\'o}n para evitar bucles en el clientes}{15}{subsection.5.3.3}
+\contentsline {subsection}{\numberline {5.3.4}Configuraci\IeC {\'o}n del \textit {path cost}}{16}{subsection.5.3.4}
+\contentsline {subsection}{\numberline {5.3.5}Bucle para \textit {Backup Port}}{16}{subsection.5.3.5}
+\contentsline {chapter}{\numberline {6}Pruebas y resultados}{17}{chapter.6}
+\contentsline {section}{\numberline {6.1}Introducci\IeC {\'o}n}{17}{section.6.1}
+\contentsline {section}{\numberline {6.2}Desactivar el STP en modo Seguro.}{18}{section.6.2}
+\contentsline {section}{\numberline {6.3}Desconectar un enlace.}{18}{section.6.3}
+\contentsline {section}{\numberline {6.4}Modificar el valor de \textit {path cost}}{19}{section.6.4}
+\contentsline {section}{\numberline {6.5}Proteger la integridad de la estructura cuando se a\IeC {\~n}ada un dispositivo en un extremo de la red configurado con STP (\textit {edge})}{20}{section.6.5}
+\contentsline {section}{\numberline {6.6}Proteger la estructura cuando un posible usuario cree un lazo cerrado entre dos puertos (\textit {horizon})}{21}{section.6.6}
+\contentsline {section}{\numberline {6.7}A\IeC {\~n}adir enlace para tener redundancia (\textit {Backup Port})}{22}{section.6.7}
+\contentsline {section}{\numberline {6.8}Evitar los dos problemas anteriores combinados.}{23}{section.6.8}
+\contentsline {chapter}{\numberline {7}Conclusiones}{24}{chapter.7}
 \contentsfinish 
