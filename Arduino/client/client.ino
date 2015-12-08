@@ -4,8 +4,8 @@
 byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
 EthernetClient client;
 
-String t;	// TEMPERATURE VAR
-String h;	// HUMIDITY VAR
+String t;	// Ejemplo Temperatura
+String h;	// Ejemplo Humedad
 String data;
 
 void setup() { 
