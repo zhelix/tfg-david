@@ -23,15 +23,15 @@ void setup()
 
 void loop()
 {
-  Serial.println("ELAVVVV");
+
   delay(dht.getMinimumSamplingPeriod());
   //Un parse String par poder enviarlo al servidor
   String temperatura=dtostrf(dht.getTemperature(), 4, 4, charVal);
   String humedad=dtostrf(dht.getHumidity(), 4, 4, charVal);
-  //String co2=String(analogRead(A5));
+  String gas=String(analogRead(A5));
   //WebClient
-  data = "temp1=" + temperatura  + "&hum1=" + humedad + "&gas1=" ;
-  /*if (client.connect("192.168.1.18", 80)) {
+  data = "temp1=" + temperatura  + "&hum1=" + humedad + "&gas1=" + gas ;
+  if (client.connect("192.168.1.18", 80)) {
       Serial.println("connected");
       // Enviamos los datos al servidor
       client.println("POST /add.php HTTP/1.1");
@@ -41,7 +41,7 @@ void loop()
       client.println(data.length());
       client.println(); 
       client.print(data); 
-   }*/
+   }
      //Comprobamos que el post esta bien formulado (no funcionaba al principio)
             Serial.println("POST /server/add.php HTTP/1.1");
             Serial.println("Host: 192.168.1.18");
