@@ -1,39 +1,49 @@
-#include "DHT.h"
+
+//
+//    FILE: dht11_test.ino
+//  AUTHOR: Rob Tillaart
+// VERSION: 0.1.00
+// PURPOSE: DHT library test sketch for DHT11 && Arduino
+//     URL:
+//
+// Released to the public domain
+//
 #include <Ethernet.h>
 #include <SPI.h>
+#include <dht.h>
 
-byte mac[] = { 0x00, 0xAA, 0xBB, 0xCC, 0xDE, 0x01 }; // RESERVED MAC ADDRESS
+dht DHT;
+
+#define DHT11_PIN 5
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+IPAddress ip(192, 168, 1, 177);
 EthernetClient client;
-DHT dht;
-String data;
-double floatVal=1.2;
-char charVal[10];               //temporarily holds data from vals 
-String stringVal = "";     //data on buff is copied to this string
-
+String data,temperature,humidity;
 void setup()
 {
   Serial.begin(9600);
   if (Ethernet.begin(mac) == 0) {
-    Serial.println("Failed to configure Ethernet using DHCP"); 
+      Serial.println("Failed to configure Ethernet using DHCP");
+      Ethernet.begin(mac, ip);
   }
   delay(1000);   // Un pequeño delay para evitar errores
-  dht.setup(2); // data pin 2
-  data = "";
 }
 
 void loop()
 {
+  // READ DATA
+  Serial.print("DHT11, \t");
+  int chk = DHT.read11(DHT11_PIN);
 
-  delay(dht.getMinimumSamplingPeriod());
-  //Un parse String par poder enviarlo al servidor
-  String temperatura=dtostrf(dht.getTemperature(), 4, 4, charVal);
-  String humedad=dtostrf(dht.getHumidity(), 4, 4, charVal);
-  String gas=String(analogRead(A5));
-  //WebClient
-  data = "temp1=" + temperatura  + "&hum1=" + humedad + "&gas1=" + gas ;
-  if (client.connect("192.168.1.18", 80)) {
+  // DISPLAY DATA
+  Serial.print(DHT.humidity, 1);
+  Serial.print(",\t");
+  Serial.println(DHT.temperature, 1);
+  	
+ data = "temp1=" + String(DHT.temperature, 2)  + "&hum1=" + String(DHT.humidity, 2) ;
+  
+ if (client.connect("192.168.1.18", 80)) {
       Serial.println("connected");
-      // Enviamos los datos al servidor
       client.println("POST /add.php HTTP/1.1");
       client.println("Host: 192.168.1.18");        
       client.println("Content-Type: application/x-www-form-urlencoded");
@@ -42,13 +52,16 @@ void loop()
       client.println(); 
       client.print(data); 
    }
-     //Comprobamos que el post esta bien formulado (no funcionaba al principio)
-            Serial.println("POST /server/add.php HTTP/1.1");
-            Serial.println("Host: 192.168.1.18");
-            Serial.println("Content-Type: application/x-www-form-urlencoded");
-            Serial.print("Content-Length: ");
-            Serial.print(data.length());
-            Serial.println();
-            Serial.print(data);
+  //Comprobamos que el post esta bien formulado (no funcionaba al principio) 
+  Serial.println("POST /server/add.php HTTP/1.1");
+  Serial.println("Host: 192.168.1.18");
+  Serial.println("Content-Type: application/x-www-form-urlencoded");
+  Serial.print("Content-Length: ");
+  Serial.print(data.length());
+  Serial.println();
+  Serial.print(data);
+  delay(2000);
 }
-
+//
+// END OF FILE
+//
