@@ -5,7 +5,7 @@
 	include("connect.php"); 	
 	$link=Connection();
 
-	$result=mysql_query("SELECT * FROM `templog`",$link);
+	$result=mysql_query("SELECT * FROM `data`",$link);
 ?>
 
 <head>
@@ -35,27 +35,32 @@ google.maps.event.addDomListener(window, 'load', initialize);
 </head>
 
 <body>
-<div id="googleMap" style="width:500px;height:380px;"></div>
 <h1>Temperature / moisture sensor readings</h1>
 
    <table border="1" cellspacing="1" cellpadding="1">
 		<tr>
 			<td>&nbsp;Timestamp&nbsp;</td>
+			<td>&nbsp;arduino&nbsp;</td>
+			<td>&nbsp;longitud&nbsp;</td>
+			<td>&nbsp;latitud&nbsp;</td>
 			<td>&nbsp;Temperature 1&nbsp;</td>
 			<td>&nbsp;Moisture 1&nbsp;</td>
+			<td>&nbsp;gas&nbsp;</td>
 		</tr>
 
       <?php 
 		  if($result!==FALSE){
 		     while($row = mysql_fetch_array($result)) {
-		        printf("<tr><td> &nbsp;%s </td><td> &nbsp;%s&nbsp; </td><td> &nbsp;%s&nbsp; </td></tr>", 
-		           $row["timeStamp"], $row["temperature"], $row["humidity"]);
+		        printf("<tr><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s&nbsp; </td><td> &nbsp;%s&nbsp; </td></tr>", 
+		           $row["date"],$row["arduino"],$row["longitud"],$row["latitud"], $row["temperatura"], $row["humedad"],$row["gas"]);
 		     }
 		     mysql_free_result($result);
 		     mysql_close();
 		  }
       ?>
    </table>
+	<br>
+
 	<div id="googleMap" style="width:500px;height:380px;"></div>
 </body>
 

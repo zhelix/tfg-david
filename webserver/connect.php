@@ -1,7 +1,7 @@
 <?php
 
 	function Connection(){
-		$server="192.168.1.18";
+		$server="127.0.0.1";
 		$user="root";
 		$pass="lolcat1$";
 		$db="arduino";
