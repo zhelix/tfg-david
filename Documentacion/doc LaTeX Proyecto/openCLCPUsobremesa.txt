@@ -1,0 +1,10 @@
+user	0m2.840s
+user	0m8.672s
+user	0m14.304s
+user	0m29.564s
+user	0m39.804s
+user	1m10.884s
+user	1m30.160s
+user	2m17.632s
+user	3m6.364s
+user	4m4.396s

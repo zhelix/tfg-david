@@ -1,0 +1,23 @@
+\chapter{Ejecucion y resultados}
+
+En este capitulo realizare las pruebas y realizare comparativas con el fin de poder calcular que mejora puede ofrecer OpenCL respecto a la programacion secuencial ya que la programacion paralela siendo mas compleja da muchas ventajas en cuanto a rendimiento y optimizacion.
+
+\section{Multiplicacion de matrices}
+
+En primer lugar procedere a la ejecucion de la Multiplicacion de matrices proporcionada por una serie de ejemplos de Nvidia para la computacion.
+
+Tratara de una serie de ejecuciones en los que la talla del problema ira en aumento hasta que el programa tenga problemas en la ejecucion en terminos de memoria.
+
+Para ello he realizado un script que realizara la ejecucion del codigo secuencialmente de cada problema y como resultado nos dara el tiempo que ha tardado cada problema en resolverse, esto nos dara una grafica de valores en los que se podra obtener el rendimiento de mejora (\textit{speedup}).
+Ademas he realizado pruebas en diferentes graficas de entornos muy diferentes de procesamiento como por ejemplo una grafica de un portatil el cual esta diseñado para el ahorro de energia y una grafica potente para \textit{Gamming} la cual se le ha realizado \textit{OverClock} y esta diseñada para consumir energia y poder conseguir un aumento de rendimiento.
+
+Para este problema, el cual solo realiza los calculos y no nos devuelve la matriz que alargaria los calculos por culpa del buffer de salida,  he implementado un multiplicador de programa que aumentara su talla exponencialmente haciendo una ejecucion muy costosa en valores elevados de la tabla, si OpenCL ofrece una potencia de paralelismo elevada los resultados deberian ser muy notables respecto a la programacion sequencial.
+
+
+
+
+
+
+	
+
+
