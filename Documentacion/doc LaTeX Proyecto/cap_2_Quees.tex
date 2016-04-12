@@ -1,36 +1,3 @@
 \chapter{¿Qué es \textit{OpenCL}?}
 
-\section{¿Qué es y cómo funciona?}
 
-\textbf{Open Computing Language (OpenCL)} es un framework para diseñar programas que se ejecutan sobre plataformas heterogéneas que constan de CPUs, GPUs, Procesadores de Señal Digital (DSP o PSD en castellano), FPGAs y otros procesadores y aceleradores.
-OpenCL especifica un lenguaje para programar dispositivos e interfaces de programación de interfaces (API) para controlar la plataforma y ejecutar programas en los dispositivos de computación.
-
-Se trata de un lenguaje sobre C, Las funciones ejecutadas sobre un dispositivo OpenCL se les llama núcleo. Una unidad de cálculo puede ser denominada como núcleo, pero el termino de núcleo es difícil de definir sobre todos los tipos de dispositivos compatibles con OpenCL.
-Un solo dispositivo de cálculo normalmente consta de varias unidades de procesamiento, que a su vez comprenden múltiples elementos de proceso (PES). Una sola ejecución del kernel puede ejecutarse en todas o muchas de las unidades de computación en paralelo aunque y el número de unidades de computación puede no corresponder al número de núcleos.
-
-Además de un lenguaje de programación C, OpenCL define una interfaz de programación de aplicaciones (API) que permite a los programas bajo OpenCL que se ejecutan en el host para iniciar núcleos en los dispositivos de computación y administrar la memoria de este dispositivo, que relativamente está separada de la memoria del host.
-Esta API está especificada en lenguaje C aunque hay librerías de terceros para aplicarlas a otros lenguajes.
-
-Los programas en el lenguaje OpenCL están destinados a ser compilado en tiempo de ejecución, por lo que las aplicaciones OpenCL son portables entre las implementaciones para diferentes dispositivos de computación (GPU,DSP,FPGAs,...) 
-\begin{figure}
-	\centering
-	\incluyeGrafico[width=0.5\textwidth]{fig1}
-	\caption{Diagrama de OpenCL}
-	\label{fig:opencl}
-\end{figure}
-
-En la \autoref{fig:opencl} se puede apreciar el funcionamiento de OpenCL y su gestión del dispositivo de computación. La peculiaridad de estos es su manera de gestionar la memoria ya que cada núcleo la gestiona de manera individual por lo que crea una jerarquía de memoria diferente lo cual implica un modelo de programación diferente.
-
-\section{Jerarquia de Memoria}
-
-OpenCL define una jerarquía de memoria de cuatro niveles para el dispositivo de computación (una tarjeta gráfica, por ejemplo):
-
-\begin{itemize}
-	\item Memoria global: compartido por todos los elementos de procesamiento, pero tiene un tiempo de acceso alto.
-	\item Memoria Read Only: un tiempo de acceso menor que la global, sin embargo solo puede comunicarse con la CPU y no con los Núcleos del dispositivo de computación.
-	\item Memoria local: compartido por un grupo de Núcleos.
-	\item Memoria privada: por cada núcleo tiene sus registros de memoria.
-\end{itemize}
-
-
-No todos los dispositivos necesitan implementar cada nivel de esta jerarquía en el hardware. Está ajustado para cumplir reglas de sincronización explícitas, en este caso barreras.
