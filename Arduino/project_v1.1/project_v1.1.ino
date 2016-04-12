@@ -1,7 +1,7 @@
 /*
  *  FILE:     project-v1.0.ino
  *  AUTHOR:   David Rodriguez Martinez  davidrm146@gmail.com
- *  VERSION:  1.0
+ *  VERSION:  1.1
  * 
  */
 
