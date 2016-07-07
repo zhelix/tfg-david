@@ -23,6 +23,7 @@ String data;
 
 void setup()
 {  
+  Serial.print("EXECUTING setup");
   Serial.begin(9600);
   Serial2.begin(9600);
   
@@ -34,7 +35,7 @@ void setup()
 }
 
 void loop(){
-  
+   Serial.print("EXECUTING LOOP");
   //***************GPS CODE*********************
     bool newData = false;
     unsigned long chars;
@@ -61,16 +62,21 @@ void loop(){
 
  //The next variable keeps the information collected by the sensors
  data = 
- "temp1=" +  getTemperature()  + 
+ "board1=" +  getID()  +
+ "&temp1=" +  getTemperature()  + 
  "&hum1=" + getHumidity() +
  "&gas1="+ getGas() + 
+ "&noise1=" + getNoise() +
+ "&light1="+ getLight() + 
  "&poslat1=" + String(flat, 6) + 
  "&poslon1=" + String(flon, 6);
 
+ //Debug function
+  data = 
+ "board1=arduino2&temp1=23&hum1=43&gas1=53&&noise1=54&light1=55&poslat1=63&poslon1=73";
+
   //This function is for send information to the server
-  sendData(data);
-  //This function is for debug the information sent to server
-  displayData(data);
+  sendDataGet(data);
   
   delay(10);
 }
@@ -78,7 +84,7 @@ void loop(){
 
 
 void displayData(String data) {
-  Serial.println("POST /server/add.php HTTP/1.1");
+  Serial.println("GET /server/add.php HTTP/1.1");
   Serial.println("Host: 192.168.1.18");
   Serial.println("Content-Type: application/x-www-form-urlencoded");
   Serial.print("Content-Length: ");
@@ -87,7 +93,7 @@ void displayData(String data) {
   Serial.println(data);
 }
 
-void sendData(String data) {
+void sendDataPost(String data) {
   if (client.connect("192.168.0.104", 80)){
     Serial.println("connected");
     client.println("POST /add.php HTTP/1.1");
@@ -104,6 +110,20 @@ void sendData(String data) {
     
 }
 
+void sendDataGet(String data) {
+  if (client.connect("192.168.1.18", 80)){
+    client.print("GET /server/add.php?");
+    client.print(data);
+    client.println("HTTP/1.1");
+    client.println("Host: 192.168.0.104");        
+    client.println("Connection: close");
+    client.println();
+  }
+    if (client.connected()) { 
+      client.stop();
+    }
+    
+}
 
 String getGas() {
     return String(analogRead(A10));
@@ -128,6 +148,19 @@ String getHumidity() {
   return String(h, 2);
 }
 
+String getNoise() {
+  
+  return "getNoise";
+}
+
+String getLight() {
+
+  return "getLight";
+}
+
+String getID() {
+  return "arduino2";
+}
 
 
 
