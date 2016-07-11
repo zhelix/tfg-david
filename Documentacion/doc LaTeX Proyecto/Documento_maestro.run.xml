@@ -52,7 +52,7 @@
     <requires type="static">
       <file>blx-dm.def</file>
       <file>blx-compat.def</file>
-      <file>biblatex_.def</file>
+      <file>biblatex.def</file>
       <file>authoryear.bbx</file>
       <file>standard.bbx</file>
       <file>authoryear.cbx</file>
@@ -77,6 +77,9 @@
     </provides>
     <requires type="dynamic">
       <file>Documento_maestro.bcf</file>
+    </requires>
+    <requires type="editable">
+      <file>referencias.bib</file>
     </requires>
   </external>
 </requests>

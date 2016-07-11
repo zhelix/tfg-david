@@ -2,7 +2,7 @@
 <html>
 <?php
 
-	include("connect.php"); 	
+	include("connect.php");
 	$link=Connection();
 
 	$result=mysql_query("SELECT * FROM `data`",$link);
@@ -18,9 +18,9 @@
     zoom:10,
     mapTypeId:google.maps.MapTypeId.ROADMAP
   };
-  
+
   var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-  
+
   var marker = new google.maps.Marker({
     position: myPosition,
     map: map,
@@ -46,13 +46,15 @@ google.maps.event.addDomListener(window, 'load', initialize);
 			<td>&nbsp;Temperature 1&nbsp;</td>
 			<td>&nbsp;Moisture 1&nbsp;</td>
 			<td>&nbsp;gas&nbsp;</td>
+			<td>&nbsp;luz&nbsp;</td>
+			<td>&nbsp;ruido&nbsp;</td>
 		</tr>
 
-      <?php 
+      <?php
 		  if($result!==FALSE){
 		     while($row = mysql_fetch_array($result)) {
-		        printf("<tr><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s&nbsp; </td><td> &nbsp;%s&nbsp; </td></tr>", 
-		           $row["date"],$row["arduino"],$row["longitud"],$row["latitud"], $row["temperatura"], $row["humedad"],$row["gas"]);
+		        printf("<tr><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s </td><td> &nbsp;%s&nbsp; </td><td> &nbsp; %s&nbsp; </td><td> &nbsp; %s&nbsp; </td><td> &nbsp; %s&nbsp; </td></tr>",
+		           $row["date"],$row["boardid"],$row["poslon"],$row["poslat"], $row["temp"], $row["hum"],$row["gas"],$row["luz"],$row["noise"]);
 		     }
 		     mysql_free_result($result);
 		     mysql_close();

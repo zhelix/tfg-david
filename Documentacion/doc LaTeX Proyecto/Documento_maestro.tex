@@ -28,7 +28,8 @@
 
 \input{preambulo}
 
-%\bibliography{referencias}
+\bibliography{referencias}
+
 
 % ---------------------------------------------------------------------
 % Las carpetas para los gráficos
@@ -41,8 +42,7 @@
 % ---------------------------------------------------------------------
 
 \title{
-	\textbf{Practica 1:}\\
-	Ejecucion de codigo bajo \textbf{OpenCL}
+	Implementación de sensores geolocalizados para la obtención de datos en un área metropolitana
 	\\[3ex]
 	\mdseries\large
 	}
@@ -50,8 +50,11 @@
 \author{
 	\textbf{Rodríguez} Martinez, David\\
 	\\[2.5cm]
- \incluyeGrafico[width=0.4\textwidth]{logocl}
+ \incluyeGrafico[width=0.4\textwidth]{UPV_horitzontal}
 }
+\author{David Rodriguez Martinez}
+\tutor{David Cuesta Frau}
+\curs{2015-2016}
 
 % ---------------------------------------------------------------------
 % ---------------------------------------------------------------------
@@ -73,7 +76,7 @@
 	\renewcommand{\indexname}{Índice alfabético}
 	\renewcommand{\bibname}{Bibliografía}
 	\renewcommand{\contentsname}{Índice general}
-	\renewcommand{\abstractname}{Resumen}	
+	\renewcommand{\abstractname}{Resumen}
 \fi
 
 \ifvalencia % És molt important fer aquestes definicions, si no, apareixeran en anglès
@@ -118,6 +121,7 @@
 	%\addcontentsline{toc}{chapter}{\contentsname}
 
 	\tableofcontents
+	\listoffigures
 \fi
 
 % -------------------------------------------------------
