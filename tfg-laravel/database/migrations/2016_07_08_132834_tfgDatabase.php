@@ -30,7 +30,7 @@ class TfgDatabase extends Migration
             $table->timestamps();
 
             //Relacionar amb taula Users.
-            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('user_id')->references('id')->on('users');
         });
 
         Schema::create('data', function (Blueprint $table) {

@@ -11,20 +11,17 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
-
-
-//usuarios
-Route::get('user', 'UserController@index');
-Route::get('userImg','UserController@getUserImage');
+*/
 
 //boars
 Route::get('board', 'BoardController@index');
 
 //Reportes
-Route::get('report', 'ReportController@index');
+
 
 //Recive datos
 Route::get('/call','getDataController@pickData');
@@ -33,6 +30,16 @@ Route::post('/send','BoardController@monitorize');
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+
+
+
+//usuarios
+Route::get('/user', ['uses' => 'UserController@index', 'middleware' => 'auth']);
+Route::get('user1', 'UserController@index');
+
+
+Route::get('/report', ['uses' => 'reportController@index', 'middleware' => 'auth']);
+//Route::get('report', 'ReportController@index');
 
 Route::get('test', function () {
     return view('pages.testing');
@@ -44,4 +51,6 @@ Route::get('foo', function(){
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+Route::get('/', 'HomeController@index');
+
+

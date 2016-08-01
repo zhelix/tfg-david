@@ -2,26 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
-{
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+use App\Http\Requests;
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
+class UserController extends Controller
+{
+
     public function index(){
         return view('pages.user')->with([
             'userimg' => $this->getUserImage(),
@@ -30,7 +17,7 @@ class HomeController extends Controller
             'usercompany' => $this->getUserCompany()
         ]);
     }
-
+    
     function getUserImage(){
         return "http://nineplanets.org/images/themoon.jpg";
     }
@@ -46,5 +33,5 @@ class HomeController extends Controller
     function getUserCompany(){
         return "VLC_Logic";
     }
-    
+
 }

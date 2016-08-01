@@ -1,9 +1,22 @@
-@extends('app')
+
+@extends('layouts.app')
 
 
 <body onload="javascript:cambiarPestanna(pestanas,temperatura);">
 @section('content')
 
+    <style>
+        div {
+            margin-left:45px;
+        }
+        h1 {
+            margin-left:45px;
+        }
+        h2 {
+            margin-left:45px;
+        }
+
+    </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM3AK8M8UNQo7I39iu9pCK5T0KbTz2i5M"
             async defer></script>
 

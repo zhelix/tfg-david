@@ -1,7 +1,7 @@
 /*
  *  FILE:     project-v1.0.ino
  *  AUTHOR:   David Rodriguez Martinez  davidrm146@gmail.com
- *  VERSION:  1.1
+ *  VERSION:  1.3
  * 
  */
 //Necessary Libraries
@@ -16,14 +16,14 @@ TinyGPS gps;
 #define DHTPIN 2  
 #define DHTTYPE DHT11  
 DHT dht(DHTPIN, DHTTYPE);
-IPAddress ip(192, 168, 1, 177);
+IPAddress ip(192, 168, 1, 102);
 EthernetClient client;
 String data;
 
 
 void setup()
 {  
-  Serial.print("EXECUTING setup");
+  Serial.println("EXECUTING setup");
   Serial.begin(9600);
   Serial2.begin(9600);
   
@@ -35,7 +35,7 @@ void setup()
 }
 
 void loop(){
-   Serial.print("EXECUTING LOOP");
+   Serial.println("EXECUTING LOOP");
   //***************GPS CODE*********************
     bool newData = false;
     unsigned long chars;
@@ -74,17 +74,17 @@ void loop(){
  //Debug function
   data = 
  "board1=arduino2&temp1=23&hum1=43&gas1=53&&noise1=54&light1=55&poslat1=63&poslon1=73";
-
+  displayData(data);
   //This function is for send information to the server
-  sendDataGet(data);
+  sendDataPost(data);
   
-  delay(10);
+  delay(100);
 }
 
 
 
 void displayData(String data) {
-  Serial.println("GET /server/add.php HTTP/1.1");
+  Serial.println("POST /add.php HTTP/1.1");
   Serial.println("Host: 192.168.1.18");
   Serial.println("Content-Type: application/x-www-form-urlencoded");
   Serial.print("Content-Length: ");
@@ -94,10 +94,10 @@ void displayData(String data) {
 }
 
 void sendDataPost(String data) {
-  if (client.connect("192.168.0.104", 80)){
+  if (client.connect("192.168.1.16", 80)){
     Serial.println("connected");
     client.println("POST /add.php HTTP/1.1");
-    client.println("Host: 192.168.0.104");        
+    client.println("Host: 192.168.1.16");        
     client.println("Content-Type: application/x-www-form-urlencoded");
     client.print("Content-Length: ");
     client.println(data.length());
@@ -111,11 +111,11 @@ void sendDataPost(String data) {
 }
 
 void sendDataGet(String data) {
-  if (client.connect("192.168.1.18", 80)){
-    client.print("GET /server/add.php?");
+  if (client.connect("192.168.1.16", 80)){
+    client.print("GET /add.php?");
     client.print(data);
     client.println("HTTP/1.1");
-    client.println("Host: 192.168.0.104");        
+    client.println("Host: 192.168.1.16");        
     client.println("Connection: close");
     client.println();
   }
@@ -126,7 +126,7 @@ void sendDataGet(String data) {
 }
 
 String getGas() {
-    return String(analogRead(A10));
+    return String(analogRead(A3));
 }
 
 String getTemperature() {
@@ -150,7 +150,7 @@ String getHumidity() {
 
 String getNoise() {
   
-  return "getNoise";
+  return String(analogRead(A4));
 }
 
 String getLight() {
