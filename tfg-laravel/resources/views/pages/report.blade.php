@@ -6,7 +6,7 @@
 @section('content')
 
     <style>
-        div {
+        body {
             margin-left:45px;
         }
         h1 {
@@ -20,8 +20,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM3AK8M8UNQo7I39iu9pCK5T0KbTz2i5M"
             async defer></script>
 
-    <h1>Reportes</h1>
 
+
+
+    <h1>Reportes</h1>
+    <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
     <h2>Posicion</h2><div id="googleMap" style="width:500px;height:380px;"></div>
     <div >
 

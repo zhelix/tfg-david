@@ -2,13 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\data;
 use App\Http\Requests;
+use Request;
+
+
 
 class getDataController extends Controller
 {
     public function pickData(){
-        return view('pages.getDatel');
+
+        $getData = Request::all();
+        data::create($getData);
+        return $getData;
     }
+
+
 }

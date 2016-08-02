@@ -26,7 +26,7 @@ Route::get('board', 'BoardController@index');
 //Recive datos
 Route::get('/call','getDataController@pickData');
 //Post solve CSRF
-Route::post('/send','BoardController@monitorize');
+//Route::post('/send','BoardController@monitorize');
 /*Route::get('/', function () {
     return view('welcome');
 });*/

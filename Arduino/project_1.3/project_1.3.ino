@@ -9,6 +9,7 @@
 #include <SPI.h>
 #include <TinyGPS.h>
 #include "DHT.h"
+#include <HttpClient.h>
 
 //Config of the device
 byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
@@ -73,47 +74,29 @@ void loop(){
 
  //Debug function
   data = 
- "board1=arduino2&temp1=23&hum1=43&gas1=53&&noise1=54&light1=55&poslat1=63&poslon1=73";
+ "board_id=1&temp=23&hum=43&gas=53&noise=54&luz=55&poslat=63&poslon=73";
   displayData(data);
   //This function is for send information to the server
-  sendDataPost(data);
-  
+  sendDataGet(data);
+
   delay(100);
 }
 
 
 
 void displayData(String data) {
-  Serial.println("POST /add.php HTTP/1.1");
-  Serial.println("Host: 192.168.1.18");
-  Serial.println("Content-Type: application/x-www-form-urlencoded");
-  Serial.print("Content-Length: ");
-  Serial.print(data.length());
-  Serial.println();
+  Serial.print("GET /call?");
   Serial.println(data);
-}
-
-void sendDataPost(String data) {
-  if (client.connect("192.168.1.16", 80)){
-    Serial.println("connected");
-    client.println("POST /add.php HTTP/1.1");
-    client.println("Host: 192.168.1.16");        
-    client.println("Content-Type: application/x-www-form-urlencoded");
-    client.print("Content-Length: ");
-    client.println(data.length());
-    client.println(); 
-    client.print(data); 
-  }
-    if (client.connected()) { 
-      client.stop();
-    }
-    
+  Serial.println("HTTP/1.1");
+  Serial.println("Host: 192.168.1.16");        
+  Serial.println("Connection: close");
+  Serial.println();
 }
 
 void sendDataGet(String data) {
-  if (client.connect("192.168.1.16", 80)){
-    client.print("GET /add.php?");
-    client.print(data);
+  if (client.connect("192.168.1.16",8888)){
+    client.print("GET /call?");
+    client.println(data);
     client.println("HTTP/1.1");
     client.println("Host: 192.168.1.16");        
     client.println("Connection: close");
@@ -159,8 +142,27 @@ String getLight() {
 }
 
 String getID() {
-  return "arduino2";
+  return "1";
 }
+
+/******Deprecated******/
+void sendDataPost(String data) {
+  if (client.connect("192.168.1.16", 80)){
+    Serial.println("connected");
+    client.println("POST /add.php HTTP/1.1");
+    client.println("Host: 192.168.1.16");        
+    client.println("Content-Type: application/x-www-form-urlencoded");
+    client.print("Content-Length: ");
+    client.println(data.length());
+    client.println(); 
+    client.print(data); 
+  }
+    if (client.connected()) { 
+      client.stop();
+    }
+    
+}
+
 
 
 

@@ -27,7 +27,7 @@
         </div>
     </div>
     <div style="margin-left:45px;">
-        <h2>Boards List</h2>
+        <h2>Boards List </h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
         <table class="table table-striped">
                 <th>Board</th><th>Status</th><th></th>
             <tr>

@@ -12,15 +12,6 @@ class TfgDatabase extends Migration
      */
     public function up()
     {
-        Schema::create('user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('user');
-            $table->string('passwd');
-            $table->string('name');
-            $table->string('company');
-            $table->string('tel');
-            $table->timestamps();
-        });
         Schema::create('board', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -57,8 +48,8 @@ class TfgDatabase extends Migration
      */
     public function down()
     {
-        Schema::drop('user');
-        Schema::drop('board');
+
         Schema::drop('data');
+        Schema::drop('board');
     }
 }

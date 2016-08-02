@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class data extends Model
 {
     protected $fillable = [
-        'created_at',
         'temp',
         'hum',
         'gas',
