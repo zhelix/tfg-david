@@ -6,6 +6,16 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
 </head>
 <body>
+
+<?php
+
+
+
+phpinfo()
+
+
+?>
+
 <script>
     var map;
     var marker;

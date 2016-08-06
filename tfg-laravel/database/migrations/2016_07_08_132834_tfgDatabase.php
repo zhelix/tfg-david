@@ -16,6 +16,7 @@ class TfgDatabase extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('brand');
+            $table->string('status');
             $table->string('linkID');
             $table->integer('user_id')->unsigned();
             $table->timestamps();

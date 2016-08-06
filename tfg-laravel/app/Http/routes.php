@@ -24,13 +24,13 @@ Route::get('board', 'BoardController@index');
 
 
 //Recive datos
-Route::get('/call','getDataController@pickData');
+Route::get('/call','getDataController@setData');
 //Post solve CSRF
 //Route::post('/send','BoardController@monitorize');
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-
+Route::get('/sqltest','UserController@getUserInfo');
 
 
 //usuarios

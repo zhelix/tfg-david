@@ -7,6 +7,7 @@
         div {
             margin-left:45px;
         }
+        h2 {display: inline;}
 
     </style>
     <div class="container-fluid">
@@ -15,9 +16,9 @@
             <div class="col-sm-6">
                 <h2>User Info</h2>
                 <table class="table table-striped">
-                    <tr><td><b>Name:</b></td><td> {{ $username }}</td></tr>
-                    <tr><td><b>Company:</b></td><td>  {{ $usercompany }}</td></tr>
-                    <tr><td><b>Mail:</b></td><td>  {{ $usermail }}</td></tr>
+                    <tr><td><b>Name:</b></td><td> {{ $userinfo->name }}</td></tr>
+                    <tr><td><b>Company:</b></td><td>  {{ $userinfo->company }}</td></tr>
+                    <tr><td><b>Mail:</b></td><td>  {{ $userinfo->email }}</td></tr>
                 </table>
                 <br>
                 <br>
@@ -26,8 +27,11 @@
             </div>
         </div>
     </div>
+    <br>
+
+    {{ $boardinfo->name }}
     <div style="margin-left:45px;">
-        <h2>Boards List </h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+        <h2>Boards List </h2><button onclick="window.location.href='report'"><span class="glyphicon glyphicon-plus" aria-hidden="true"><a href='report'></a></span></button><br><br>
         <table class="table table-striped">
                 <th>Board</th><th>Status</th><th></th>
             <tr>
@@ -51,7 +55,6 @@
                 <td><button onclick="window.location.href='monitorize'">Monitorize</button></td>
             </tr>
         </table>
-        <button onclick="window.location.href='report'">ADD Board</button>
     </div>
 
 @stop
