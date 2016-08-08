@@ -1,9 +1,12 @@
 
+
 @extends('layouts.app')
 
 
-<body onload="javascript:cambiarPestanna(pestanas,temperatura);">
+
 @section('content')
+
+    <body onload="javascript:cambiarPestanna(pestanas,temperatura);">
 
     <style>
         body {
@@ -12,49 +15,64 @@
         h1 {
             margin-left:45px;
         }
-        h2 {
+        h2#rep {
             margin-left:45px;
+            white-space: pre;
+        }
+        h2 {
+            white-space: pre;
+        }
+        div.relative {
+            position: absolute;
+            top: 105px;
+            left: 750px;
+
+
+        }
+        span {
+            white-space:nowrap;
         }
 
     </style>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBM3AK8M8UNQo7I39iu9pCK5T0KbTz2i5M"
-            async defer></script>
-
 
 
 
     <h1>Reportes</h1>
-    <span class="glyphicon glyphicon-map-marker" aria-hidden="true">
-    <h2>Posicion</h2><div id="googleMap" style="width:500px;height:380px;"></div>
-    <div >
+    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Position</h2>
 
-    <script src="http://maps.googleapis.com/maps/api/js"></script>
-    <script>
-        function initialize() {
-            var myPosition = { {{ $position }} };
-            var mapProp = {
-                center:new google.maps.LatLng(myPosition),
-                zoom:13,
-                mapTypeId:google.maps.MapTypeId.ROADMAP
-            };
-
-            var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-
-            var marker = new google.maps.Marker({
-                position: myPosition,
-                map: map,
-                title: 'Hello World!'
-            });
-        }
+    <div class="relative">
+        <h2  id="rep"><span style="white-space:nowrap" class="glyphicon glyphicon-search" aria-hidden="true"></span> Generate a Report</h2><br>
+        <button onclick="window.location.href='txt'" >Generate .txt</button>
+    </div>
+    <hr>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
 
 
-        google.maps.event.addDomListener(window, 'load', initialize);
-
-    </script>
+    </script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCzynwvcJcmx8Tth4CJzZN_D_BjRkllbtA&callback=initMap"
+                async defer></script>
+        <script>
+            var map;
+            var marker;
+            function initMap() {
+                var mapProp = {
+                    center: new google.maps.LatLng({{$mapa->poslat}},{{$mapa->poslon}}),
+                    zoom: 14,
+                    mapTypeId: google.maps.MapTypeId.HYBRID
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var myPos = new google.maps.LatLng({{$mapa->poslat}},{{$mapa->poslon}});
+                marker = new google.maps.Marker({
+                    position: myPos,
+                    map: map,
+                    title: 'Arduino DUE'
+                });
+                marker.setMap(map);
+            }
+        </script>
 
     <hr>
 
-    <h2>Seguimiento</h2>
+    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Monitoring</h2>
 
     <div id="pestanas">
         <ul class="nav nav-tabs">
@@ -69,19 +87,19 @@
     <br>
     <div id="contenidopestanas">
         <div id="ctemperatura">
-            <canvas id="tempe1" width="600" height="400"></canvas>
+            <canvas id="tempe1" width="1300" height="400"></canvas>
         </div>
         <div id="chumedad">
-            <canvas id="hume1" width="600" height="400"></canvas>
+            <canvas id="hume1" width="1300" height="400"></canvas>
         </div>
         <div id="cluz">
-            <canvas id="light1" width="600" height="400"></canvas>
+            <canvas id="light1" width="1300" height="400"></canvas>
         </div>
         <div id="cgas">
-            <canvas id="co1" width="600" height="400"></canvas>
+            <canvas id="co1" width="1300" height="400"></canvas>
         </div>
         <div id="cacustica">
-            <canvas id="acustic1" width="600" height="400"></canvas>
+            <canvas id="acustic1" width="1300" height="400"></canvas>
         </div>
 
         </div>
@@ -90,7 +108,7 @@
     <script>
         //Get all the temperature in real time
         var temperatureData = {
-            labels : ["H 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24"],
             datasets : [
                 {
@@ -106,7 +124,7 @@
 
         //Get all the humidity in real time
         var humidityData = {
-            labels : ["H 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24"],
             datasets : [
                 {
@@ -122,7 +140,7 @@
 
         //Get all the light in real time
         var lightData = {
-            labels : ["H 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24"],
             datasets : [
                 {
@@ -138,7 +156,7 @@
 
         //Get all the gas in real time
         var coData = {
-            labels : ["H 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24"],
             datasets : [
                 {
@@ -154,7 +172,7 @@
 
         //Get all the noise in real time
         var acusticData = {
-            labels : ["H 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
+            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
                 "21","22","23","24"],
             datasets : [
                 {

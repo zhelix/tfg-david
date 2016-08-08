@@ -76,7 +76,7 @@ void loop(){
   //This function is for send information to the server
   sendDataGet(data);
 
-  delay(1000);
+  delay(10000);
 }
 
 

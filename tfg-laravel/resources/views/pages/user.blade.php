@@ -29,31 +29,23 @@
     </div>
     <br>
 
-    {{ $boardinfo->name }}
+
     <div style="margin-left:45px;">
         <h2>Boards List </h2><button onclick="window.location.href='report'"><span class="glyphicon glyphicon-plus" aria-hidden="true"><a href='report'></a></span></button><br><br>
         <table class="table table-striped">
                 <th>Board</th><th>Status</th><th></th>
+            @foreach ($boardinfo as $board)
             <tr>
-                <td>Arduino1</td>
-                <td><font color="#32cd32">Working</font></td>
-                <td><button onclick="window.location.href='report'">Monitorize</button></td>
+                <td>{{ $board->name }}</td>
+                @if ($board->status === "W")
+                    <td><font color="#green">{{ $board->status }}</font></td>
+                    <td><button onclick="window.location.href='report'">Monitorize</button></td>
+                @else
+                    <td><font color="#red">{{ $board->status }}</font></td>
+                    <td><button onclick="window.location.href='report'" >Monitorize</button></td>
+                @endif
             </tr>
-            <tr>
-                <td>Arduino2</td>
-                <td><font color="red">Stopped</font></td>
-                <td><button onclick="window.location.href='monitorize'">Monitorize</button></td>
-            </tr>
-            <tr>
-                <td>Arduino3</td>
-                <td><font color="red">Stopped</font></td>
-                <td><button onclick="window.location.href='monitorize'">Monitorize</button></td>
-            </tr>
-            <tr>
-                <td>Arduino4</td>
-                <td><font color="red">Stopped</font></td>
-                <td><button onclick="window.location.href='monitorize'">Monitorize</button></td>
-            </tr>
+            @endforeach
         </table>
     </div>
 

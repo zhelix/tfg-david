@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+//................
+
+use Auth;
+//...................
+
+
+
 use App\User;
 use App\board;
+use App\Http\Requests;
 use Illuminate\Http\Request;
 
-use App\Http\Requests;
+
 
 class UserController extends Controller
 {
@@ -27,7 +35,7 @@ class UserController extends Controller
     function getUserInfo()
     {
         $userInfo = User::select('name', 'email', 'company')
-            ->where('id', '=', Auth::user()->id)
+            ->where('id', Auth::user()->id)
             ->take(1)
             ->get();
         return $userInfo[0];
@@ -36,9 +44,10 @@ class UserController extends Controller
     function getBoardInfo()
     {
         $boardQuery= board::select('id', 'name', 'brand','status')
-            ->where('user_id', '=', Auth::user()->id)
+            ->where('user_id', Auth::user()->id)
             ->get();
         return $boardQuery;
     }
 
 }
+

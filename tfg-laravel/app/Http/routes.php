@@ -35,11 +35,12 @@ Route::get('/sqltest','UserController@getUserInfo');
 
 //usuarios
 Route::get('/user', ['uses' => 'UserController@index', 'middleware' => 'auth']);
-Route::get('user1', 'UserController@index');
 
 
 Route::get('/report', ['uses' => 'reportController@index', 'middleware' => 'auth']);
-//Route::get('report', 'ReportController@index');
+
+
+Route::get('txt', 'reportController@generateTxt');
 
 Route::get('test', function () {
     return view('pages.testing');
@@ -54,3 +55,15 @@ Route::auth();
 Route::get('/', 'HomeController@index');
 
 
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
+
+Route::auth();
+
+Route::get('/home', 'HomeController@index');
