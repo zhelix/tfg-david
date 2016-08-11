@@ -37,12 +37,13 @@
 
 
 
-    <h1>Reportes</h1>
+    <h1>- Reportes</h1>
     <h2><span style="white-space:nowrap" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Position</h2>
 
     <div class="relative">
         <h2  id="rep"><span style="white-space:nowrap" class="glyphicon glyphicon-search" aria-hidden="true"></span> Generate a Report</h2><br>
         <button onclick="window.location.href='txt'" >Generate .txt</button>
+        <button onclick="window.location.href='csv'" >Generate .csv</button>
     </div>
     <hr>
     <div id="googleMap" style="width:500px;height:380px;"></div>
@@ -76,11 +77,11 @@
 
     <div id="pestanas">
         <ul class="nav nav-tabs">
-            <li id="temperatura"><a href='javascript:cambiarPestanna(pestanas,temperatura);'>Temperatura</a></li>
-            <li id="humedad"><a href='javascript:cambiarPestanna(pestanas,humedad);'>Humedad</a></li>
-            <li id="luz"><a href='javascript:cambiarPestanna(pestanas,luz);'>Luz</a></li>
-            <li id="gas"><a href='javascript:cambiarPestanna(pestanas,gas);'>CO</a></li>
-            <li id="acustica"><a href='javascript:cambiarPestanna(pestanas,acustica);'>Acustica</a></li>
+            <li id="temperatura"><a href='javascript:cambiarPestanna(pestanas,temperatura);'>Temperature</a></li>
+            <li id="humedad"><a href='javascript:cambiarPestanna(pestanas,humedad);'>Humidity</a></li>
+            <li id="luz"><a href='javascript:cambiarPestanna(pestanas,luz);'>Light</a></li>
+            <li id="gas"><a href='javascript:cambiarPestanna(pestanas,gas);'>Gas (CO)</a></li>
+            <li id="acustica"><a href='javascript:cambiarPestanna(pestanas,acustica);'>Noise</a></li>
 
         </ul>
     </div>
@@ -108,8 +109,8 @@
     <script>
         //Get all the temperature in real time
         var temperatureData = {
-            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                "21","22","23","24"],
+            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
+                "20","21","22","23"],
             datasets : [
                 {
                     label: "Temperature",
@@ -117,15 +118,18 @@
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [15,17,20,24,26,28,26,25,26,24,20,18,15]
+                    data : [ @foreach ($realTime as $datax)
+                        {{ $datax->temp }},
+                        @endforeach]
                 }
             ]
         }
 
+
         //Get all the humidity in real time
         var humidityData = {
-            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                "21","22","23","24"],
+            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
+                "20","21","22","23"],
             datasets : [
                 {
                     label: "Humidity",
@@ -133,15 +137,17 @@
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [203,56,199,51,125,247]
+                    data : [@foreach ($realTime as $datax)
+                        {{ $datax->hum }},
+                        @endforeach]
                 }
             ]
         }
 
         //Get all the light in real time
         var lightData = {
-            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                "21","22","23","24"],
+            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
+                "20","21","22","23"],
             datasets : [
                 {
                     label: "Humidity",
@@ -149,15 +155,17 @@
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [203,156,99,251,305,247]
+                    data : [@foreach ($realTime as $datax)
+                        {{ $datax->luz }},
+                        @endforeach]
                 }
             ]
         }
 
         //Get all the gas in real time
         var coData = {
-            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                "21","22","23","24"],
+            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
+                "20","21","22","23"],
             datasets : [
                 {
                     label: "CO",
@@ -165,15 +173,17 @@
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [203,156,99,251,305,247]
+                    data : [@foreach ($realTime as $datax)
+                        {{ $datax->gas }},
+                        @endforeach]
                 }
             ]
         }
 
         //Get all the noise in real time
         var acusticData = {
-            labels : ["t 1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20",
-                "21","22","23","24"],
+            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
+                "20","21","22","23"],
             datasets : [
                 {
                     label: "Noise",
@@ -181,10 +191,14 @@
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [203,156,99,251,305,247]
+                    data : [@foreach ($realTime as $datax)
+                        {{ $datax->noise }},
+                        @endforeach]
                 }
             ]
         }
+
+
 
         //TEMPERATURE
         var temperature = document.getElementById('tempe1').getContext('2d');
@@ -265,6 +279,7 @@
             });
         }
     </script>
+
 
 
 @stop

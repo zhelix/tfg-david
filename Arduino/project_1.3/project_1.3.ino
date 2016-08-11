@@ -76,7 +76,7 @@ void loop(){
   //This function is for send information to the server
   sendDataGet(data);
 
-  delay(10000);
+  delay(60000);
 }
 
 
@@ -143,22 +143,6 @@ String getID() {
   return "1";
 }
 
-/******Deprecated******/
-void sendDataPost(String data) {
-  if (client.connect("192.168.1.16", 80)){
-    Serial.println("connected");
-    client.println("POST /add.php HTTP/1.1");
-    client.println("Host: 192.168.1.16");        
-    client.println("Content-Type: application/x-www-form-urlencoded");
-    client.print("Content-Length: ");
-    client.println(data.length());
-    client.println(); 
-    client.print(data); 
-  }
-    if (client.connected()) { 
-      client.stop();
-    }
-    
 }
 
 

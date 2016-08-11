@@ -17,36 +17,32 @@ Route::get('/', function () {
 });
 */
 
-//boars
-Route::get('board', 'BoardController@index');
 
-//Reportes
+//Get Data
+Route::get('/call', 'getDataController@setData');
 
+//Login
+Route::get('/', ['uses' => 'HomeController@index', 'middleware' => 'auth']);
 
-//Recive datos
-Route::get('/call','getDataController@setData');
-//Post solve CSRF
-//Route::post('/send','BoardController@monitorize');
-/*Route::get('/', function () {
-    return view('welcome');
-});*/
-Route::get('/sqltest','UserController@getUserInfo');
-
-
-//usuarios
+//Users
 Route::get('/user', ['uses' => 'UserController@index', 'middleware' => 'auth']);
+Route::get('/', ['uses' => 'HomeController@index', 'middleware' => 'auth']);
 
-
+//Reports
 Route::get('/report', ['uses' => 'reportController@index', 'middleware' => 'auth']);
 
-
-Route::get('txt', 'reportController@generateTxt');
+//Generate Reports Files
+Route::get('/txt', ['uses' => 'reportController@generateTxt', 'middleware' => 'auth']);
+Route::get('/txt1', ['uses' =>'reportController@getValueRealTime']);
+//Route::get('txt', 'reportController@generateTxt');
+Route::get('/csv', ['uses' => 'reportController@generateCsv', 'middleware' => 'auth']);
+//Route::get('csv', 'reportController@generateCsv');
 
 Route::get('test', function () {
     return view('pages.testing');
 });
 
-Route::get('foo', function(){
+Route::get('foo', function () {
     return 'Bar';
 });
 
@@ -55,15 +51,8 @@ Route::auth();
 Route::get('/', 'HomeController@index');
 
 
-
 Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::auth();
 
-Route::get('/home', 'HomeController@index');
-
-Route::auth();
-
-Route::get('/home', 'HomeController@index');

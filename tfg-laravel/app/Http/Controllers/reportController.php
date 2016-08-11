@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\data;
+use File;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 
@@ -11,27 +14,19 @@ class reportController extends Controller
 {
     public $var1;
 
-    public function index(){
-
+    public function index()
+    {
 
 
         return view('pages.report')->with([
-            'board0' => 'elav',
-            'position' => $this->getValueMap(),
-            'board1' => $this->getValue0(),
-            'board2' => $this->getValue1(),
             'user' => 'David Rodriguez',
-            'mapa' => $this->getValueMap()
+            'mapa' => $this->getValueMap(),
+            'realTime' => $this->getValueRealTime()
         ]);
     }
 
-    public function getValue0(){
-        return "VALUE0";
-    }
-    public function getValue1(){
-        return "VALUE";
-    }
-    public function  getValueMap(){
+    public function getValueMap()
+    {
         $mapPosition = data::select('poslon', 'poslat')
             ->where('board_id', 1)
             ->orderBy('created_at', 'desc')
@@ -40,13 +35,60 @@ class reportController extends Controller
         return $mapPosition[0];
     }
 
-    public function generateTxt(){
-        $mapPosition = data::select('poslon', 'poslat')
-            ->where('board_id', 1)
-            ->orderBy('created_at', 'desc')
-            ->take(1)
+    public function getValueRealTime()
+    {
+        $dataToday = data::select('id','created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->whereDate('created_at', '=', Carbon::today()->toDateString())
+            ->groupBy(DB::raw('HOUR(created_at)'))
             ->get();
-        //return $mapPosition[0];
-        return Response::txt()->with($mapPosition);
+        return $dataToday;
+
     }
+
+    public function generateTxt()
+    {
+
+        $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->orderBy('created_at', 'desc')
+            ->take(8460)
+            ->get();
+        $fileName = time() . '_datafile.txt';
+        File::put(public_path('generated/' . $fileName), $getdb);
+        return response()->download(public_path('generated/' . $fileName));
+
+    }
+
+    public function generateTxtBeetwen($date1,$date2)
+    {
+
+        $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->orderBy('created_at', 'desc')
+            ->take(8460)
+            ->get();
+        $fileName = time() . '_datafile.txt';
+        File::put(public_path('generated/' . $fileName), $getdb);
+        return response()->download(public_path('generated/' . $fileName));
+
+    }
+
+
+    public function generateCsv()
+    {
+        $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->orderBy('created_at', 'desc')
+            ->take(8460)
+            ->get();
+        $fileName = time() . '_datafile.csv';
+        File::put(public_path('generated/' . $fileName), $getdb);
+        $getArray = json_decode($getdb, true);
+
+        $fp = fopen($fileName, 'w');
+        foreach ($getArray as $field) {
+            fputcsv($fp, $field);
+        }
+        fclose($fp);
+        return response()->download(public_path('generated/' . $fileName));
+    }
+
+
 }

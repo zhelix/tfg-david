@@ -9,6 +9,7 @@ class board extends Model
     protected $fillable = [
         'name',
         'brand',
+        'status',
         'linkID',
         'user_id'
     ];

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use App\User;
 use App\board;
@@ -41,7 +42,7 @@ class HomeController extends Controller
     {
 
         $userInfo = User::select('name', 'email', 'company')
-                ->where('id',Auth::user()->id)
+            ->where('id', Auth::user()->id)
             ->take(1)
             ->get();
         return $userInfo[0];

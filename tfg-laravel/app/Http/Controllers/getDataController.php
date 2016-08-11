@@ -17,13 +17,6 @@ class getDataController extends Controller
         return $getData;
     }
 
-    function getReport()
-    {
-        $config_read = Coord::select('temp', 'hum', 'gas','luz','noise','poslon','poslat')
-            ->orderBy('created_at', 'desc')
-            ->get();
-        return $config_read;
-    }
 
 
 }

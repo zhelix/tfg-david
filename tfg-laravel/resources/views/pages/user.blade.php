@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-sm-4"><img src="http://nineplanets.org/images/themoon.jpg" width="275" height="275" border="1"/></div>
             <div class="col-sm-6">
-                <h2>User Info</h2>
+                <h2><span style="white-space:nowrap" class="glyphicon glyphicon-user" aria-hidden="true"></span> User Info</h2>
                 <table class="table table-striped">
                     <tr><td><b>Name:</b></td><td> {{ $userinfo->name }}</td></tr>
                     <tr><td><b>Company:</b></td><td>  {{ $userinfo->company }}</td></tr>
