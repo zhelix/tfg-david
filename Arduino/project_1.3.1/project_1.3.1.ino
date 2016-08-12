@@ -116,7 +116,7 @@ String getTemperature() {
     float f = dht.readTemperature(true);
     if (isnan(t) || isnan(f)) {
       Serial.println("Failed to read Temperature from DHT. . .");
-      return "err";
+      return "0";
     }
     return String(t, 2);
 }

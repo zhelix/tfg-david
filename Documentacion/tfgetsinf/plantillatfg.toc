@@ -23,7 +23,7 @@
 \contentsline {subsection}{\numberline {3.2.2}Bootstrap}{6}{subsection.3.2.2}
 \contentsline {subsection}{\numberline {3.2.3}Chart.js}{7}{subsection.3.2.3}
 \contentsline {chapter}{\numberline {4}Montaje del Hardware y el Servicio Web}{9}{chapter.4}
+\contentsline {section}{\numberline {4.1}Material}{9}{section.4.1}
 \contentsline {chapter}{\numberline {5}Explicaci\IeC {\'o}n de la aplicaci\IeC {\'o}n}{11}{chapter.5}
 \contentsline {chapter}{\numberline {6}Conclusi\IeC {\'o}n y mejoras}{13}{chapter.6}
-\contentsline {section}{\numberline {6.1}Objectivos}{13}{section.6.1}
-\contentsline {chapter}{Bibliograf\'{\i }a}{15}{chapter*.4}
+\contentsline {chapter}{Bibliograf\'{\i }a}{15}{chapter*.5}

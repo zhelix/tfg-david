@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use App\data;
 use File;
 use App\Http\Requests;
@@ -45,49 +46,32 @@ class reportController extends Controller
 
     }
 
-    public function generateTxt()
+    public function generateReport()
     {
+        if (Request::get('format')== "csv"){
+            $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+                ->whereBetween('created_at',array(Request::get('date1').' 00:00:00',Request::get('date2').' 23:59:59'))
+                ->get();
+            $fileName = time() . '_datafile.csv';
+            File::put(public_path('generated/' . $fileName), $getdb);
+            $getArray = json_decode($getdb, true);
 
-        $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
-            ->orderBy('created_at', 'desc')
-            ->take(8460)
-            ->get();
-        $fileName = time() . '_datafile.txt';
-        File::put(public_path('generated/' . $fileName), $getdb);
-        return response()->download(public_path('generated/' . $fileName));
-
-    }
-
-    public function generateTxtBeetwen($date1,$date2)
-    {
-
-        $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
-            ->orderBy('created_at', 'desc')
-            ->take(8460)
-            ->get();
-        $fileName = time() . '_datafile.txt';
-        File::put(public_path('generated/' . $fileName), $getdb);
-        return response()->download(public_path('generated/' . $fileName));
-
-    }
-
-
-    public function generateCsv()
-    {
-        $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
-            ->orderBy('created_at', 'desc')
-            ->take(8460)
-            ->get();
-        $fileName = time() . '_datafile.csv';
-        File::put(public_path('generated/' . $fileName), $getdb);
-        $getArray = json_decode($getdb, true);
-
-        $fp = fopen($fileName, 'w');
-        foreach ($getArray as $field) {
-            fputcsv($fp, $field);
+            $fp = fopen($fileName, 'w');
+            foreach ($getArray as $field) {
+                fputcsv($fp, $field);
+            }
+            fclose($fp);
+            return response()->download(public_path('generated/' . $fileName));
         }
-        fclose($fp);
-        return response()->download(public_path('generated/' . $fileName));
+        elseif (Request::get('format')== "txt"){
+            $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+                ->whereBetween('created_at',array(Request::get('date1').' 00:00:00',Request::get('date2').' 23:59:59'))
+                ->get();
+            $fileName = time() . '_datafile.txt';
+            File::put(public_path('generated/' . $fileName), $getdb);
+            return response()->download(public_path('generated/' . $fileName));
+
+        }
     }
 
 

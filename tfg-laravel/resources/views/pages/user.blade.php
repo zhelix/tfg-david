@@ -23,7 +23,7 @@
                 <br>
                 <br>
                 <br>
-                <button type="button">Edit Info</button>
+                <button onclick="window.location.href='user/editinfo'">Edit Info</button>
             </div>
         </div>
     </div>
@@ -31,18 +31,20 @@
 
 
     <div style="margin-left:45px;">
-        <h2>Boards List </h2><button onclick="window.location.href='report'"><span class="glyphicon glyphicon-plus" aria-hidden="true"><a href='report'></a></span></button><br><br>
+        <h2>Boards List </h2><br>
+        <a href='user/addboard'><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new</a><br><br>
         <table class="table table-striped">
-                <th>Board</th><th>Status</th><th></th>
+            <th>ID</th><th>Board</th><th>Status</th><th></th>
             @foreach ($boardinfo as $board)
             <tr>
+                <td>{{ $board->id }}</td>
                 <td>{{ $board->name }}</td>
                 @if ($board->status === "W")
                     <td><font color="#green">{{ $board->status }}</font></td>
                     <td><button onclick="window.location.href='report'">Monitorize</button></td>
                 @else
                     <td><font color="#red">{{ $board->status }}</font></td>
-                    <td><button onclick="window.location.href='report'" >Monitorize</button></td>
+                    <td><button onclick="window.location.href='report'">Monitorize</button></td>
                 @endif
             </tr>
             @endforeach

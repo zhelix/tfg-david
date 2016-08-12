@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Request;
 use Auth;
+use Illuminate\Support\Facades\DB;
 use App\User;
 use App\board;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Requests;
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
+
 
 class HomeController extends Controller
 {
@@ -54,5 +57,36 @@ class HomeController extends Controller
             ->where('user_id', Auth::user()->id)
             ->get();
         return $boardinfo;
+    }
+
+    function edit()
+    {
+        return view('pages.edit')->with(['userinfo' => $this->getUserInfo()]);
+    }
+
+    function saveChanges()
+    {
+        DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['name' => Request::get('name'),
+                'company' => Request::get('company'),
+                'email' => Request::get('email')
+            ]);
+
+        return $this->index();
+
+    }
+
+    function addBoard()
+    {
+        return view('pages.addBoard')->with(['userinfo' => $this->getUserInfo()]);
+    }
+
+    function addNewBoard()
+    {
+        $getData = Request::all();
+        board::create($getData);
+        return $this->index();
+
     }
 }

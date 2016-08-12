@@ -37,13 +37,29 @@
 
 
 
-    <h1>- Reportes</h1>
+    <h1><span style="white-space:nowrap" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</h1>
     <h2><span style="white-space:nowrap" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Position</h2>
 
     <div class="relative">
         <h2  id="rep"><span style="white-space:nowrap" class="glyphicon glyphicon-search" aria-hidden="true"></span> Generate a Report</h2><br>
-        <button onclick="window.location.href='txt'" >Generate .txt</button>
-        <button onclick="window.location.href='csv'" >Generate .csv</button>
+        <br>
+        {!! Form::open(['url' => 'generate']) !!}
+        <div class="form-group">
+            {!! Form::label('date','Date:') !!}<br>
+            {!! Form::label('date1','From: ') !!}{!!Form::date('date1',null)  !!}
+            {!! Form::label('date2',' To: ') !!}{!!Form::date('date2', \Carbon\Carbon::now())  !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('format','Format: ') !!}<br>
+            {!! Form::radio('format','txt',['class' => 'form-control']) !!}              {!! Form::label('format','.txt') !!}
+            {!! Form::radio('format','csv',['class' => 'form-control']) !!}              {!! Form::label('format','.csv') !!}
+        </div>
+
+        <div class="form-group">
+            {!! Form::submit('Generate Report',['class' => 'btn btn-primary form-control']) !!}
+        </div>
+        {!! Form::close() !!}
+
     </div>
     <hr>
     <div id="googleMap" style="width:500px;height:380px;"></div>
