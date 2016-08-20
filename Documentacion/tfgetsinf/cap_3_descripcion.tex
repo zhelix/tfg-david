@@ -1,62 +1,80 @@
 \chapter{Descripción del proyecto}
 
-Para este proyecto voy a utilizar una micro controladora Arduino DUE desatollada por \textbf{Arduino} , en esta se implementaran una serie de sensores y librerías que permitirán realizar una serie de funciones. Para enviar la información a la red, dicha controladora necesitara una Shield que le permita conectarse a la red también desatollada por \textbf{Arduino}.
+\setlength{\parindent}{5ex}Para este proyecto voy a utilizar una micro controladora Arduino DUE desatollada por \textbf{Arduino} , en esta se implementaran una serie de sensores y librerías que permitirán realizar una serie de funciones. Para enviar la información a la red, dicha controladora necesitara una Shield que le permita conectarse a la red también desatollada por \textbf{Arduino}.
 
-Para recoger toda esta información se diseñara una aplicación que reciba las peticiones y pueda almacenarlas en una base de datos, a su vez esta aplicación web también servirá esta información al usuario de una manera detallada para su estudio.
+\setlength{\parindent}{0ex}Para recoger toda esta información se diseñara una aplicación que reciba las peticiones y pueda almacenarlas en una base de datos, a su vez esta aplicación web también servirá esta información al usuario de una manera detallada para su estudio.
 
 Finalmente se le ofrece al usuario generar unos reportes en los que este podrá descargarlos para, en un futuro, poder trabajar con esa información en otros programas o plataformas.
 
 Esta es la explicación de las tecnologías y dispositivos que voy a utilizar:
 
-\section{Arduino DUE}
+\section{Tecnologías utilizadas}
 
-\textbf{Arduino DUE }es una placa microcontroladora basada en el Atmel SAM3X8E ARM Cortex-M3 CPU. Es el primer Arduino basado en un Nucleo microcontrolador ARM de 32 bits ya que su versión anterior (Arduino UNO), trabajaba directamente sobre un microcontrolador.. Trabaja a una frecuencia de reloj 84 MHz, siendo programable vía USB, se le puede programar sus pines utilizando el lenguaje C++ adaptado a Arduino utilizando su propio IDE de desarrollo.
-Tiene 54 pines de entradas/salidas digitales, 12 pines analogicos, 4 UARTs (\textit{Universal Asynchronous Receiver-Transmitter}), 2 DAC (\textit{Digital Analogic Connection}) y 2 I2C (\textit{Inter-Integrated Circuit})
+\subsection{Arduino}
 
-\subsection{IDE Arduino}
+\setlength{\parindent}{5ex}\textbf{Arduino DUE }es una placa Microcontroladora basada en el Atmel SAM3X8E ARM Cortex-M3 CPU. Es el primer Arduino basado en un Núcleo microcontrolador ARM de 32 bits ya que su versión anterior (Arduino UNO), trabaja directamente sobre un microcontrolador.
 
-Es la aplicación que se utiliza para programar estas controladoras, realizando una comunicación serie entre la maquina y la controladora podremos realizar un flash de la memoria con el fin de incorporar a la memoria interna del Arduino DUE el programa que hemos diseñado para realizar las funciones. 
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.2\linewidth]{figuras/ardulogo}
+	\caption{Logo Arduino}
+	\label{fig:ardulogo}
+\end{figure}
+
+\setlength{\parindent}{0ex}Para programar estas controladoras es necesario utilizar el IDE de Arduino, realizando una comunicación serie entre la maquina y la controladora podremos realizar un flash de la memoria con el fin de incorporar a la memoria interna del Arduino DUE el programa que hemos diseñado para realizar las funciones. 
 Para programarlo se utiliza una versión simplificada de C++ la cual realiza una configuración inicial (Setup) y un bucle infinito (Loop), una vez arrancado el programa en la controladora este se repetirá indefinidamente realizando siempre la función programada. 
 
 El IDE de Arduino podemos descargarlo de aquí:
 
 \url{https://www.arduino.cc/en/Main/Software}
 
-\subsection{Shield y sensores}
+\subsection{GPS y Nmea Data}
 
-La \textbf{Shield Ethernet} de Arduino permite que la controladora se pueda conectar a Internet. La Shield basada en el chip Ethernet Wiznet W5100. Este chip nos proporciona una dirección MAC y la posibilidad que utilizando una librería oficial de Arduino (Ethernet.h) nos podamos conectar a la red ya sea usando DHCP o IP estática.
+Para el proyecto vamos a utilizar el GPS Neo6mv2, este GPS es bastante útil ya que es barato y de bajo consumo, ideal para la propuesta del proyecto ya que lo que se interesa es el ahorro de energia.
 
-Los sensores que utilizare seran los siguientes:
-
-\begin{itemize}
-	\item DHT11 - Sensor de humedad y temperatura.
-	\item Parallax CO2 Gas Sensor module MQ-7.
-	\item W104 - Sensor de sonido.
-	\item GL55 - Sensor de Luz
-	
-\end{itemize}
-
-
-
-\subsection{GPS}
-
-Para el proyecto vamos a utilizar el GPS Neo6mv2, este GPS es bastante util ya que es barato y de bajo consumo, ideal para la propuesta del proyecto ya que lo que se interesa es el ahorro de energia.
-
-Este GPS nos podra enviar informacion util del satelite como la posicion, la altitud, la fecha y la hora todo utilizando un formato de cadena Hexadecimal llamada NMEA DATA
+Este GPS nos podrá enviar información útil del satélite como la posición, la altitud, la fecha y la hora todo utilizando un formato de cadena Hexadecimal llamada NMEA DATA
 
 \subsection{Nmea Data}
 
-"\textit{El National Marine Electronics Association (NMEA) ha desarrollado una especificación que define la interfaz entre varias piezas de equipos electrónicos. La norma permite la electrónica de la marina marina enviar información a los ordenadores ya otros equipos marinos.}"
+"\textit{El National Marine Electronics Association (NMEA) ha desarrollado una especificación que define la interfaz entre varias piezas de equipos electrónicos. La norma permite la electrónica de la  marina enviar información a los ordenadores ya otros equipos marinos.}"
 
-Los receptores GPS están incluidos en esta especificación. Muchos de los programas de Geoposicionamiento están comprendidos bajo el formato NMEA. Estos datos incluyen PVT \textit{(Posición, Velocidad, Tiempo) }generada por el receptor GPS. La idea del NMEA es enviar información llamada frase la cual es totalmente independiente de otras frases.
+Los receptores GPS están incluidos en esta especificación. Muchos de los programas de Posicionamiento están comprendidos bajo el formato NMEA. Estos datos incluyen PVT \textit{(Posición, Velocidad, Tiempo)} generada por el receptor GPS. La idea del NMEA es enviar información llamada frase la cual es totalmente independiente de otras frases.
 
-\section{Laravel}
+\subsection{Formato del NMEA Data}
 
-Basado en \textit{Symphony} laravel es un framework Opensource que permite desarrollar aplicaciones y servicios web sirviéndose de una especie de estructura ya creada en PHP 5.
+El modulo Neo6Mv2 funciona enviado al serie cadenas de números hexadecimales en formato de NMEA data. El GPS envía información al serie cada intervalo de tiempo por lo que no sería necesario el puerto Tx del Arduino ya que solo se va a recibir información, no obstante, lo he configurado con el fin de poder configurar lo desde el Arduino.
 
-Con este entorno desarrollare la aplicación web que nos servirá para aportar  los datos y usara algunas tecnologías para ello.
+Este es el resultado que envía el GPS por el Serial2 del Arduino:
 
-\subsection{Mysql}
+\begin{lstlisting}
+$GPRMC,192128.00,V,,,,,,,150216,,,N*7D
+$GPVTG,,,,,,,,,N*30
+$GPGGA,192128.00,,,,,0,00,99.99,,,,,,*67
+$GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
+$GPGSV,1,1,01,06,,,18*77
+$GPGLL,,,,,192128.00,V,N*4B
+\end{lstlisting}
+Si analizamos los datos, siguiendo la especificación de la NMEA data averiguamos que funciona pero no correctamente pues este aun no esta devolviendo una localización.
+Para ello el GPS tiene que estar en contacto directo con el satélite, por lo que hemos de ponerlo al aire libre, y una vez hecho esto este se conectará automáticamente dando este resultado:
+
+\begin{lstlisting}
+$GPRMC,192232.00,V,,,,,,,150216,,,N*75
+$GPVTG,,,,,,,,,N*30
+$GPGGA,192232.00,,,,,0,00,99.99,,,,,,*6F
+$GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
+$GPGSV,2,1,06,02,35,106,52,06,28,058,48,12,69,064,46,19,11,045,49*7D
+$GPGSV,2,2,06,21,,,35,24,40,151,4
+\end{lstlisting}
+
+\subsection{Laravel}
+
+Basado en \textit{Symphony} Laravel es un framework Opensource que permite desarrollar aplicaciones y servicios web sirviéndose de una estructura Modelo-Vista-Controlador (MVC) ya creada en PHP 5.
+
+Con este entorno desarrollare la aplicación web que nos servirá para almacenar  los datos y usara algunas tecnologías para ello.
+
+\subsection{MySQL}
+
+\setlength{\parindent}{5ex}MySQL es un SGBD (Sistema de Gestión de Bases de Datos)  relacional bajo licencia dual GPL por Oracle está considerada como la base datos open source más popular para entornos de desarrollo de aplicaciones Web.
 
 \subsection{Bootstrap}
 
@@ -64,7 +82,7 @@ Con este entorno desarrollare la aplicación web que nos servirá para aportar  
 
 \subsection{Chart.js}
 
-\textbf{Chart.js} es una librería JavaScript, utilizada para generar gráficos en el la vista de las aplicaciones web, es capaz de generar gráficos dinámicos, con tooltips, animaciones, leyendas... Útil para el proyecto pues 
+\textbf{Chart.js} es una librería JavaScript, utilizada para generar gráficos en el la vista de las aplicaciones web, es capaz de generar gráficos dinámicos, útil para el proyecto pues se implementara una serie de gráficos que monitorizaran la información obtenida.
 
 
 

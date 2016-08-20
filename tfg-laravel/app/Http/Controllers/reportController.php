@@ -29,7 +29,7 @@ class reportController extends Controller
     public function getValueMap()
     {
         $mapPosition = data::select('poslon', 'poslat')
-            ->where('board_id', 1)
+            ->where('board_id', Request::get('id'))
             ->orderBy('created_at', 'desc')
             ->take(1)
             ->get();
@@ -39,6 +39,7 @@ class reportController extends Controller
     public function getValueRealTime()
     {
         $dataToday = data::select('id','created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->where('board_id', Request::get('id'))
             ->whereDate('created_at', '=', Carbon::today()->toDateString())
             ->groupBy(DB::raw('HOUR(created_at)'))
             ->get();
@@ -50,9 +51,10 @@ class reportController extends Controller
     {
         if (Request::get('format')== "csv"){
             $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+                ->where('board_id', Request::get('id'))
                 ->whereBetween('created_at',array(Request::get('date1').' 00:00:00',Request::get('date2').' 23:59:59'))
                 ->get();
-            $fileName = time() . '_datafile.csv';
+            $fileName = time() . '_report.csv';
             File::put(public_path('generated/' . $fileName), $getdb);
             $getArray = json_decode($getdb, true);
 
@@ -67,7 +69,7 @@ class reportController extends Controller
             $getdb = data::select('created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
                 ->whereBetween('created_at',array(Request::get('date1').' 00:00:00',Request::get('date2').' 23:59:59'))
                 ->get();
-            $fileName = time() . '_datafile.txt';
+            $fileName = time() . '_report.txt';
             File::put(public_path('generated/' . $fileName), $getdb);
             return response()->download(public_path('generated/' . $fileName));
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Request;
 use Auth;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\board;
@@ -72,8 +73,9 @@ class HomeController extends Controller
                 'company' => Request::get('company'),
                 'email' => Request::get('email')
             ]);
+        return redirect()->action('HomeController@index');
 
-        return $this->index();
+        //return $this->index();
 
     }
 
@@ -86,7 +88,7 @@ class HomeController extends Controller
     {
         $getData = Request::all();
         board::create($getData);
-        return $this->index();
+        return redirect()->action('HomeController@index');
 
     }
 }

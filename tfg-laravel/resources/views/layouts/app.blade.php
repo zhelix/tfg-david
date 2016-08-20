@@ -44,7 +44,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <font color="green"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></font>   My APP
+                    <font color="green"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></font>   NodeTracker
                 </a>
             </div>
 

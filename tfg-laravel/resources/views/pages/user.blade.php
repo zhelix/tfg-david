@@ -41,10 +41,10 @@
                 <td>{{ $board->name }}</td>
                 @if ($board->status === "W")
                     <td><font color="#green">{{ $board->status }}</font></td>
-                    <td><button onclick="window.location.href='report'">Monitorize</button></td>
+                    <td><button onclick="window.location.href='report?id={{ $board->id }}'">Monitorize</button></td>
                 @else
                     <td><font color="#red">{{ $board->status }}</font></td>
-                    <td><button onclick="window.location.href='report'">Monitorize</button></td>
+                    <td><button onclick="window.location.href='report?id={{ $board->id }}'">Monitorize</button></td>
                 @endif
             </tr>
             @endforeach

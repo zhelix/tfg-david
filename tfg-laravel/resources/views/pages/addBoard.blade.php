@@ -28,8 +28,8 @@
 
     <div class="form-group">
         {!! Form::label('user_id','User ID: ') !!}
-        {!! Form::label($userinfo->id,'1') !!}
-        {!! Form::hidden('user_id', '1') !!}
+        {!! Form::label(Auth::user()->id,Auth::user()->id) !!}
+        {!! Form::hidden('user_id', Auth::user()->id) !!}
         {!! Form::hidden('status', 'Stopped') !!}
     </div>
     <div class="form-group">

@@ -8,7 +8,12 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Logo Arduino\relax }}{5}{figure.caption.4}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de montaje del proyecto en que funci\IeC {\'o}n realizan las diferentes partes, desde el modulo hasta la informaci\IeC {\'o}n que podr\IeC {\'a} visualizar el cliente\relax }}{9}{figure.caption.4}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de montaje del proyecto en que funci\IeC {\'o}n realizan las diferentes partes, desde el modulo hasta la informaci\IeC {\'o}n que podr\IeC {\'a} visualizar el cliente\relax }}{9}{figure.caption.5}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Microcontroladora Arduino DUE\relax }}{10}{figure.caption.6}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Ethernet shield\relax }}{10}{figure.caption.7}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Esquema del montaje\relax }}{11}{figure.caption.8}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Esquema del circuito para el GPS en el Arduino UNO\relax }}{12}{figure.caption.9}
 \addvspace {10\p@ }
 \addvspace {10\p@ }

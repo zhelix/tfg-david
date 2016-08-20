@@ -40,11 +40,7 @@ Route::post('/addB', ['uses' => 'HomeController@addNewBoard', 'middleware' => 'a
 Route::get('/report', ['uses' => 'reportController@index', 'middleware' => 'auth']);
 
 //Generate Reports Files
-Route::get('/txt', ['uses' => 'reportController@generateTxt', 'middleware' => 'auth']);
 Route::get('/txt1', ['uses' =>'reportController@getValueRealTime']);
-//Route::get('txt', 'reportController@generateTxt');
-Route::get('/csv', ['uses' => 'reportController@generateCsv', 'middleware' => 'auth']);
-//Route::get('csv', 'reportController@generateCsv');
 Route::post('/generate', ['uses' => 'reportController@generateReport', 'middleware' => 'auth']);
 
 Route::get('test', function () {
