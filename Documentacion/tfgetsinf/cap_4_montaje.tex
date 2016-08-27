@@ -9,11 +9,11 @@ También se realizara un estudio del coste de todos los materiales, así como el
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figuras/montage1}
-	\caption{Diagrama de montaje del proyecto en que función realizan las diferentes partes, desde el modulo hasta la información que podrá visualizar el cliente}
+	\caption{Diagrama de montaje del proyecto}
 	\label{fig:imgmontage1}
 \end{figure}
 
-
+En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de montaje del proyecto en que función realizan las diferentes partes, desde el modulo hasta la información que podrá visualizar el cliente.
 
 \section{Material}
 
@@ -39,14 +39,52 @@ También se realizara un estudio del coste de todos los materiales, así como el
 
 \setlength{\parindent}{0ex}\textbf{Modulo GPS NEO6mv2: }Es un módulo el cual contiene un GPS que una vez este conectado al satélite enviara información de la geolocalización.
 
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.6\linewidth]{figuras/neo6mv2}
+		\caption{Sensor de Temperatura y Humedad DHT11}
+		\label{fig:dht11}
+	\end{figure}
+
+
 \setlength{\parindent}{0ex}\textbf{Sensores:} Un conjunto de sensores que permitirá la obtención de los valores ambientales del entrono donde este instalado el nodo.
 
 Estos sensores son:
-
+	\clearpage
 \begin{itemize}
-	\item \textbf{DHT11} Es el sensor de Humedad y temperatura de Adafruit recogerá estos datos climáticos.
+	\item \textbf{DHT11} Es el sensor de Humedad y temperatura de Adafruit recogerá estos datos climáticos del ambiente.
+	
+	\begin{figure}[!h]
+		\centering
+		\includegraphics[width=0.2\linewidth]{figuras/dht11}
+		\caption{Sensor de Temperatura y Humedad DHT11}
+		\label{fig:dht11}
+	\end{figure}
+
+	
 	\item \textbf{Sensor de gas CO MQ-7 y el chipset LM393} el que se utilizara para la medición de gases en el ambiente.
+		\begin{figure}[!h]
+			\centering
+			\includegraphics[width=0.4\linewidth]{figuras/gasen}
+			\caption{Sensor de Mesura de Gas CO MQ-7}
+			\label{fig:dht11}
+		\end{figure}
+	
 	\item \textbf{Sensor luz y sonido} el cual también utiliza el chipset LM393 medirá la contaminación lumínica y acústica.
+	
+
+	\begin{figure}[!h]
+		\centering
+		\subfloat[Sensor de Luminosidad]{
+			\label{f:luz}
+			\includegraphics[width=0.2\textwidth]{figuras/luz}}
+		\subfloat[Sensor de Ruido]{
+			\label{f:ruido}
+			\includegraphics[width=0.2\textwidth]{figuras/noise}}
+		\caption{Sensor de Luminosidad y Ruido}
+		\label{f:sensores}
+	\end{figure}
+	
 \end{itemize}
 
 \textbf{Servidor:} El servidor que se va a utilizar para realizar las función de conexión entre el nodo y la la base de datos y entre el cliente y la conexión con el cliente a través de la aplicación web.
@@ -101,6 +139,15 @@ El circuito de la \textbf{Figura \ref{fig:imgunogps}} es un ejemplo de instalaci
 
 También comentar que los RX y TX de la trasmisión serie van conectados de manera invertida entre el GPS y el Arduino.
 
+Este seria el montaje final de la electrónica de la controladora con todo el cableado y funcionando enviando la información al servidor.
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/montfin}
+	\caption{Montaje final del nodo de sensores}
+	\label{fig:montfin}
+\end{figure}
+
 Cada uno de estos sensores tendrá su función en el código de manera modular, así que es mas sencillo entender el funcionamiento del mismo.
 
 \section{Programación de la Microcontroladora Arduino DUE}
@@ -108,7 +155,7 @@ Cada uno de estos sensores tendrá su función en el código de manera modular, 
 \setlength{\parindent}{5ex}En este apartado se va a explicar cada una de las partes del código que utilizara el Arduino DUE, dicha parte realizara una función en la controladora por lo que el conjunto de todo el código realizara la función propuesta para este proyecto.
 \setlength{\parindent}{0ex}
 
-El código se puede descargar de la siguiente URL: \url{https://bitbucket.org/Zhelix/tfg-vlc/downloads}\\
+El código se puede descargar de la siguiente URL: \url{https://www.dropbox.com/s/qzzff1y6fqgluh8/project_1.3.1.ino?dl=0}\\
 
 Esta es la parte de la configuración:
 
@@ -164,7 +211,7 @@ También se configurara la conexión serie que le pertenece al puerto USB para p
 		Ethernet.begin(mac, ip);
 	}
 \end{lstlisting}
-Esta parte es la conexión a la red, en este caso por DHCP que solo hace falta asignarle la MAC al dispositivo o si falla asignar manualmente una dirección IP que corresponderá a la dirección de la red interna.
+Esta parte es la conexión a la red, en este caso por DHCP que solo hace falta asignarle la MAC al dispositivo o si falla asignar manualmente una dirección IP que corresponderá a la de la red interna.
 
 Una vez configurado todo el programa ya estará listo para leer la información que recojan los módulos de sensores asi que se dieñara el siguiente codigo para realizar dicha lectura en la definición del LOOP el cual se ejecutara indefinidamente:\\
 
@@ -267,9 +314,9 @@ String getHumidity() {
 
 String getGas() {return String(analogRead(A0));}
 
-String getLight() {	return String(analogRead(A1));}
+String getLight() {return String(analogRead(A1));}
 
-String getNoise() {	return String(analogRead(A2));}
+String getNoise() {return String(analogRead(A2));}
 
 String getID() {return "1";}
 \end{lstlisting}
@@ -315,4 +362,34 @@ Este es el código de la pagina web PHP que recogerá los datos en formato JSON 
 
 La función \textit{\$getData = Request::all();} recoge toda la información que reciba en un GET o POST y lo introduce en la variable en formato JSON luego se ejecutaría el controlador de data la función \textit{data::create(\$getData);} de ahí la importancia que las variables introducidas en la variable data de Arduino estén nombradas como se ha especificado ya que en la BD se han de nombrar igual para que las entradas puedan ser introducidas correctamente.
 
+Este es el resultado del JSON cuando se recibe la petición GET en la función:
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=1.0\linewidth]{figuras/jsonstring}
+	\caption{String JSON generada por la petición GET de Arduino}
+	\label{fig:montfin}
+\end{figure}
+
 Una vez configurado esto ya se podría dejar la microcontroladora trabajando para la recolección de datos.
+
+\section{Instalación del Servicio WEB}
+
+Para la instalación en este caso se requiere de un Servidor WEB con la funcionalidad de PHP5 y un SGBD (en este caso MySQL) añadido, en este proyecto se ha utilizado el servidor MAMP que es una aplicación de OSX que dispone de estas características el cual se va a utilizar para almacenar la información.
+
+Para la instalación de la aplicación en el servidor se ha de descargar de este enlace el cual contiene un paquete de archivos que contienen la aplicación: 
+
+\url{https://www.dropbox.com/sh/nf8qp6jtqgrqb9d/AACmTXwt8dyTvCTKeraueG9oa?dl=0}\\
+
+Una vez descomprimido se le aplican los permisos lectura y escritura al usuario y lectura a otros (\texttt{sudo chmod 744 tfg-laravel}) desde la terminal y se configura el directorio del servidor WEB:
+\clearpage
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/confmamp}
+	\caption{Configuración del Servidor MAMP}
+	\label{fig:confmamp}
+\end{figure}
+
+El la ventana de la \textbf{Figura \ref{fig:confmamp}} se muestra la configuración básica del directorio de la aplicación, que en este caso ha sido alojado en la carpeta de usuario, los demás parámetros se dejaran por defecto como es el puerto HTTP que lo configurara al 8888 y el servidor de Base de Datos que sera el 8889.
+

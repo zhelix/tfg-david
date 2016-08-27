@@ -44,7 +44,7 @@ Los receptores GPS están incluidos en esta especificación. Muchos de los progr
 
 El modulo Neo6Mv2 funciona enviado al serie cadenas de números hexadecimales en formato de NMEA data. El GPS envía información al serie cada intervalo de tiempo por lo que no sería necesario el puerto Tx del Arduino ya que solo se va a recibir información, no obstante, lo he configurado con el fin de poder configurar lo desde el Arduino.
 
-Este es el resultado que envía el GPS por el Serial2 del Arduino:
+Este es el resultado que envía el GPS por el Serial2 configurado en Arduino:
 
 \begin{lstlisting}
 $GPRMC,192128.00,V,,,,,,,150216,,,N*7D
@@ -54,8 +54,8 @@ $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
 $GPGSV,1,1,01,06,,,18*77
 $GPGLL,,,,,192128.00,V,N*4B
 \end{lstlisting}
-Si analizamos los datos, siguiendo la especificación de la NMEA data averiguamos que funciona pero no correctamente pues este aun no esta devolviendo una localización.
-Para ello el GPS tiene que estar en contacto directo con el satélite, por lo que hemos de ponerlo al aire libre, y una vez hecho esto este se conectará automáticamente dando este resultado:
+Si analizamos los datos, siguiendo la especificación de la NMEA data se observa que recibe información del GPS pero analizando en concreto las dos cadenas \$GPGGA se puede apreciar que no se recibe la información de la posición por lo que hay que posicionar el modulo GPS directamente en contacto con el satélite, una vez así este establecerá conexión y enviara esta cadena:\\
+
 
 \begin{lstlisting}
 $GPRMC,192232.00,V,,,,,,,150216,,,N*75
@@ -71,6 +71,14 @@ $GPGSV,2,2,06,21,,,35,24,40,151,4
 Basado en \textit{Symphony} Laravel es un framework Opensource que permite desarrollar aplicaciones y servicios web sirviéndose de una estructura Modelo-Vista-Controlador (MVC) ya creada en PHP 5.
 
 Con este entorno desarrollare la aplicación web que nos servirá para almacenar  los datos y usara algunas tecnologías para ello.
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.4\linewidth]{figuras/laralogo}
+\caption{Logo de Laravel 5}
+\label{fig:laralogo}
+\end{figure}
+
 
 \subsection{MySQL}
 

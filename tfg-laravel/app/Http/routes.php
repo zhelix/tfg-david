@@ -44,7 +44,9 @@ Route::get('/txt1', ['uses' =>'reportController@getValueRealTime']);
 Route::post('/generate', ['uses' => 'reportController@generateReport', 'middleware' => 'auth']);
 
 Route::get('test', function () {
-    return view('pages.testing');
+    //return date_default_timezone_get ();
+    //date_default_timezone_set("America/Costa_Rica");
+    return date('m/d/y g:ia');
 });
 
 Route::get('foo', function () {
