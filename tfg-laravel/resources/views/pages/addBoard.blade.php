@@ -13,7 +13,7 @@
         }
 
     </style>
-    <h1>Add a new Board</h1>
+    <h1>Add new Node</h1>
 
     {!! Form::open(['url' => 'addB']) !!}
     <div class="form-group">
@@ -34,7 +34,7 @@
     </div>
     <div class="form-group">
 
-        {!! Form::submit('Add New Board',['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit('Add New Node',['class' => 'btn btn-primary form-control']) !!}
     </div>
     {!! Form::close() !!}
 @stop

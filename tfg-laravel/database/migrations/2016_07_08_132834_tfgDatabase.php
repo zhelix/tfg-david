@@ -7,7 +7,6 @@ class TfgDatabase extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
@@ -24,7 +23,6 @@ class TfgDatabase extends Migration
             //Relacionar amb taula Users.
             $table->foreign('user_id')->references('id')->on('users');
         });
-
         Schema::create('data', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
@@ -43,13 +41,11 @@ class TfgDatabase extends Migration
     }
 
     /**
-     * Reverse the migrations.
-     *
+     * Reverse the migrations
      * @return void
      */
     public function down()
     {
-
         Schema::drop('data');
         Schema::drop('board');
     }

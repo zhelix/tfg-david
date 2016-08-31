@@ -8,7 +8,7 @@ También se realizara un estudio del coste de todos los materiales, así como el
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.9\linewidth]{figuras/montage1}
+	\includegraphics[width=1.0\linewidth]{figuras/montage1}
 	\caption{Diagrama de montaje del proyecto}
 	\label{fig:imgmontage1}
 \end{figure}
@@ -23,8 +23,8 @@ En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de mon
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.4\linewidth]{figuras/arddue}
-	\caption{Microcontroladora Arduino DUE}
+	\includegraphics[width=0.5\linewidth]{figuras/arddue}
+	\caption{Microcontroladora Arduino DUE \cite{Arduino}}
 	\label{fig:imgdue}
 \end{figure}
 
@@ -32,8 +32,8 @@ En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de mon
 
 \begin{figure}[!h]
 	\centering
-	\includegraphics[width=0.3\linewidth]{figuras/ethshi}
-	\caption{Ethernet shield}
+	\includegraphics[width=0.4\linewidth]{figuras/ethshi}
+	\caption{Ethernet shield \cite{Arduino}}
 	\label{fig:imgethshi}
 \end{figure}
 
@@ -117,7 +117,7 @@ Entre ellas están:
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figuras/ardschema}
-	\caption{Esquema del montaje}
+	\caption{Esquema del montaje del Nodo}
 	\label{fig:imgdue}
 \end{figure}
 
@@ -157,15 +157,134 @@ Cada uno de estos sensores tendrá su función en el código de manera modular, 
 
 El código se puede descargar de la siguiente URL: \url{https://www.dropbox.com/s/qzzff1y6fqgluh8/project_1.3.1.ino?dl=0}\\
 
-Esta es la parte de la configuración:
+Con el IDE de programación de Arduino podemos abrirlo el cual mostrara el siguiente código:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Codigo de la Controladora Arduino Due, label=boardconf]
 /*
 *  FILE:     project-v1.3.1.ino
 *  AUTHOR:   David Rodriguez Martinez  davidrm146@gmail.com
 *  VERSION:  1.3.1
 */
+
 //Necessary Libraries
+#include <Ethernet.h>
+#include <SPI.h>
+#include <TinyGPS.h>
+#include "DHT.h"
+
+//Config of the device
+byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
+TinyGPS gps;
+#define DHTPIN 2  
+#define DHTTYPE DHT11  
+DHT dht(DHTPIN, DHTTYPE);
+IPAddress ip(192, 168, 1, 102);
+EthernetClient client;
+String data;
+
+void setup()
+{  
+	Serial.println("EXECUTING setup");
+	Serial.begin(9600);
+	Serial2.begin(9600);
+	if (Ethernet.begin(mac) == 0) {
+		Serial.println("Failed to configure Ethernet using DHCP");
+		Ethernet.begin(mac, ip);
+	}
+	delay(1000);  
+}
+
+void loop(){
+	Serial.println("EXECUTING LOOP");
+	//***************GPS CODE*********************
+	bool newData = false;
+	unsigned long chars;
+	unsigned short sentences, failed;
+	for (unsigned long start = millis(); millis() - start < 1000;){
+		while (Serial2.available()){
+			char c = Serial2.read();
+			if (gps.encode(c))newData = true;
+		}
+	}
+	float flat, flon;
+	unsigned long age;
+	gps.f_get_position(&flat, &flon, &age);
+	Serial.print("LAT=");
+	Serial.print(flat == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flat, 6);
+	Serial.print(" LON=");
+	Serial.print(flon == TinyGPS::GPS_INVALID_F_ANGLE ? 0.0 : flon, 6);
+	Serial.print(" SAT=");
+	Serial.print(gps.satellites() == TinyGPS::GPS_INVALID_SATELLITES ? 0 : gps.satellites());
+	Serial.print(" PREC=");
+	Serial.println(gps.hdop() == TinyGPS::GPS_INVALID_HDOP ? 0 : gps.hdop());
+	data = 
+	"board_id=" +  getID()  +
+	"&temp=" +  getTemperature()  + 
+	"&hum=" + getHumidity() +
+	"&gas="+ getGas() + 
+	"&noise=" + getNoise() +
+	"&luz="+ getLight() + 
+	"&poslat=" + String(flat, 6) + 
+	"&poslon=" + String(flon, 6);
+	displayData(data);
+	sendDataGet(data);
+	delay(60000);
+}
+/*
+* Debugger option
+*/
+void displayData(String data) {
+	Serial.print("GET /call?");
+	Serial.println(data);
+	Serial.println("HTTP/1.1");
+	Serial.println("Host: 192.168.1.16");        
+	Serial.println("Connection: close");
+	Serial.println();
+}
+
+void sendDataGet(String data) {
+	if (client.connect("192.168.1.16",8888)){
+		client.print("GET /call?");
+		client.println(data);
+		client.println("HTTP/1.1");
+		client.println("Host: 192.168.1.16");        
+		client.println("Connection: close");
+		client.println();
+	}
+	if (client.connected()){client.stop();}
+}
+
+String getTemperature() {
+	float t = dht.readTemperature();
+	float f = dht.readTemperature(true);
+	if (isnan(t) || isnan(f)) {
+		Serial.println("Failed to read Temperature from DHT. . .");
+		return "0";
+	}
+	return String(t, 2);
+}
+
+String getHumidity() {
+	float h = dht.readHumidity();
+	if (isnan(h)) {
+		Serial.println("Failed to read Humidity from DHT. . .");
+		return "err";
+	}
+	return String(h, 2);
+}
+
+String getGas() {return String(analogRead(A0));}
+String getNoise() {return String(analogRead(A2));}
+String getLight() {return String(analogRead(A1));}
+String getID() {return "1";}
+
+\end{lstlisting}
+
+Una vez puesto todo el código se ha dividido en diferentes secciones para poder explicarlo todo en varias partes con el fin de que el usuario pueda entenderlo:
+
+Esta es la parte perteneciente a la \textbf{configuración del Arduino DUE}:
+
+\begin{lstlisting}[caption=Configuración de la Controladora Arduino Due, label=boardconf]
 #include <Ethernet.h>
 #include <SPI.h>
 #include <TinyGPS.h>
@@ -189,7 +308,7 @@ void setup()
 		Serial.println("Failed to configure Ethernet using DHCP");
 		Ethernet.begin(mac, ip);
 	}
-	delay(1000);   // A Small delay for avoid errors
+	delay(1000);  
 }
 \end{lstlisting}
 
@@ -325,7 +444,7 @@ En las funciones \textit{getTemperature} y \textit{getHumidity} se puede aprecia
 
 Una vez ya esta explicado el código se explicara la llamada a la web la cual realizara la inserción a la bd, este es su código:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Funcion de comunicacion con el servidor, label=comunicacion]
 void sendDataGet(String data) {
 	if (client.connect("192.168.1.16",8888)){
 		client.print("GET /call?");
@@ -333,7 +452,6 @@ void sendDataGet(String data) {
 		client.println("HTTP/1.1");
 		client.println("Host: 192.168.1.16");        
 		client.println("Connection: close");
-		client.println();
 	}
 	if (client.connected()) { 
 		client.stop();
@@ -341,17 +459,18 @@ void sendDataGet(String data) {
 }
 \end{lstlisting}
 
+
 Esta función realiza la petición GET al servidor web el cual se configurara con la ip y el puerto en el que esté trabajando el servidor, puede ser publica o privada por lo que el Arduino puede trabajar en Internet aunque es mucho mas inseguro para la aplicación pues uno de sus puntos débiles es que el Arduino no tiene capacidad para la encriptación y tampoco tiene soporte para peticiones HTTPS por lo que una gran falla de este proyecto son los ataques \textit{man in the middle}, la llamada corresponde a una petición a la web "call?información..." en la cual se obtendrá la información en forma de JSON y sera almacenada den la BD.
 
 La llamada o dirección del servidor web quedaría algo tal que así: 
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Formato de la String GET, label=getstring]
 	192.168.1.16:8888/call?board_id={id}&temp={temperatura}&hum={humedad}&gas={medicion del gas}&noise={ruido ambiental}&luz={luminosidad}&poslat={latitud}&poslon={longitud}
 \end{lstlisting}
 
 Este es el código de la pagina web PHP que recogerá los datos en formato JSON y los guardara en la base de datos, todo ello realizado en Laravel 5.
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Controller que almacena la String en la BD, label=getstring]
  public function setData(){
 		 $getData = Request::all();
 		 data::create($getData);
@@ -374,6 +493,7 @@ Este es el resultado del JSON cuando se recibe la petición GET en la función:
 Una vez configurado esto ya se podría dejar la microcontroladora trabajando para la recolección de datos.
 
 \section{Instalación del Servicio WEB}
+\subsection{Instalación en MacOSX}
 
 Para la instalación en este caso se requiere de un Servidor WEB con la funcionalidad de PHP5 y un SGBD (en este caso MySQL) añadido, en este proyecto se ha utilizado el servidor MAMP que es una aplicación de OSX que dispone de estas características el cual se va a utilizar para almacenar la información.
 
@@ -382,7 +502,6 @@ Para la instalación de la aplicación en el servidor se ha de descargar de este
 \url{https://www.dropbox.com/sh/nf8qp6jtqgrqb9d/AACmTXwt8dyTvCTKeraueG9oa?dl=0}\\
 
 Una vez descomprimido se le aplican los permisos lectura y escritura al usuario y lectura a otros (\texttt{sudo chmod 744 tfg-laravel}) desde la terminal y se configura el directorio del servidor WEB:
-\clearpage
 
 \begin{figure}[!h]
 	\centering
@@ -393,3 +512,43 @@ Una vez descomprimido se le aplican los permisos lectura y escritura al usuario 
 
 El la ventana de la \textbf{Figura \ref{fig:confmamp}} se muestra la configuración básica del directorio de la aplicación, que en este caso ha sido alojado en la carpeta de usuario, los demás parámetros se dejaran por defecto como es el puerto HTTP que lo configurara al 8888 y el servidor de Base de Datos que sera el 8889.
 
+Una vez activado creamos la base de datos con la aplicación de Laravel llamada \textit{artisan}. Para poder crear la base de datos dentro del directorio del NodeTracker hay que configurar el fichero \textbf{.env} el cual contiene la informacion de la base de datos para poder conectarse a ella:
+
+\begin{lstlisting}[caption=Configuracion de la BD en Laravel, label=laraBD]
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=8889
+DB_DATABASE=[schema]
+DB_USERNAME=[user]
+DB_PASSWORD=[pass]
+\end{lstlisting}
+
+En el \textbf{Código \ref{laraBD}} se puede ver editar la configuración de la base de datos, en este caso se ha de poner la configuración del servidor WEB MAMP para que pueda conectar, por desgracia la versión del MAMP es \textit{Trial} por lo que el usuario por defecto es \textit{root} y la contraseña \textit{root}.
+
+Si toda la conexión esta bien realizada cuando ejecutemos la migración no dará ningún problema:
+
+\begin{lstlisting}[caption=Migracion, label=phpmigrate]
+	php artisan migrate tfgDatabase
+\end{lstlisting}
+
+\subsection{Instalación en Linux}
+
+Para poder instalarlo en un servidor Linux primero se ha de instalar el servicio WEB y el servicio de base de datos para poder alojar la aplicación WEB, para ellos este ejemplo se va a realizar en un servidor Debian el cual utiliza un gestor de paquetes llamado apt.
+
+\begin{lstlisting}[caption=Instalación del Servicio Apache en Linux, label=apachelinux]
+sudo apt-get install apache2 mysql-server php5 php-pear php5-mysql
+\end{lstlisting}
+
+Una vez estos servicios estén funcionando se tiene que mover el directorio con los ficheros de la aplicación WEB al directorio del Apache2,
+
+\begin{lstlisting}[caption=Instalación del Servicio Apache en Linux, label=apachelinux]
+sudo mv ./tfg-laravel /var/www
+\end{lstlisting}
+
+Una vez este este hay que realizar la migración siempre teniendo en cuenta que la conexión a la base de datos este bien realizada.
+
+\begin{lstlisting}[caption=Migracion en Debian, label=debphpmigrate]
+sudo php artisan migrate tfgDatabase
+\end{lstlisting}
+
+Una vez hecho esto ya estaría totalmente funcional el NodeTracker.

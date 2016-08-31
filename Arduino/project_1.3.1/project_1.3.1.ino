@@ -2,8 +2,8 @@
  *  FILE:     project-v1.3.1.ino
  *  AUTHOR:   David Rodriguez Martinez  davidrm146@gmail.com
  *  VERSION:  1.3.1
- * 
  */
+ 
 //Necessary Libraries
 #include <Ethernet.h>
 #include <SPI.h>
@@ -20,18 +20,16 @@ IPAddress ip(192, 168, 1, 102);
 EthernetClient client;
 String data;
 
-
 void setup()
 {  
   Serial.println("EXECUTING setup");
   Serial.begin(9600);
   Serial2.begin(9600);
-  
   if (Ethernet.begin(mac) == 0) {
       Serial.println("Failed to configure Ethernet using DHCP");
       Ethernet.begin(mac, ip);
   }
-  delay(1000);   // A Small delay for avoid errors
+  delay(1000);  
 }
 
 void loop(){
@@ -101,10 +99,7 @@ void sendDataGet(String data) {
     client.println("Connection: close");
     client.println();
   }
-    if (client.connected()) { 
-      client.stop();
-    }
-    
+    if (client.connected()){client.stop();}
 }
 
 String getGas() {
@@ -130,20 +125,10 @@ String getHumidity() {
   return String(h, 2);
 }
 
-String getNoise() {
-  
-  return String(analogRead(A2));
-}
+String getNoise() {return String(analogRead(A2));}
+String getLight() {return String(analogRead(A1));}
+String getID() {return "1";}
 
-String getLight() {
-  return String(analogRead(A1));
-}
-
-String getID() {
-  return "1";
-}
-
-}
 
 
 
