@@ -1,7 +1,7 @@
 
 \chapter{Explicación de la aplicación}
 
-En este capitulo se explicara como funciona la aplicación WEB diseñada para recoger y mostrar los datos de cada uno de los sensores.
+En este capítulo se explicara como funciona la aplicación WEB diseñada para recoger y mostrar los datos de cada uno de los sensores.
 
 \begin{figure}[!h]
 	\centering
@@ -28,7 +28,7 @@ La gestión de la información es sencilla, se trata de una base de datos simple
 
 Esta base de datos ha sido creada automáticamente por \textit{Artisan} de Laravel, la gestión automática crea la tabla de \textit{usuarios} y algunos campos por defecto como \textit{created\_at} y \textit{updated\_at} sin embargo el resto de los campos hay que añadirlos manualmente así como especificar los tipos de relación entre los campos, este es el código del fichero alojado en l\textit{aravel-tfg/database/migrations/tfgDatabase.php} que especifica estos campos en la BD.\\
 
-\begin{lstlisting}[caption=Migracion de la base de datos, label=migration]
+\begin{lstlisting}[caption=Migración de la base de datos, label=migration]
 class TfgDatabase extends Migration{
 	/**
 	* Run the migrations.
@@ -139,11 +139,11 @@ También esta el botón que redirigirá a la pagina de los reportes para poder v
 	\label{fig:nodereport}
 \end{figure}
 
-Esta es la pagina en la cual se podrá visualizar la informacion, consta de 3 secciones, un mapa para mostrar la ubicación de la ultima entrada a la base de datos, otra sección que se encargara de generar los reportes para poder trabajar con ellos, y una gráfica que intentara mostrar un progreso de la informacion recogida a lo largo del día.
+Esta es la página en la que se podrá visualizar la informacion, consta de 3 secciones, un mapa para mostrar la ubicación de la última entrada a la base de datos, otra sección que se encargara de generar los reportes para poder trabajar con ellos, y una gráfica que intentara mostrar un progreso de la informacion recogida a lo largo del día.
 
 \subsection{Posicionamiento}
 
-Para ello esta el Mapa en la seccion de \textit{Position} que gracias a la API de Google MAPS se ha podido implementar esta funcionalidad, en este caso el mapa es en vista satélite ya que al ser una aplicación medioambiental, se necesitara saber si el nodo esta en un núcleo urbano o en territorio natural, y aproximadamente a que altura se puede encontrar, costa o altas montañas. \textit{Para el ejemplo de la \textbf{Figura \ref{fig:nodereport}} se dispone de las coordenadas -0.180812 y 38.960541 que corresponden al termino municipal de Gandia.} 
+Para ello esta el Mapa en la sección de \textit{Position} que gracias a la API de Google MAPS se ha podido implementar esta funcionalidad, en este caso el mapa es en vista satélite ya que al ser una aplicación medioambiental, se necesitara saber si el nodo esta en un núcleo urbano o en territorio natural, y aproximadamente a que altura se puede encontrar, costa o altas montañas. \textit{Para el ejemplo de la \textbf{Figura \ref{fig:nodereport}} se dispone de las coordenadas -0.180812 y 38.960541 que corresponden al termino municipal de Gandía.} 
 
 \subsection{Obtener un informe}
 
@@ -158,10 +158,10 @@ Se ha implementado una función para generar informes, llamada \textit{Reports} 
 
 Esta función generara un informe en formato JSON de la informacion recogida cada minuto por el nodo unido a la aplicación, el resultado puede variar en el formato escogido en este caso .txt (texto plano) o .csv (Hojas de calculo para LibreOfice) para poder trabajarlas en otras aplicaciones o realizar migraciones de estas, muy útil para la minería de datos que, utilizando programas en R o Python se puede trabajar este formato JSON.
 
-\subsection{Seguimiento de la informacion}
+\subsection{Seguimiento de la información}
 
 Por ultimo el la función de monitorización, llamada \textit{monitoring} se ha implementado una gráfica utilizando la API de Chart.js que permitirá realizar un seguimiento los valores recogidos en cada hora de ese mismo día realizando un promedio de los valores obtenidos en esa hora del día, ya que implementar cada minuto seria visualmente cargado y podría desestabilizar la gráfica si se presentan valores anómalos. 
-Ademas presenta una gráfica diferente para cada valor a medir (temperatura, humedad, gases, luz y ruido) que implementado con AJAX realiza el cambio de gráfica sin necesidad de refrescar la pagina.
+Ademas presenta una gráfica diferente para cada valor a medir (temperatura, humedad, gases, luz y ruido) que implementado con AJAX realiza el cambio de gráfica sin necesidad de refrescar la página.
 
 \begin{figure}[!h]
 	\centering

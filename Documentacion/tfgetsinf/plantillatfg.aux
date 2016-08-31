@@ -80,17 +80,20 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces Logo Arduino\relax }}{7}{figure.caption.5}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:ardulogo}{{3.1}{7}{Logo Arduino\relax }{figure.caption.5}{}}
+\citation{NEO6mv2}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}GPS y Nmea Data}{8}{subsection.3.1.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.3}Nmea Data}{8}{subsection.3.1.3}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.4}Formato del NMEA Data}{8}{subsection.3.1.4}}
+\newlabel{gpsnocon}{{3.1}{8}{Cadena Hexadecima del NMEA sin Conexión}{lstlisting.3.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.1}Cadena Hexadecima del NMEA sin Conexi\IeC {\'o}n}{8}{lstlisting.3.1}}
+\newlabel{gpscon}{{3.2}{8}{Ejemplo para una ID diferente}{lstlisting.3.2}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {3.2}Ejemplo para una ID diferente}{8}{lstlisting.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.5}Laravel}{9}{subsection.3.1.5}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3.2}{\ignorespaces Logo de Laravel 5\relax }}{9}{figure.caption.6}}
 \newlabel{fig:laralogo}{{3.2}{9}{Logo de Laravel 5\relax }{figure.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.6}MySQL}{9}{subsection.3.1.6}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.7}Bootstrap}{9}{subsection.3.1.7}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1.8}Chart.js}{9}{subsection.3.1.8}}
-\citation{Arduino}
-\citation{Arduino}
 \@writefile{toc}{\contentsline {chapter}{\numberline {4}Montaje del Hardware y el Servicio Web}{11}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -98,9 +101,11 @@
 \@writefile{loq}{\addvspace {10\p@ }}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de montaje del proyecto\relax }}{11}{figure.caption.7}}
 \newlabel{fig:imgmontage1}{{4.1}{11}{Diagrama de montaje del proyecto\relax }{figure.caption.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Material}{11}{section.4.1}}
 \citation{Arduino}
 \citation{Arduino}
+\citation{Arduino}
+\citation{Arduino}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Material}{12}{section.4.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Microcontroladora Arduino DUE \cite  {Arduino}\relax }}{12}{figure.caption.8}}
 \newlabel{fig:imgdue}{{4.2}{12}{Microcontroladora Arduino DUE \cite {Arduino}\relax }{figure.caption.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Ethernet shield \cite  {Arduino}\relax }}{12}{figure.caption.9}}
@@ -131,29 +136,41 @@
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4.1}Codigo de la Controladora Arduino Due}{16}{lstlisting.4.1}}
 \newlabel{boardconf}{{4.2}{18}{Configuración de la Controladora Arduino Due}{lstlisting.4.2}{}}
 \@writefile{lol}{\contentsline {lstlisting}{\numberline {4.2}Configuraci\IeC {\'o}n de la Controladora Arduino Due}{18}{lstlisting.4.2}}
-\newlabel{comunicacion}{{4.3}{21}{Funcion de comunicacion con el servidor}{lstlisting.4.3}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}Funcion de comunicacion con el servidor}{21}{lstlisting.4.3}}
-\newlabel{getstring}{{4.4}{22}{Formato de la String GET}{lstlisting.4.4}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.4}Formato de la String GET}{22}{lstlisting.4.4}}
-\newlabel{getstring}{{4.5}{22}{Controller que almacena la String en la BD}{lstlisting.4.5}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.5}Controller que almacena la String en la BD}{22}{lstlisting.4.5}}
+\newlabel{networkcon}{{4.3}{19}{Conexion a la Red}{lstlisting.4.3}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.3}Conexion a la Red}{19}{lstlisting.4.3}}
+\newlabel{codeloop}{{4.4}{19}{Función \textit {LOOP} del código}{lstlisting.4.4}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.4}Funci\IeC {\'o}n \textit  {LOOP} del c\IeC {\'o}digo}{19}{lstlisting.4.4}}
+\newlabel{gpscon}{{4.5}{20}{Lectura en crudo del GPS}{lstlisting.4.5}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.5}Lectura en crudo del GPS}{20}{lstlisting.4.5}}
+\newlabel{formatstring}{{4.6}{20}{Formato de la String que se enviará}{lstlisting.4.6}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.6}Formato de la String que se enviar\IeC {\'a}}{20}{lstlisting.4.6}}
+\newlabel{datelcom}{{4.7}{21}{Funciones de recogida de datos}{lstlisting.4.7}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.7}Funciones de recogida de datos}{21}{lstlisting.4.7}}
+\newlabel{comunicacion}{{4.8}{21}{Función de comunicación con el servidor}{lstlisting.4.8}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.8}Funci\IeC {\'o}n de comunicaci\IeC {\'o}n con el servidor}{21}{lstlisting.4.8}}
+\newlabel{getstring}{{4.9}{22}{Formato de la String GET}{lstlisting.4.9}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.9}Formato de la String GET}{22}{lstlisting.4.9}}
+\newlabel{getstring}{{4.10}{22}{Controller que almacena la String en la BD}{lstlisting.4.10}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.10}Controller que almacena la String en la BD}{22}{lstlisting.4.10}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.11}{\ignorespaces String JSON generada por la petici\IeC {\'o}n GET de Arduino\relax }}{22}{figure.caption.17}}
 \newlabel{fig:montfin}{{4.11}{22}{String JSON generada por la petición GET de Arduino\relax }{figure.caption.17}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}Instalaci\IeC {\'o}n del Servicio WEB}{22}{section.4.4}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Instalaci\IeC {\'o}n en MacOSX}{22}{subsection.4.4.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4.12}{\ignorespaces Configuraci\IeC {\'o}n del Servidor MAMP\relax }}{23}{figure.caption.18}}
 \newlabel{fig:confmamp}{{4.12}{23}{Configuración del Servidor MAMP\relax }{figure.caption.18}{}}
-\newlabel{laraBD}{{4.6}{23}{Configuracion de la BD en Laravel}{lstlisting.4.6}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.6}Configuracion de la BD en Laravel}{23}{lstlisting.4.6}}
-\newlabel{phpmigrate}{{4.7}{23}{Migracion}{lstlisting.4.7}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.7}Migracion}{23}{lstlisting.4.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Instalaci\IeC {\'o}n en Linux}{23}{subsection.4.4.2}}
-\newlabel{apachelinux}{{4.8}{24}{Instalación del Servicio Apache en Linux}{lstlisting.4.8}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.8}Instalaci\IeC {\'o}n del Servicio Apache en Linux}{24}{lstlisting.4.8}}
-\newlabel{apachelinux}{{4.9}{24}{Instalación del Servicio Apache en Linux}{lstlisting.4.9}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.9}Instalaci\IeC {\'o}n del Servicio Apache en Linux}{24}{lstlisting.4.9}}
-\newlabel{debphpmigrate}{{4.10}{24}{Migracion en Debian}{lstlisting.4.10}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.10}Migracion en Debian}{24}{lstlisting.4.10}}
+\newlabel{laraBD}{{4.11}{23}{Configuracion de la BD en Laravel}{lstlisting.4.11}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.11}Configuracion de la BD en Laravel}{23}{lstlisting.4.11}}
+\newlabel{phpmigrate}{{4.12}{23}{Migracion}{lstlisting.4.12}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.12}Migracion}{23}{lstlisting.4.12}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}Instalaci\IeC {\'o}n en Linux}{24}{subsection.4.4.2}}
+\newlabel{apachelinux}{{4.13}{24}{Instalación del Servicio Apache en Linux}{lstlisting.4.13}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.13}Instalaci\IeC {\'o}n del Servicio Apache en Linux}{24}{lstlisting.4.13}}
+\newlabel{apachelinux}{{4.14}{24}{Instalación del Servicio Apache en Linux}{lstlisting.4.14}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.14}Instalaci\IeC {\'o}n del Servicio Apache en Linux}{24}{lstlisting.4.14}}
+\newlabel{apachelinux2}{{4.15}{24}{Asignación de directorio}{lstlisting.4.15}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.15}Asignaci\IeC {\'o}n de directorio}{24}{lstlisting.4.15}}
+\newlabel{debphpmigrate}{{4.16}{24}{Migración en Debian}{lstlisting.4.16}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {4.16}Migraci\IeC {\'o}n en Debian}{24}{lstlisting.4.16}}
 \@writefile{toc}{\contentsline {chapter}{\numberline {5}Explicaci\IeC {\'o}n de la aplicaci\IeC {\'o}n}{25}{chapter.5}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
@@ -164,8 +181,8 @@
 \@writefile{toc}{\contentsline {section}{\numberline {5.1}Gesti\IeC {\'o}n de la informaci\IeC {\'o}n}{26}{section.5.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama Entidad-Relaci\IeC {\'o}n de la base de datos\relax }}{26}{figure.caption.20}}
 \newlabel{fig:bd1}{{5.2}{26}{Diagrama Entidad-Relación de la base de datos\relax }{figure.caption.20}{}}
-\newlabel{migration}{{5.1}{26}{Migracion de la base de datos}{lstlisting.5.1}{}}
-\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Migracion de la base de datos}{26}{lstlisting.5.1}}
+\newlabel{migration}{{5.1}{26}{Migración de la base de datos}{lstlisting.5.1}{}}
+\@writefile{lol}{\contentsline {lstlisting}{\numberline {5.1}Migraci\IeC {\'o}n de la base de datos}{26}{lstlisting.5.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {5.2}Gesti\IeC {\'o}n del \textit  {NodeTracker}}{27}{section.5.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Login del NodeTracker\relax }}{27}{figure.caption.21}}
 \newlabel{fig:loginnode}{{5.3}{27}{Login del NodeTracker\relax }{figure.caption.21}{}}
@@ -186,7 +203,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3.2}Obtener un informe}{29}{subsection.5.3.2}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.9}{\ignorespaces Generaci\IeC {\'o}n de Informes\relax }}{29}{figure.caption.27}}
 \newlabel{fig:nodereport}{{5.9}{29}{Generación de Informes\relax }{figure.caption.27}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Seguimiento de la informacion}{30}{subsection.5.3.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3.3}Seguimiento de la informaci\IeC {\'o}n}{30}{subsection.5.3.3}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5.10}{\ignorespaces Grafica perteneciente a la temperatura en el seguimiento\relax }}{30}{figure.caption.28}}
 \newlabel{fig:nodereport}{{5.10}{30}{Grafica perteneciente a la temperatura en el seguimiento\relax }{figure.caption.28}{}}
 \citation{mitm}

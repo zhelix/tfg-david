@@ -1,7 +1,7 @@
 
 \chapter{Montaje del Hardware y el Servicio Web}
 
-\setlength{\parindent}{5ex}En este capitulo se va a explicar como se ha montado todo este sistema, así como una explicación de sus diferentes piezas y la función que realiza cada una de ellas tanto en la parte hardware como en la parte software.
+\setlength{\parindent}{5ex}En este capítulo se va a explicar como se ha montado todo este sistema, así como una explicación de sus diferentes piezas y la función que realiza cada una de ellas tanto en la parte hardware como en la parte software.
 También se realizara un estudio del coste de todos los materiales, así como el mantenimiento y consumo de estos.
 
 \setlength{\parindent}{0ex}Esta es la estructura que se seguiremos para el montaje de la aplicación:
@@ -14,6 +14,7 @@ También se realizara un estudio del coste de todos los materiales, así como el
 \end{figure}
 
 En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de montaje del proyecto en que función realizan las diferentes partes, desde el modulo hasta la información que podrá visualizar el cliente.
+\clearpage
 
 \section{Material}
 
@@ -41,7 +42,7 @@ En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de mon
 
 	\begin{figure}[!h]
 		\centering
-		\includegraphics[width=0.6\linewidth]{figuras/neo6mv2}
+		\includegraphics[width=0.5\linewidth]{figuras/neo6mv2}
 		\caption{Sensor de Temperatura y Humedad DHT11}
 		\label{fig:dht11}
 	\end{figure}
@@ -50,7 +51,6 @@ En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de mon
 \setlength{\parindent}{0ex}\textbf{Sensores:} Un conjunto de sensores que permitirá la obtención de los valores ambientales del entrono donde este instalado el nodo.
 
 Estos sensores son:
-	\clearpage
 \begin{itemize}
 	\item \textbf{DHT11} Es el sensor de Humedad y temperatura de Adafruit recogerá estos datos climáticos del ambiente.
 	
@@ -322,9 +322,9 @@ Antes de entrar al código se implementaran las librerías para el funcionamient
 \end{itemize}
 
 Esta es la configuración de Arduino encapsulada en la definición de SETUP en esta parte del código se definirá la comunicación vía serie para el modulo GPS conectado al serial 2 a 9600 baudios aunque aplicando una serie de cadenas hexadecimales en el arranque del programa escritas en el GPS vía serie.
-También se configurara la conexión serie que le pertenece al puerto USB para poder observar la información que envía cada vez que se repita el bucle del programa con el fin de poder debugguearlo en caso de algún problema o fallo de los componentes.\\
+También se configurara la conexión serie que le pertenece al puerto USB para poder observar la información que envía cada vez que se repita el bucle del programa con el fin de poder depurarlo en caso de algún problema o fallo de los componentes.\\
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Conexion a la Red, label=networkcon]
 	if (Ethernet.begin(mac) == 0) {
 		Serial.println("Failed to configure Ethernet using DHCP");
 		Ethernet.begin(mac, ip);
@@ -332,9 +332,9 @@ También se configurara la conexión serie que le pertenece al puerto USB para p
 \end{lstlisting}
 Esta parte es la conexión a la red, en este caso por DHCP que solo hace falta asignarle la MAC al dispositivo o si falla asignar manualmente una dirección IP que corresponderá a la de la red interna.
 
-Una vez configurado todo el programa ya estará listo para leer la información que recojan los módulos de sensores asi que se dieñara el siguiente codigo para realizar dicha lectura en la definición del LOOP el cual se ejecutara indefinidamente:\\
+Una vez configurado todo el programa ya estará listo para leer la información que recojan los módulos de sensores asi que se dieñara el siguiente codigo para realizar dicha lectura en la definición del \textit{LOOP} el cual se ejecutara indefinidamente:\\
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Función \textit{LOOP} del código, label=codeloop]
 void loop(){
 	Serial.println("EXECUTING LOOP");
 //***************GPS CODE*********************
@@ -379,9 +379,9 @@ delay(60000);
 }
 \end{lstlisting}
 
-En esta parte del código se realizan 3 funciones, la lectura del GPS, el envío de la cadena que contiene las funciones que recogen de datos de los sensores y el delay que establecer un periodo de envío de información con el fin de evitar saturar la red.\\
+En el \textbf{código \ref{codeloop}} se realizan 3 funciones, la lectura del GPS, el envío de la cadena que contiene las funciones que recogen de datos de los sensores y el delay que establecer un periodo de envío de información con el fin de evitar saturar la red.\\
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Lectura en crudo del GPS, label=gpscon]
 	for (unsigned long start = millis(); millis() - start < 1000;){
 		while (Serial2.available()){
 			char c = Serial2.read();
@@ -394,9 +394,9 @@ Esto recogerá la información del gps en formato de NMEA data pero gracias a la
 
  Los Serial.print están para mostrar la información obtenida ya que este no conecta al instante al satélite como ya se vera en el funcionamiento del vídeo mas adelante.
 
-También se recoge la información para enviar al servidor en la variable \textbf{data} en la que se llaman las funciones que recogerán la información, es importante que el formato de la cadena sea como esta especificado en los comentarios, siguiendo el nombre de las variables ya que si no están bien nombrados la función del servidor que se encarga de recoger la información no funcionara y no se podrá realizar la inserción a la base de datos. Este es un ejemplo de como debería ser definida:\\
+También se recoge la información para enviar al servidor en la variable \textbf{data} en la que se llaman las funciones que recogerán la información, es importante que el formato de la cadena sea como esta especificado en los comentarios, siguiendo el nombre de las variables ya que si no están bien nombrados la función del servidor que se encarga de recoger la información no funcionara y no se podrá realizar la inserción a la base de datos. Este es un ejemplo de como debería ser definida:
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Formato de la String que se enviará, label=formatstring]
 		data="board_id={id} +
 			&temp={temperatura} +
 			&hum={humedad} +
@@ -407,11 +407,11 @@ También se recoge la información para enviar al servidor en la variable \textb
 			&poslon={longitud}";
 \end{lstlisting}
 
-Y por ultimo una delay o pausa que evitara que el Arduino esté enviando información constantemente de 1 minuto (60000 milisegundos)
+Y por último una delay o pausa que evitara que el Arduino esté enviando información constantemente de 1 minuto (60000 milisegundos)
 
 Una vez explicado el bucle se explicaran las funciones que se ejecutan en la variable de datos ya que son las que recogen la información ambiental de la zona donde esta situado:\\
 
-\begin{lstlisting}
+\begin{lstlisting}[caption=Funciones de recogida de datos, label=datelcom]
 String getTemperature() {
 	float t = dht.readTemperature();
 	float f = dht.readTemperature(true);
@@ -440,11 +440,11 @@ String getNoise() {return String(analogRead(A2));}
 String getID() {return "1";}
 \end{lstlisting}
 
-En las funciones \textit{getTemperature} y \textit{getHumidity} se puede apreciar que gracias a la librería dht.h se realiza la conexión y lectura de la información del sensor sin tener que crear código adicional para controlar este sensor. Sobre las demás funciones son lecturas analógicas de las mismas que nos dan unos valores normales en su rango de 1 a 1024. Y la ultima sirve para establecer la id en la que esta registrada en la base de datos, este numero debe coincidir con su controladora como ya se explicará mas adelante.
+En las funciones \textit{getTemperature} y \textit{getHumidity} se puede apreciar que gracias a la librería dht.h se realiza la conexión y lectura de la información del sensor sin tener que crear código adicional para controlar este sensor. Sobre las demás funciones son lecturas analógicas de las mismas que nos dan unos valores normales en su rango de 0 a 1024. Y la última sirve para establecer la id en la que esta registrada en la base de datos, este número debe coincidir con su controladora como ya se explicará mas adelante.
 
 Una vez ya esta explicado el código se explicara la llamada a la web la cual realizara la inserción a la bd, este es su código:
 
-\begin{lstlisting}[caption=Funcion de comunicacion con el servidor, label=comunicacion]
+\begin{lstlisting}[caption=Función de comunicación con el servidor, label=comunicacion]
 void sendDataGet(String data) {
 	if (client.connect("192.168.1.16",8888)){
 		client.print("GET /call?");
@@ -453,22 +453,20 @@ void sendDataGet(String data) {
 		client.println("Host: 192.168.1.16");        
 		client.println("Connection: close");
 	}
-	if (client.connected()) { 
-		client.stop();
-	}
+	if (client.connected()) { client.stop();}
 }
 \end{lstlisting}
 
 
-Esta función realiza la petición GET al servidor web el cual se configurara con la ip y el puerto en el que esté trabajando el servidor, puede ser publica o privada por lo que el Arduino puede trabajar en Internet aunque es mucho mas inseguro para la aplicación pues uno de sus puntos débiles es que el Arduino no tiene capacidad para la encriptación y tampoco tiene soporte para peticiones HTTPS por lo que una gran falla de este proyecto son los ataques \textit{man in the middle}, la llamada corresponde a una petición a la web "call?información..." en la cual se obtendrá la información en forma de JSON y sera almacenada den la BD.
+Esta función realiza la petición GET al servidor web el cual se configurara con la ip y el puerto en el que esté trabajando el servidor, puede ser pública o privada por lo que el Arduino puede trabajar en Internet aunque es mucho mas inseguro para la aplicación pues uno de sus puntos débiles es que el Arduino no tiene capacidad para la encriptación y tampoco tiene soporte para peticiones HTTPS por lo que una gran falla de este proyecto son los ataques \textit{man in the middle}, la llamada corresponde a una petición a la web "call?información..." en la cual se obtendrá la información en forma de JSON y sera almacenada den la BD.
 
 La llamada o dirección del servidor web quedaría algo tal que así: 
 
 \begin{lstlisting}[caption=Formato de la String GET, label=getstring]
-	192.168.1.16:8888/call?board_id={id}&temp={temperatura}&hum={humedad}&gas={medicion del gas}&noise={ruido ambiental}&luz={luminosidad}&poslat={latitud}&poslon={longitud}
+	direccionIP:8888/call?board_id={id}&temp={temperatura}&hum={humedad}&gas={medicion del gas}&noise={ruido ambiental}&luz={luminosidad}&poslat={latitud}&poslon={longitud}
 \end{lstlisting}
 
-Este es el código de la pagina web PHP que recogerá los datos en formato JSON y los guardara en la base de datos, todo ello realizado en Laravel 5.
+Este es el código de la página web PHP que recogerá los datos en formato JSON y los guardara en la base de datos, todo ello realizado en Laravel 5.
 
 \begin{lstlisting}[caption=Controller que almacena la String en la BD, label=getstring]
  public function setData(){
@@ -510,9 +508,9 @@ Una vez descomprimido se le aplican los permisos lectura y escritura al usuario 
 	\label{fig:confmamp}
 \end{figure}
 
-El la ventana de la \textbf{Figura \ref{fig:confmamp}} se muestra la configuración básica del directorio de la aplicación, que en este caso ha sido alojado en la carpeta de usuario, los demás parámetros se dejaran por defecto como es el puerto HTTP que lo configurara al 8888 y el servidor de Base de Datos que sera el 8889.
+En la ventana de la \textbf{Figura \ref{fig:confmamp}} se muestra la configuración básica del directorio de la aplicación, que en este caso ha sido alojado en la carpeta de usuario, los demás parámetros se dejaran por defecto como es el puerto HTTP que lo configurara al 8888 y el servidor de Base de Datos que sera el 8889.
 
-Una vez activado creamos la base de datos con la aplicación de Laravel llamada \textit{artisan}. Para poder crear la base de datos dentro del directorio del NodeTracker hay que configurar el fichero \textbf{.env} el cual contiene la informacion de la base de datos para poder conectarse a ella:
+Una vez activado creamos la base de datos con la aplicación de Laravel llamada \textit{artisan}. Para poder crear la base de datos dentro del directorio del NodeTracker hay que configurar el fichero \textbf{.env} el cual contiene la información de la base de datos para poder conectarse a ella:
 
 \begin{lstlisting}[caption=Configuracion de la BD en Laravel, label=laraBD]
 DB_CONNECTION=mysql
@@ -531,6 +529,8 @@ Si toda la conexión esta bien realizada cuando ejecutemos la migración no dar�
 	php artisan migrate tfgDatabase
 \end{lstlisting}
 
+Una vez hecho esto ya estaría totalmente funcional el NodeTracker en nuestro sistema operativo MacOSX.
+
 \subsection{Instalación en Linux}
 
 Para poder instalarlo en un servidor Linux primero se ha de instalar el servicio WEB y el servicio de base de datos para poder alojar la aplicación WEB, para ellos este ejemplo se va a realizar en un servidor Debian el cual utiliza un gestor de paquetes llamado apt.
@@ -539,16 +539,22 @@ Para poder instalarlo en un servidor Linux primero se ha de instalar el servicio
 sudo apt-get install apache2 mysql-server php5 php-pear php5-mysql
 \end{lstlisting}
 
-Una vez estos servicios estén funcionando se tiene que mover el directorio con los ficheros de la aplicación WEB al directorio del Apache2,
+Una vez estos servicios estén funcionando se tiene que mover el directorio con los ficheros de la aplicación WEB al directorio del Apache2.
 
 \begin{lstlisting}[caption=Instalación del Servicio Apache en Linux, label=apachelinux]
 sudo mv ./tfg-laravel /var/www
 \end{lstlisting}
 
-Una vez este este hay que realizar la migración siempre teniendo en cuenta que la conexión a la base de datos este bien realizada.
+Pero para que se pueda acceder como \textit{localhost:8888} a la aplicación hay que realizar unos cambios en el servidor Apache2 para que no se tengan que poner rutas adicionales, lo cual puede generar problemas de seguridad, para ello en el fichero /etc/apache2/sites-available/000-default.conf se modifica el \textit{DocumentRoot} por esto:
 
-\begin{lstlisting}[caption=Migracion en Debian, label=debphpmigrate]
+\begin{lstlisting}[caption=Asignación de directorio, label=apachelinux2]
+DocumentRoot /var/www/tfg-laravel
+\end{lstlisting}
+
+Una vez esté hecha la configuración y responda \textit{localhost:8888} hay que realizar la migración siempre teniendo en cuenta que la conexión a la base de datos este bien configurada en el fichero \textit{.env} del \textit{NodeTracker} la cual se puede ver en el \textbf{Código \ref{laraBD}}.
+
+\begin{lstlisting}[caption=Migración en Debian, label=debphpmigrate]
 sudo php artisan migrate tfgDatabase
 \end{lstlisting}
 
-Una vez hecho esto ya estaría totalmente funcional el NodeTracker.
+Una vez hecho esto ya estaría totalmente funcional el NodeTracker en nuestro sistema operativo Linux.

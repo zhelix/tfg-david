@@ -1,8 +1,8 @@
 \chapter{Descripción del proyecto}
 
-\setlength{\parindent}{5ex}Para este proyecto voy a utilizar una micro controladora Arduino DUE desatollada por \textbf{Arduino} , en esta se implementaran una serie de sensores y librerías que permitirán realizar una serie de funciones. Para enviar la información a la red, dicha controladora necesitara una Shield que le permita conectarse a la red también desatollada por \textbf{Arduino}.
+\setlength{\parindent}{5ex}Para este proyecto se a utilizar una microcontroladora Arduino DUE desatollada por \textbf{Arduino} , en esta se implementaran una serie de sensores y librerías que permitirán realizar una serie de funciones. Para enviar la información a la red, dicha controladora necesitara una Shield que le permita conectarse a la red también desatollada por \textbf{Arduino}.
 
-\setlength{\parindent}{0ex}Para recoger toda esta información se diseñara una aplicación que reciba las peticiones y pueda almacenarlas en una base de datos, a su vez esta aplicación web también servirá esta información al usuario de una manera detallada para su estudio.
+\setlength{\parindent}{0ex}Para recoger toda esta información se diseñara una aplicación que reciba las peticiones y podrá almacenarla en una base de datos, a su vez esta aplicación web también ofrecerá estos datos al usuario de una manera detallada para su estudio.
 
 Finalmente se le ofrece al usuario generar unos reportes en los que este podrá descargarlos para, en un futuro, poder trabajar con esa información en otros programas o plataformas.
 
@@ -22,7 +22,7 @@ Esta es la explicación de las tecnologías y dispositivos que voy a utilizar:
 \end{figure}
 
 \setlength{\parindent}{0ex}Para programar estas controladoras es necesario utilizar el IDE de Arduino, realizando una comunicación serie entre la maquina y la controladora podremos realizar un flash de la memoria con el fin de incorporar a la memoria interna del Arduino DUE el programa que hemos diseñado para realizar las funciones. 
-Para programarlo se utiliza una versión simplificada de C++ la cual realiza una configuración inicial (Setup) y un bucle infinito (Loop), una vez arrancado el programa en la controladora este se repetirá indefinidamente realizando siempre la función programada. 
+Para programarlo se utiliza una versión simplificada de C++ la cual realiza una configuración inicial (\textit{Setup}) y un bucle infinito (\textit{Loop}), una vez arrancado el programa en la controladora este se repetirá indefinidamente realizando siempre la función programada. 
 
 El IDE de Arduino podemos descargarlo de aquí:
 
@@ -36,45 +36,49 @@ Este GPS nos podrá enviar información útil del satélite como la posición, l
 
 \subsection{Nmea Data}
 
-"\textit{El National Marine Electronics Association (NMEA) ha desarrollado una especificación que define la interfaz entre varias piezas de equipos electrónicos. La norma permite la electrónica de la  marina enviar información a los ordenadores ya otros equipos marinos.}"
+"\textit{El National Marine Electronics Association (NMEA) ha desarrollado una especificación que define la interfaz entre varias piezas de equipos electrónicos. La norma permite la electrónica de la  marina enviar información a los ordenadores ya otros equipos marinos.}"\cite{NEO6mv2}
 
 Los receptores GPS están incluidos en esta especificación. Muchos de los programas de Posicionamiento están comprendidos bajo el formato NMEA. Estos datos incluyen PVT \textit{(Posición, Velocidad, Tiempo)} generada por el receptor GPS. La idea del NMEA es enviar información llamada frase la cual es totalmente independiente de otras frases.
 
 \subsection{Formato del NMEA Data}
 
-El modulo Neo6Mv2 funciona enviado al serie cadenas de números hexadecimales en formato de NMEA data. El GPS envía información al serie cada intervalo de tiempo por lo que no sería necesario el puerto Tx del Arduino ya que solo se va a recibir información, no obstante, lo he configurado con el fin de poder configurar lo desde el Arduino.
+El módulo Neo6Mv2 funciona enviado al serie cadenas de números hexadecimales en formato de NMEA data. El GPS envía información al serie cada intervalo de tiempo por lo que no sería necesario el puerto Tx del Arduino ya que solo se va a recibir información, no obstante, lo he configurado con el fin de poder configurar lo desde el Arduino.
 
 Este es el resultado que envía el GPS por el Serial2 configurado en Arduino:
 
-\begin{lstlisting}
-$GPRMC,192128.00,V,,,,,,,150216,,,N*7D
+\begin{lstlisting}[caption=Cadena Hexadecima del NMEA sin Conexión, label=gpsnocon]
+$GPRMC,,V,,,,,,,,,,N*53
 $GPVTG,,,,,,,,,N*30
-$GPGGA,192128.00,,,,,0,00,99.99,,,,,,*67
+$GPGGA,,,,,,0,00,99.99,,,,,,*48
 $GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
 $GPGSV,1,1,01,06,,,18*77
 $GPGLL,,,,,192128.00,V,N*4B
 \end{lstlisting}
-Si analizamos los datos, siguiendo la especificación de la NMEA data se observa que recibe información del GPS pero analizando en concreto las dos cadenas \$GPGGA se puede apreciar que no se recibe la información de la posición por lo que hay que posicionar el modulo GPS directamente en contacto con el satélite, una vez así este establecerá conexión y enviara esta cadena:\\
+Si analizamos los datos, siguiendo la especificación de la NMEA data se observa que recibe información del GPS pero analizando en concreto las dos cadenas \$GPGGA se puede apreciar que no se recibe la información de la posición por lo que hay que posicionar el módulo GPS directamente en contacto con el satélite, una vez así este establecerá conexión y enviara esta cadena:\\
 
 
-\begin{lstlisting}
-$GPRMC,192232.00,V,,,,,,,150216,,,N*75
+\begin{lstlisting}[caption=Ejemplo para una ID diferente, label=gpscon]
+$GPRMC,193326.00,V,,,,,,,310816,,,N*7C
 $GPVTG,,,,,,,,,N*30
-$GPGGA,192232.00,,,,,0,00,99.99,,,,,,*6F
-$GPGSA,A,1,,,,,,,,,,,,,99.99,99.99,99.99*30
-$GPGSV,2,1,06,02,35,106,52,06,28,058,48,12,69,064,46,19,11,045,49*7D
-$GPGSV,2,2,06,21,,,35,24,40,151,4
+$GPGGA,193326.00,,,,,0,00,99.99,,,,,,*6A
+$GPGSA,A,1,,,,,,,,,,,,,9
+$GPGSV,3,1,09,01,17,140,,02,09,315,,03,41,072,34,06,47,310,19*77
+$GPGSV,3,2,09,11,00,151,,17,32,233,,19,37,259,,22,23,085,34*3 
+,1,09,01,17,140,,02,09,315,,03,41,072,34,06,47,310,19*77
+$GPGSV,3,2,09,11,00,151,,17,32,233,,19,37,259,,22,23,085,35*79
 \end{lstlisting}
+
+Como se puede apreciar en el \textbf{Código \ref{gpscon}} devuelve una serie de cadenas que son ilegibles sin el conocimiento del formato pero gracias a una librería llamada \textit{TinyGPS} se podrá devolver el valor de la posición sin necesidad de analizar la cadena.
 
 \subsection{Laravel}
 
-Basado en \textit{Symphony} Laravel es un framework Opensource que permite desarrollar aplicaciones y servicios web sirviéndose de una estructura Modelo-Vista-Controlador (MVC) ya creada en PHP 5.
+Basado en \textit{Symphony} Laravel es un \textit{framework Opensource} que permite desarrollar aplicaciones y servicios web sirviéndose de una estructura Modelo-Vista-Controlador (MVC) ya creada en PHP 5.
 
-Con este entorno desarrollare la aplicación web que nos servirá para almacenar  los datos y usara algunas tecnologías para ello.
+Con este entorno desarrollare la aplicación web que nos servirá para almacenar los datos y usara algunas tecnologías para ello, ademas he escogido pues este framework de desarrollo permite mostrar la misma interfaz adaptada a Android mostrando, mas o menos, la misma interfaz.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[width=0.4\linewidth]{figuras/laralogo}
+\includegraphics[width=0.3\linewidth]{figuras/laralogo}
 \caption{Logo de Laravel 5}
 \label{fig:laralogo}
 \end{figure}
@@ -82,7 +86,11 @@ Con este entorno desarrollare la aplicación web que nos servirá para almacenar
 
 \subsection{MySQL}
 
-\setlength{\parindent}{5ex}MySQL es un SGBD (Sistema de Gestión de Bases de Datos)  relacional bajo licencia dual GPL por Oracle está considerada como la base datos open source más popular para entornos de desarrollo de aplicaciones Web.
+\setlength{\parindent}{5ex}MySQL es un SGBD (Sistema de Gestión de Bases de Datos)  relacional bajo licencia dual GPL por Oracle está considerada como la base datos open source más popular para entornos de desarrollo de aplicaciones Web. Este SGBD servirá para almacenar toda la informacion y viene por defecto en la aplicación de Servidor WEB MAMP.
+
+Por defecto solo viene el servidor por lo que habrá que descargar el MySQL Workbench para trabajar con la base de datos. En esta url:
+
+\url{https://www.mysql.com/products/workbench/}
 
 \subsection{Bootstrap}
 
