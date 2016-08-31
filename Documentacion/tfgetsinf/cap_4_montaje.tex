@@ -13,7 +13,7 @@ También se realizara un estudio del coste de todos los materiales, así como el
 	\label{fig:imgmontage1}
 \end{figure}
 
-En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de montaje del proyecto en que función realizan las diferentes partes, desde el modulo hasta la información que podrá visualizar el cliente.
+En la \textbf{Figura \ref{fig:imgmontage1}} se puede observar el diagrama de montaje del proyecto en que función realizan las diferentes partes, desde el módulo hasta la información que podrá visualizar el cliente.
 \clearpage
 
 \section{Material}
@@ -135,7 +135,7 @@ Tener en cuenta que si se realiza en un Arduino UNO al ser una versión mas anti
 	\label{fig:imgunogps}
 \end{figure}
 
-El circuito de la \textbf{Figura \ref{fig:imgunogps}} es un ejemplo de instalación para un modulo en Arduino UNO cuya respuesta en digital sea de 3.3V y sirve para otros módulos.
+El circuito de la \textbf{Figura \ref{fig:imgunogps}} es un ejemplo de instalación para un módulo en Arduino UNO cuya respuesta en digital sea de 3.3V y sirve para otros módulos.
 
 También comentar que los RX y TX de la trasmisión serie van conectados de manera invertida entre el GPS y el Arduino.
 
@@ -321,7 +321,7 @@ Antes de entrar al código se implementaran las librerías para el funcionamient
 	\item \#include 'DHT.h':  Esta librería traduce la información recibida por el sensor DHT11, solo hace falta configurar que pin es el que recibirá la información y que tipo de sensor se va a utilizar ya que la librería configura automáticamente la comunicación con el sensor.
 \end{itemize}
 
-Esta es la configuración de Arduino encapsulada en la definición de SETUP en esta parte del código se definirá la comunicación vía serie para el modulo GPS conectado al serial 2 a 9600 baudios aunque aplicando una serie de cadenas hexadecimales en el arranque del programa escritas en el GPS vía serie.
+Esta es la configuración de Arduino encapsulada en la definición de SETUP en esta parte del código se definirá la comunicación vía serie para el módulo GPS conectado al serial 2 a 9600 baudios aunque aplicando una serie de cadenas hexadecimales en el arranque del programa escritas en el GPS vía serie.
 También se configurara la conexión serie que le pertenece al puerto USB para poder observar la información que envía cada vez que se repita el bucle del programa con el fin de poder depurarlo en caso de algún problema o fallo de los componentes.\\
 
 \begin{lstlisting}[caption=Conexion a la Red, label=networkcon]
