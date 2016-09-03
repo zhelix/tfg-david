@@ -8,27 +8,28 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="bower_resources/bootstrap/dist/css/bootstrap.min.css">
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <!--<script src='bower_resources/Chart.min.js'></script>-->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.0.0/Chart.min.js'></script>
+   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 
 
-    <style>
-        body {
-            font-family: 'Lato';
-        }
+   <style>
+       body {
+           font-family: 'Lato';
+       }
 
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+       .fa-btn {
+           margin-right: 6px;
+       }
+   </style>
 </head>
 <body id="app-layout">
 <nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
+   <div class="container">
+       <div class="navbar-header">
 
-            <!-- Collapsed Hamburger -->
+           <!-- Collapsed Hamburger -->
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                 <span class="sr-only">Toggle Navigation</span>
                 <span class="icon-bar"></span>

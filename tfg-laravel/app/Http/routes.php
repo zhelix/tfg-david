@@ -43,11 +43,10 @@ Route::get('/report', ['uses' => 'reportController@index', 'middleware' => 'auth
 Route::get('/txt1', ['uses' =>'reportController@getValueRealTime']);
 Route::post('/generate', ['uses' => 'reportController@generateReport', 'middleware' => 'auth']);
 
-Route::get('test', function () {
-    //return date_default_timezone_get ();
-    //date_default_timezone_set("America/Costa_Rica");
-    return date('m/d/y g:ia');
-});
+Route::get('test','reportController@indextest');
+
+
+
 
 Route::get('foo', function () {
     return 'Bar';

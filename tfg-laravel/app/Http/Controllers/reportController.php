@@ -11,9 +11,12 @@ use File;
 use App\Http\Requests;
 use Illuminate\Http\Response;
 
+
+
 class reportController extends Controller
 {
     public $var1;
+
 
     public function index()
     {
@@ -22,9 +25,22 @@ class reportController extends Controller
         return view('pages.report')->with([
             'user' => 'David Rodriguez',
             'mapa' => $this->getValueMap(),
-            'realTime' => $this->getValueRealTime()
+            'realTime' => $this->getValueRealTime(),
+            'hour' => $this->getHour()
         ]);
     }
+
+    public function indextest()
+    {
+
+        $dataToday = data::select('id','created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->where('board_id', Request::get('id'))
+            ->whereDate('created_at', '=', Carbon::today()->toDateString())
+            ->groupBy(DB::raw('HOUR(created_at)'))
+            ->get();
+        return $dataToday;
+    }
+
 
     public function getValueMap()
     {
@@ -34,6 +50,16 @@ class reportController extends Controller
             ->take(1)
             ->get();
         return $mapPosition[0];
+    }
+
+    public function getHour()
+    {
+        $dataToday = data::select('id','created_at', 'temp', 'hum', 'gas', 'luz', 'noise', 'poslon', 'poslat')
+            ->where('board_id', Request::get('id'))
+            ->whereDate('created_at', '=', Carbon::today()->toDateString())
+            ->groupBy(DB::raw('HOUR(created_at)'))
+            ->get();
+        return $dataToday[0];
     }
 
     public function getValueRealTime()

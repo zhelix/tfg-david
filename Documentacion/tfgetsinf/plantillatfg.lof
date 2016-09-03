@@ -7,33 +7,38 @@
 \select@language {spanish}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Gestion de proyectos con \textit {SourceTree}\relax }}{5}{figure.caption.5}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Logo Arduino\relax }}{7}{figure.caption.5}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Logo de Laravel 5\relax }}{9}{figure.caption.6}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Logo Arduino\relax }}{7}{figure.caption.6}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Logo de Laravel 5\relax }}{9}{figure.caption.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de montaje del proyecto\relax }}{11}{figure.caption.7}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Microcontroladora Arduino DUE \cite {Arduino}\relax }}{12}{figure.caption.8}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Ethernet shield \cite {Arduino}\relax }}{12}{figure.caption.9}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Sensor de Temperatura y Humedad DHT11\relax }}{12}{figure.caption.10}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Sensor de Temperatura y Humedad DHT11\relax }}{13}{figure.caption.11}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Sensor de Mesura de Gas CO MQ-7\relax }}{13}{figure.caption.12}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Sensor de Luminosidad y Ruido\relax }}{14}{figure.caption.13}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Diagrama de montaje del proyecto\relax }}{11}{figure.caption.8}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Microcontroladora Arduino DUE \cite {Arduino}\relax }}{12}{figure.caption.9}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Ethernet shield \cite {Arduino}\relax }}{12}{figure.caption.10}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Sensor de Temperatura y Humedad DHT11\relax }}{12}{figure.caption.11}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Sensor de Temperatura y Humedad DHT11\relax }}{13}{figure.caption.12}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Sensor de Mesura de Gas CO MQ-7\relax }}{13}{figure.caption.13}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Sensor de Luminosidad y Ruido\relax }}{14}{figure.caption.14}
 \contentsline {subfigure}{\numberline {(a)}{\ignorespaces {Sensor de Luminosidad}}}{14}{subfigure.7.1}
 \contentsline {subfigure}{\numberline {(b)}{\ignorespaces {Sensor de Ruido}}}{14}{subfigure.7.2}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Esquema del montaje del Nodo\relax }}{15}{figure.caption.14}
-\contentsline {figure}{\numberline {4.9}{\ignorespaces Esquema del circuito para el GPS en el Arduino UNO\relax }}{15}{figure.caption.15}
-\contentsline {figure}{\numberline {4.10}{\ignorespaces Montaje final del nodo de sensores\relax }}{16}{figure.caption.16}
-\contentsline {figure}{\numberline {4.11}{\ignorespaces String JSON generada por la petici\IeC {\'o}n GET de Arduino\relax }}{22}{figure.caption.17}
-\contentsline {figure}{\numberline {4.12}{\ignorespaces Configuraci\IeC {\'o}n del Servidor MAMP\relax }}{23}{figure.caption.18}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Esquema del montaje del Nodo\relax }}{15}{figure.caption.15}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Esquema del circuito para el GPS en el Arduino UNO\relax }}{15}{figure.caption.16}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Montaje final del nodo de sensores\relax }}{16}{figure.caption.17}
+\contentsline {figure}{\numberline {4.11}{\ignorespaces String JSON generada por la petici\IeC {\'o}n GET de Arduino\relax }}{22}{figure.caption.18}
+\contentsline {figure}{\numberline {4.12}{\ignorespaces Configuraci\IeC {\'o}n del Servidor MAMP\relax }}{23}{figure.caption.19}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Esquema del funcionamiento de la aplicaci\IeC {\'o}n\relax }}{25}{figure.caption.19}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama Entidad-Relaci\IeC {\'o}n de la base de datos\relax }}{26}{figure.caption.20}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Login del NodeTracker\relax }}{27}{figure.caption.21}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Home del NodeTracker\relax }}{27}{figure.caption.22}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Formulario de edici\IeC {\'o}n de usuarios del \textit {NodeTracker}.\relax }}{28}{figure.caption.23}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Formulario para a\IeC {\~n}adir un nuevo nodo al sistema.\relax }}{28}{figure.caption.24}
-\contentsline {figure}{\numberline {5.7}{\ignorespaces Lista de nodos disponibles\relax }}{28}{figure.caption.25}
-\contentsline {figure}{\numberline {5.8}{\ignorespaces Pagina de monitorizaci\IeC {\'o}n de la aplicaci\IeC {\'o}n\relax }}{29}{figure.caption.26}
-\contentsline {figure}{\numberline {5.9}{\ignorespaces Generaci\IeC {\'o}n de Informes\relax }}{29}{figure.caption.27}
-\contentsline {figure}{\numberline {5.10}{\ignorespaces Grafica perteneciente a la temperatura en el seguimiento\relax }}{30}{figure.caption.28}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Esquema del funcionamiento de la aplicaci\IeC {\'o}n\relax }}{25}{figure.caption.20}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Diagrama Entidad-Relaci\IeC {\'o}n de la base de datos\relax }}{26}{figure.caption.21}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Login del NodeTracker\relax }}{27}{figure.caption.22}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Home del NodeTracker\relax }}{27}{figure.caption.23}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Formulario de edici\IeC {\'o}n de usuarios del \textit {NodeTracker}.\relax }}{28}{figure.caption.24}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Formulario para a\IeC {\~n}adir un nuevo nodo al sistema.\relax }}{28}{figure.caption.25}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Lista de nodos disponibles\relax }}{28}{figure.caption.26}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Pagina de monitorizaci\IeC {\'o}n de la aplicaci\IeC {\'o}n\relax }}{29}{figure.caption.27}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Mapa de la posici\IeC {\'o}n del nodo.\relax }}{29}{figure.caption.28}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Generaci\IeC {\'o}n de Informes\relax }}{30}{figure.caption.29}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Gr\IeC {\'a}fica perteneciente a la temperatura en el seguimiento\relax }}{31}{figure.caption.30}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Gr\IeC {\'a}fica perteneciente a la contaminaci\IeC {\'o}n por CO en el seguimiento\relax }}{31}{figure.caption.31}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Gr\IeC {\'a}fica perteneciente a la Temperatura (\textit {versi\IeC {\'o}n antigua Chart.js)}\relax }}{32}{figure.caption.32}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces FlyPort GPRS y la placa para la controladora.\cite {FlyPort}\relax }}{34}{figure.caption.33}

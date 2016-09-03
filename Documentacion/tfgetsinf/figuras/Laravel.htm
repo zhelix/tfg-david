@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://84.123.151.120:8888/report?id=1 -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc div{font-weight:400}</style><style type="text/css">.gm-style-pbc{transition:opacity ease-in-out;background-color:rgba(0,0,0,0.45);text-align:center}.gm-style-pbt{font-size:22px;color:white;font-family:Roboto,Arial,sans-serif;position:relative;margin:0;top:50%;-webkit-transform:translateY(-50%);-ms-transform:translateY(-50%);transform:translateY(-50%)}</style><link type="text/css" rel="stylesheet" href="./Laravel_files/css"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Laravel</title>
+
+    <link rel="stylesheet" href="./Laravel_files/bootstrap.min.css">
+    <script src="./Laravel_files/Chart.min.js"></script><style>[href^="https://www.googleadservices.com/pagead/aclk?"]
+{display:none !important;}</style>
+    <!-- <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script> -->
+    <script type="text/javascript" src="./Laravel_files/jquery.min.js"></script>
+
+    <!-- Fonts -->
+    <link rel="stylesheet" href="./Laravel_files/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="./Laravel_files/css(1)">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="./Laravel_files/bootstrap.min(1).css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <style>
+        body {
+            font-family: 'Lato';
+        }
+
+        .fa-btn {
+            margin-right: 6px;
+        }
+    </style>
+<script type="text/javascript" charset="UTF-8" src="./Laravel_files/common.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/map.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/util.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/marker.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/onion.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/ViewportInfoService.GetViewportInfo"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/stats.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/controls.js"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/vt"></script><script type="text/javascript" charset="UTF-8" src="./Laravel_files/AuthenticationService.Authenticate"></script></head>
+<body onload="javascript:cambiarPestanna(pestanas,temperatura);">
+    <nav class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+
+                <!-- Collapsed Hamburger -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                    <span class="sr-only">Toggle Navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <!-- Branding Image -->
+                <a class="navbar-brand" href="http://84.123.151.120:8888/">
+                    <font color="green"><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span></font>   NodeTracker
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                <!-- Left Side Of Navbar -->
+                <ul class="nav navbar-nav">
+                    <li><a href="http://84.123.151.120:8888/home">Home</a></li>
+                </ul>
+
+                <!-- Right Side Of Navbar -->
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- Authentication Links -->
+                                            <li class="dropdown">
+                            <a href="http://84.123.151.120:8888/report?id=1#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                David Rodriguez Martinez <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="http://84.123.151.120:8888/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
+                            </ul>
+                        </li>
+                                    </ul>
+            </div>
+        </div>
+    </nav>
+
+    
+    
+
+    <style>
+        body {
+            margin-left:45px;
+        }
+        h1 {
+            margin-left:45px;
+        }
+        h2#rep {
+            margin-left:45px;
+            white-space: pre;
+        }
+        h2 {
+            white-space: pre;
+        }
+        div.relative {
+            position: absolute;
+            top: 105px;
+            left: 750px;
+
+
+        }
+        span {
+            white-space:nowrap;
+        }
+
+    </style>
+
+
+
+    <h1><span style="white-space:nowrap" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</h1>
+    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Position</h2>
+
+    <div class="relative">
+        <h2 id="rep"><span style="white-space:nowrap" class="glyphicon glyphicon-search" aria-hidden="true"></span> Generate a Report</h2><br>
+        <br>
+        <form method="POST" action="http://84.123.151.120:8888/generate" accept-charset="UTF-8"><input name="_token" type="hidden" value="fNB0iHP2PE29opgEESjoa5C6BcWZRsxnoKFIP9zF">
+        <div class="form-group">
+            <label for="date">Date:</label><br>
+            <label for="date1">From: </label><input name="date1" type="date" id="date1">
+            <label for="date2"> To: </label><input name="date2" type="date" value="2016-09-02" id="date2">
+        </div>
+        <div class="form-group">
+            <label for="format">Format: </label><br>
+            <input checked="checked" name="format" type="radio" value="txt" id="format">              <label for="format">.txt</label>
+            <input checked="checked" name="format" type="radio" value="csv" id="format">              <label for="format">.csv</label>
+        </div>
+
+        <div class="form-group">
+            <input class="btn btn-primary form-control" type="submit" value="Generate Report">
+        </div>
+        </form>
+
+    </div>
+    <hr>
+    <div id="googleMap" style="width: 500px; height: 380px; position: relative; overflow: hidden; background-color: rgb(229, 227, 223);"><div class="gm-style" style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;"><div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;"><div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0); will-change: transform;"><div style="position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; position: absolute; left: 52px; top: -50px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 52px; top: 206px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -204px; top: -50px;"></div><div style="width: 256px; height: 256px; position: absolute; left: -204px; top: 206px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 308px; top: -50px;"></div><div style="width: 256px; height: 256px; position: absolute; left: 308px; top: 206px;"></div></div></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;"><div style="position: absolute; left: 0px; top: 0px; z-index: -1;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 52px; top: -50px;"><canvas draggable="false" height="256" width="256" style="-webkit-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 52px; top: 206px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -204px; top: -50px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: -204px; top: 206px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 308px; top: -50px;"></div><div style="width: 256px; height: 256px; overflow: hidden; position: absolute; left: 308px; top: 206px;"></div></div></div></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px;"><div style="overflow: hidden; width: 500px; height: 380px;"><img src="./Laravel_files/StaticMapService.GetMapImage" style="width: 500px; height: 380px;"></div></div><div style="position: absolute; left: 0px; top: 0px; z-index: 0;"><div aria-hidden="true" style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;"><div style="position: absolute; left: 52px; top: -50px; transition: opacity 200ms ease-out;"><div style="z-index: 0;"><img src="./Laravel_files/kh" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="z-index: 1;"><img src="./Laravel_files/vt(1)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div style="position: absolute; left: 52px; top: 206px; transition: opacity 200ms ease-out;"><div style="z-index: 0;"><img src="./Laravel_files/kh(1)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="z-index: 1;"><img src="./Laravel_files/vt(2)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div style="position: absolute; left: -204px; top: -50px; transition: opacity 200ms ease-out;"><div style="z-index: 0;"><img src="./Laravel_files/kh(2)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="z-index: 1;"><img src="./Laravel_files/vt(3)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div style="position: absolute; left: -204px; top: 206px; transition: opacity 200ms ease-out;"><div style="z-index: 0;"><img src="./Laravel_files/kh(3)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="z-index: 1;"><img src="./Laravel_files/vt(4)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div style="position: absolute; left: 308px; top: -50px; transition: opacity 200ms ease-out;"><div style="z-index: 0;"><img src="./Laravel_files/kh(4)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="z-index: 1;"><img src="./Laravel_files/vt(5)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div style="position: absolute; left: 308px; top: 206px; transition: opacity 200ms ease-out;"><div style="z-index: 0;"><img src="./Laravel_files/kh(5)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div style="z-index: 1;"><img src="./Laravel_files/vt(6)" draggable="false" alt="" style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div></div></div><div class="gm-style-pbc" style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%; transition-duration: 0.3s; opacity: 0; display: none;"><p class="gm-style-pbt">Para mover el mapa, utiliza dos dedos</p></div><div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, 0, 0);"><div style="position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div><div style="position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div></div></div><div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;"><a target="_blank" href="https://maps.google.com/maps?ll=38.960499,-0.180798&amp;z=14&amp;t=h&amp;hl=es-ES&amp;gl=US&amp;mapclient=apiv3" title="Haz clic aquí para visualizar esta zona en Google Maps" style="position: static; overflow: visible; float: none; display: inline;"><div style="width: 66px; height: 26px; cursor: pointer;"><img src="./Laravel_files/google_white5.png" draggable="false" style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div></a></div><div style="padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 100px; top: 100px; background-color: white;"><div style="padding: 0px 0px 10px; font-size: 16px;">Datos de mapas</div><div style="font-size: 13px;">Datos de mapas ©2016 Google, Inst. Geogr. Nacional  Imágenes ©2016 , Cnes/Spot Image, DigitalGlobe, Landsat</div><div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;"><img src="./Laravel_files/mapcnt6.png" draggable="false" style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div><div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 228px; bottom: 0px; width: 84px;"><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer;">Datos de mapas</a><span style="display: none;">Datos de mapas ©2016 Google, Inst. Geogr. Nacional  Imágenes ©2016 , Cnes/Spot Image, DigitalGlobe, Landsat</span></div></div></div><div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;"><div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">Datos de mapas ©2016 Google, Inst. Geogr. Nacional  Imágenes ©2016 , Cnes/Spot Image, DigitalGlobe, Landsat</div></div><div class="gmnoprint gm-style-cc" draggable="false" style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 142px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a href="https://www.google.com/intl/es-ES_US/help/terms_maps.html" target="_blank" style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Términos de uso</a></div></div><div style="width: 25px; height: 25px; overflow: hidden; display: none; margin: 10px 14px; position: absolute; top: 0px; right: 0px;"><img src="./Laravel_files/sv9.png" draggable="false" class="gm-fullscreen-control" style="position: absolute; left: -52px; top: -86px; width: 164px; height: 175px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;"></div><div draggable="false" class="gm-style-cc" style="-webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;"><div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;"><div style="width: 1px;"></div><div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div></div><div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;"><a target="_new" title="Informar a Google acerca de errores en las imágenes o en el mapa de carreteras" href="https://www.google.com/maps/@38.960499,-0.180798,14z/data=!3m1!1e3!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3" style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Informar de un error de Maps</a></div></div><div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="28" controlheight="93" style="margin: 10px; -webkit-user-select: none; position: absolute; bottom: 107px; right: 28px;"><div class="gmnoprint" controlwidth="28" controlheight="55" style="position: absolute; left: 0px; top: 38px;"><div draggable="false" style="-webkit-user-select: none; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; width: 28px; height: 55px; background-color: rgb(255, 255, 255);"><div title="Acerca la imagen" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="./Laravel_files/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div><div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; top: 0px; background-color: rgb(230, 230, 230);"></div><div title="Aleja la imagen" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;"><div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;"><img src="./Laravel_files/tmapctrl.png" draggable="false" style="position: absolute; left: 0px; top: -15px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;"></div></div></div></div><div class="gm-svpc" controlwidth="28" controlheight="28" style="box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default; position: absolute; left: 0px; top: 0px; background-color: rgb(255, 255, 255);"><div style="position: absolute; left: 1px; top: 1px;"></div><div style="position: absolute; left: 1px; top: 1px;"><div aria-label="Control del hombrecito naranja de Street View" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px;"><img src="./Laravel_files/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -26px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="El hombrecito naranja está en la parte superior del mapa." style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./Laravel_files/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -52px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div aria-label="Control del hombrecito naranja de Street View" style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;"><img src="./Laravel_files/cb_scout5.png" draggable="false" style="position: absolute; left: -147px; top: -78px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;"><div title="Girar el mapa 90 grados" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; cursor: pointer; display: none; background-color: rgb(255, 255, 255);"><img src="./Laravel_files/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div><div class="gm-tilt" style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; top: 0px; cursor: pointer; background-color: rgb(255, 255, 255);"><img src="./Laravel_files/tmapctrl4.png" draggable="false" style="position: absolute; left: -141px; top: -13px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;"></div></div></div><div class="gmnoprint" style="margin: 10px; z-index: 0; position: absolute; cursor: pointer; left: 0px; top: 0px;"><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="Muestra el callejero" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 8px; border-bottom-left-radius: 2px; border-top-left-radius: 2px; -webkit-background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; min-width: 28px; background-color: rgb(255, 255, 255); background-clip: padding-box;">Mapa</div><div style="z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; left: 0px; top: 31px; text-align: left; display: none; background-color: white;"><div draggable="false" title="Muestra el callejero con relieve" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap; background-color: rgb(255, 255, 255);"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle; background-color: rgb(255, 255, 255);"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;"><img src="./Laravel_files/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Relieve</label></div></div></div><div class="gm-style-mtc" style="float: left;"><div draggable="false" title="Muestra las imágenes de satélite" style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 8px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; -webkit-background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-left: 0px; min-width: 37px; font-weight: 500; background-color: rgb(255, 255, 255); background-clip: padding-box;">Satélite</div><div style="z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; right: 0px; top: 31px; text-align: left; display: none; background-color: white;"><div draggable="false" title="Muestra las imágenes con los nombres de las calles" style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap; background-color: rgb(255, 255, 255);"><span role="checkbox" style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle; background-color: rgb(255, 255, 255);"><div style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;"><img src="./Laravel_files/imgs8.png" draggable="false" style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;"></div></span><label style="vertical-align: middle; cursor: pointer;">Etiquetas</label></div></div></div></div></div></div>
+
+
+    <script src="./Laravel_files/js" async="" defer=""></script>
+        <script>
+            var map;
+            var marker;
+            function initMap() {
+                var mapProp = {
+                    center: new google.maps.LatLng(38.960499,-0.180798),
+                    zoom: 14,
+                    mapTypeId: google.maps.MapTypeId.HYBRID
+                };
+                var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                var myPos = new google.maps.LatLng(38.960499,-0.180798);
+                marker = new google.maps.Marker({
+                    position: myPos,
+                    map: map,
+                    title: 'Arduino DUE'
+                });
+                marker.setMap(map);
+            }
+        </script>
+
+    <hr>
+
+    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Monitoring</h2>
+
+    <div id="pestanas">
+        <ul class="nav nav-tabs">
+            <li id="temperatura" style="padding-bottom: 2px;"><a href="javascript:cambiarPestanna(pestanas,temperatura);">Temperature</a></li>
+            <li id="humedad"><a href="javascript:cambiarPestanna(pestanas,humedad);">Humidity</a></li>
+            <li id="luz"><a href="javascript:cambiarPestanna(pestanas,luz);">Light</a></li>
+            <li id="gas"><a href="javascript:cambiarPestanna(pestanas,gas);">Gas (CO)</a></li>
+            <li id="acustica"><a href="javascript:cambiarPestanna(pestanas,acustica);">Noise</a></li>
+
+        </ul>
+    </div>
+    <br>
+    <div id="contenidopestanas">
+        <div id="ctemperatura"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;" src="./Laravel_files/saved_resource.html"></iframe>
+            <canvas id="tempe1" width="1732" height="532" style="display: block; width: 1732px; height: 532px;"></canvas>
+        </div>
+        <div id="chumedad" style="display: none;"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;" src="./Laravel_files/saved_resource(1).html"></iframe>
+            <canvas id="hume1" width="1732" height="532" style="display: block; width: 1732px; height: 532px;"></canvas>
+        </div>
+        <div id="cluz" style="display: none;"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;" src="./Laravel_files/saved_resource(2).html"></iframe>
+            <canvas id="light1" width="1732" height="532" style="display: block; width: 1732px; height: 532px;"></canvas>
+        </div>
+        <div id="cgas" style="display: none;"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;" src="./Laravel_files/saved_resource(3).html"></iframe>
+            <canvas id="co1" width="1732" height="532" style="display: block; width: 1732px; height: 532px;"></canvas>
+        </div>
+        <div id="cacustica" style="display: none;"><iframe class="chartjs-hidden-iframe" tabindex="-1" style="width: 100%; display: block; border: 0px; height: 0px; margin: 0px; position: absolute; left: 0px; right: 0px; top: 0px; bottom: 0px;" src="./Laravel_files/saved_resource(4).html"></iframe>
+            <canvas id="acustic1" width="1732" height="532" style="display: block; width: 1732px; height: 532px;"></canvas>
+        </div>
+
+        </div>
+    
+
+    <script>
+        //Get all the temperature in real time
+        var temperatureData = {
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+                template: "<%= Number(value.toFixed(2)) + ' A'%>",
+            datasets: [{
+                label:'Grados ºC',
+                fillColor: "rgba(220,220,220,0)",
+                strokeColor: "rgba(220,180,0,1)",
+                pointColor: "rgba(220,180,0,1)",
+                data: [                     28.00,
+                    ]
+            }]
+        }
+
+
+
+
+
+        //Get all the humidity in real time
+        var humidityData = {
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+            datasets : [
+                {
+                    label: "Porcentaje %",
+                    fillColor : "rgba(0,204,204,0.4)",
+                    strokeColor : "#ACC26D",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : [                        30.00,
+                        ]
+                }
+            ]
+        }
+
+        //Get all the light in real time
+        var lightData = {
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+            datasets : [
+                {
+                    label: "Lumens L",
+                    fillColor : "rgba(255,153,51,0.4)",
+                    strokeColor : "#ACC26D",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : [                        37,
+                        ]
+                }
+            ]
+        }
+
+        //Get all the gas in real time
+        var coData = {
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+            datasets : [
+                {
+                    label: "Partes por millon ppm",
+                    fillColor : "rgba(192,192,192,0.4)",
+                    strokeColor : "#ACC26D",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : [                        65,
+                        ]
+                }
+            ]
+        }
+
+        //Get all the noise in real time
+        var acusticData = {
+            labels : ["t 0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+            datasets : [
+                {
+                    label: "Decibelios dB",
+                    fillColor : "rgba(175,255,102,0.4)",
+                    strokeColor : "#ACC26D",
+                    pointColor : "#fff",
+                    pointStrokeColor : "#9DB86D",
+                    data : [                        31,
+                        ]
+                }
+            ]
+        }
+
+
+
+        //TEMPERATURE
+
+        new Chart(document.getElementById('tempe1').getContext('2d') , {
+            type: "line",
+            data: temperatureData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+        //HUMIDITY
+
+        new Chart(document.getElementById('hume1').getContext('2d') , {
+            type: "line",
+            data: humidityData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
+
+        //Light
+
+        new Chart(document.getElementById('light1').getContext('2d') , {
+            type: "line",
+            data: lightData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
+
+        //CO
+
+        new Chart(document.getElementById('co1').getContext('2d') , {
+            type: "line",
+            data: coData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
+
+        //Noise
+        new Chart(document.getElementById('acustic1').getContext('2d') , {
+            type: "line",
+            data: acusticData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
+
+    </script>
+
+    <script>
+        function cambiarPestanna(pestannas,pestanna) {
+            // Obtiene los elementos con los identificadores pasados.
+            pestanna = document.getElementById(pestanna.id);
+            listaPestannas = document.getElementById(pestannas.id);
+
+            // Obtiene las divisiones que tienen el contenido de las pestañas.
+            cpestanna = document.getElementById('c'+pestanna.id);
+            listacPestannas = document.getElementById('contenido'+pestannas.id);
+
+            i=0;
+            // Recorre la lista ocultando todas las pestañas y restaurando el fondo
+            // y el padding de las pestañas.
+            while (typeof listacPestannas.getElementsByTagName('div')[i] != 'undefined'){
+                $(document).ready(function(){
+                    $(listacPestannas.getElementsByTagName('div')[i]).css('display','none');
+                    $(listaPestannas.getElementsByTagName('li')[i]).css('background','');
+                    $(listaPestannas.getElementsByTagName('li')[i]).css('padding-bottom','');
+                });
+                i += 1;
+            }
+            $(document).ready(function(){
+
+                $(cpestanna).css('display','');
+                $(pestanna).css('padding-bottom','2px');
+            });
+        }
+    </script>
+
+
+
+
+    <!-- JavaScripts -->
+    <script src="./Laravel_files/jquery.min(1).js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="./Laravel_files/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+
+</body></html>

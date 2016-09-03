@@ -18,3 +18,4 @@
 \contentsline {lstlisting}{\numberline {4.16}Migraci\IeC {\'o}n en Debian}{24}{lstlisting.4.16}
 \contentsline {lstlisting}{\numberline {5.1}Migraci\IeC {\'o}n de la base de datos}{26}{lstlisting.5.1}
 \contentsline {lstlisting}{\numberline {5.2}Ejemplo para una ID diferente}{28}{lstlisting.5.2}
+\contentsline {lstlisting}{\numberline {5.3}Selector de Graficos}{30}{lstlisting.5.3}

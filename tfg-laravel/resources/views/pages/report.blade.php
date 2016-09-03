@@ -37,26 +37,30 @@
 
 
 
-    <h1><span style="white-space:nowrap" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Reports</h1>
-    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Position</h2>
+    <h1><span style="white-space:nowrap" class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Informes</h1>
+    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-map-marker" aria-hidden="true"></span> Posición</h2>
 
     <div class="relative">
-        <h2  id="rep"><span style="white-space:nowrap" class="glyphicon glyphicon-search" aria-hidden="true"></span> Generate a Report</h2><br>
+        <h2  id="rep"><span style="white-space:nowrap" class="glyphicon glyphicon-search" aria-hidden="true"></span> Generar un informe</h2><br>
         <br>
         {!! Form::open(['url' => 'generate']) !!}
         <div class="form-group">
-            {!! Form::label('date','Date:') !!}<br>
-            {!! Form::label('date1','From: ') !!}{!!Form::date('date1',null)  !!}
-            {!! Form::label('date2',' To: ') !!}{!!Form::date('date2', \Carbon\Carbon::now())  !!}
+            {!! Form::label('date','Fecha:') !!}<br>
+            {!! Form::label('date1','Desde: ') !!}{!!Form::date('date1',null)  !!}
+            {!! Form::label('date2',' Hasta: ') !!}{!!Form::date('date2', \Carbon\Carbon::now())  !!}
         </div>
         <div class="form-group">
-            {!! Form::label('format','Format: ') !!}<br>
-            {!! Form::radio('format','txt',['class' => 'form-control']) !!}              {!! Form::label('format','.txt') !!}
-            {!! Form::radio('format','csv',['class' => 'form-control']) !!}              {!! Form::label('format','.csv') !!}
+            {!! Form::label('format','Formato: ') !!}<br>
+            <table border="0">
+                <td width="25">{!! Form::radio('format','txt',['class' => 'form-control']) !!}</td>
+                <td width="50">{!! Form::label('format','.txt') !!}</td>
+                <td width="25">{!! Form::radio('format','csv',['class' => 'form-control']) !!}</td>
+                <td width="50">{!! Form::label('format','.csv') !!}</td>
+            </table>
         </div>
 
         <div class="form-group">
-            {!! Form::submit('Generate Report',['class' => 'btn btn-primary form-control']) !!}
+            {!! Form::submit('Generar un Informe',['class' => 'btn btn-primary form-control']) !!}
         </div>
         {!! Form::close() !!}
 
@@ -89,15 +93,15 @@
 
     <hr>
 
-    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Monitoring</h2>
+    <h2><span style="white-space:nowrap" class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Seguimiento</h2>
 
     <div id="pestanas">
         <ul class="nav nav-tabs">
-            <li id="temperatura"><a href='javascript:cambiarPestanna(pestanas,temperatura);'>Temperature</a></li>
-            <li id="humedad"><a href='javascript:cambiarPestanna(pestanas,humedad);'>Humidity</a></li>
-            <li id="luz"><a href='javascript:cambiarPestanna(pestanas,luz);'>Light</a></li>
+            <li id="temperatura"><a href='javascript:cambiarPestanna(pestanas,temperatura);'>Temperatura</a></li>
+            <li id="humedad"><a href='javascript:cambiarPestanna(pestanas,humedad);'>Humedad</a></li>
+            <li id="luz"><a href='javascript:cambiarPestanna(pestanas,luz);'>Luminica</a></li>
             <li id="gas"><a href='javascript:cambiarPestanna(pestanas,gas);'>Gas (CO)</a></li>
-            <li id="acustica"><a href='javascript:cambiarPestanna(pestanas,acustica);'>Noise</a></li>
+            <li id="acustica"><a href='javascript:cambiarPestanna(pestanas,acustica);'>Ruido</a></li>
 
         </ul>
     </div>
@@ -125,36 +129,44 @@
     <script>
         //Get all the temperature in real time
         var temperatureData = {
-            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
-                "20","21","22","23"],
-            datasets : [
-                {
-                    label: "Temperature",
-                    fillColor : "rgba(255,102,102,0.4)",
-                    strokeColor : "#ACC26D",
-                    pointColor : "#fff",
-                    pointStrokeColor : "#9DB86D",
-                    data : [ @foreach ($realTime as $datax)
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
+            datasets: [{
+                label:'Grados ºC',
+                fillColor: "#fff",
+                strokeColor: "r#fff",
+                pointColor: "#fff",
+                data: [
+                    @for ($i = 0; $i < date('H',strtotime($hour->created_at)); $i++)
+                        {{ 0 }},
+                    @endfor
+                    @foreach ($realTime as $datax)
                         {{ $datax->temp }},
-                        @endforeach]
-                }
-            ]
+                    @endforeach]
+            }]
         }
+
+
+
 
 
         //Get all the humidity in real time
         var humidityData = {
-            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
-                "20","21","22","23"],
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
             datasets : [
                 {
-                    label: "Humidity",
+                    label: "Porcentaje %",
                     fillColor : "rgba(0,204,204,0.4)",
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [@foreach ($realTime as $datax)
-                        {{ $datax->hum }},
+                    data : [
+                        @for ($i = 0; $i < date('H',strtotime($hour->created_at)); $i++)
+                            {{ 0 }},
+                        @endfor
+                        @foreach ($realTime as $datax)
+                            {{ $datax->hum }},
                         @endforeach]
                 }
             ]
@@ -162,17 +174,21 @@
 
         //Get all the light in real time
         var lightData = {
-            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
-                "20","21","22","23"],
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
             datasets : [
                 {
-                    label: "Humidity",
+                    label: "Lumens L",
                     fillColor : "rgba(255,153,51,0.4)",
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [@foreach ($realTime as $datax)
-                        {{ $datax->luz }},
+                    data : [
+                        @for ($i = 0; $i < date('H',strtotime($hour->created_at)); $i++)
+                            {{ 0 }},
+                        @endfor
+                        @foreach ($realTime as $datax)
+                            {{ $datax->luz }},
                         @endforeach]
                 }
             ]
@@ -180,17 +196,21 @@
 
         //Get all the gas in real time
         var coData = {
-            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
-                "20","21","22","23"],
+            labels : ["0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
             datasets : [
                 {
-                    label: "CO",
+                    label: "Partes por millon ppm",
                     fillColor : "rgba(192,192,192,0.4)",
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [@foreach ($realTime as $datax)
-                        {{ $datax->gas }},
+                    data : [
+                        @for ($i = 0; $i < date('H',strtotime($hour->created_at)); $i++)
+                            {{ 0 }},
+                        @endfor
+                        @foreach ($realTime as $datax)
+                            {{ $datax->gas }},
                         @endforeach]
                 }
             ]
@@ -198,17 +218,21 @@
 
         //Get all the noise in real time
         var acusticData = {
-            labels : ["t 0","1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19",
-                "20","21","22","23"],
+            labels : ["t 0:00","1:00","2:00","3:00","4:00","5:00","6:00","7:00","8:00","9:00","10:00",
+                "11:00","12:00","13:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00"],
             datasets : [
                 {
-                    label: "Noise",
+                    label: "Decibelios dB",
                     fillColor : "rgba(175,255,102,0.4)",
                     strokeColor : "#ACC26D",
                     pointColor : "#fff",
                     pointStrokeColor : "#9DB86D",
-                    data : [@foreach ($realTime as $datax)
-                        {{ $datax->noise }},
+                    data : [
+                        @for ($i = 0; $i < date('H',strtotime($hour->created_at)); $i++)
+                            {{ 0 }},
+                        @endfor
+                        @foreach ($realTime as $datax)
+                            {{ $datax->noise }},
                         @endforeach]
                 }
             ]
@@ -217,69 +241,59 @@
 
 
         //TEMPERATURE
-        var temperature = document.getElementById('tempe1').getContext('2d');
-        new Chart(temperature).Line(temperatureData);
 
+        new Chart(document.getElementById('tempe1').getContext('2d') , {
+            type: "line",
+            data: temperatureData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
         //HUMIDITY
-        var humidity = document.getElementById('hume1').getContext('2d');
-        new Chart(humidity).Line(humidityData);
+
+        new Chart(document.getElementById('hume1').getContext('2d') , {
+            type: "line",
+            data: humidityData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
 
         //Light
-        var light = document.getElementById('light1').getContext('2d');
-        new Chart(light).Line(lightData);
+
+        new Chart(document.getElementById('light1').getContext('2d') , {
+            type: "line",
+            data: lightData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
 
         //CO
-        var cogas = document.getElementById('co1').getContext('2d');
-        new Chart(cogas).Line(coData);
+
+        new Chart(document.getElementById('co1').getContext('2d') , {
+            type: "line",
+            data: coData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
+
 
         //Noise
-        var noise = document.getElementById('acustic1').getContext('2d');
-        new Chart(noise).Line(acusticData);
+        new Chart(document.getElementById('acustic1').getContext('2d') , {
+            type: "line",
+            data: acusticData,
+            scaleLabel: "     sssssssssssss     < %=value%>",
+        });
 
 
     </script>
-
-    <!-- new version no resize....
-    <script>
-        var buyerData = {
-            labels: ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"],
-            datasets: [
-                {
-
-                    label: "Temperature",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
-                    data: [15, 17, 20, 21, 23, 25, 24]
-                },
-            ]
-        };
-        var buyers = document.getElementById('buyers').getContext('2d');
-            var myNewChart = new Chart(buyers, {
-                type: "line",
-
-                maintainAspectRatio: true,
-                data: buyerData,
-            });
-    </script>
-    -->
 
     <script>
         function cambiarPestanna(pestannas,pestanna) {
-            // Obtiene los elementos con los identificadores pasados.
+            // Obtiene los elementos con los identificadores asignados.
             pestanna = document.getElementById(pestanna.id);
             listaPestannas = document.getElementById(pestannas.id);
-
             // Obtiene las divisiones que tienen el contenido de las pestañas.
             cpestanna = document.getElementById('c'+pestanna.id);
             listacPestannas = document.getElementById('contenido'+pestannas.id);
-
             i=0;
-            // Recorre la lista ocultando todas las pestañas y restaurando el fondo
-            // y el padding de las pestañas.
+            // Recorre la lista ocultando todas las pestañas y restaurando el fondo y el padding de las pestañas.
             while (typeof listacPestannas.getElementsByTagName('div')[i] != 'undefined'){
                 $(document).ready(function(){
                     $(listacPestannas.getElementsByTagName('div')[i]).css('display','none');
@@ -289,15 +303,11 @@
                 i += 1;
             }
             $(document).ready(function(){
-
                 $(cpestanna).css('display','');
                 $(pestanna).css('padding-bottom','2px');
             });
         }
     </script>
-
-
-
 @stop
 
 

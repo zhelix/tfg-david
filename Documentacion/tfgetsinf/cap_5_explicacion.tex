@@ -143,7 +143,19 @@ Esta es la página en la que se podrá visualizar la informacion, consta de 3 se
 
 \subsection{Posicionamiento}
 
-Para ello esta el Mapa en la sección de \textit{Position} que gracias a la API de Google MAPS se ha podido implementar esta funcionalidad, en este caso el mapa es en vista satélite ya que al ser una aplicación medioambiental, se necesitara saber si el nodo esta en un núcleo urbano o en territorio natural, y aproximadamente a que altura se puede encontrar, costa o altas montañas. \textit{Para el ejemplo de la \textbf{Figura \ref{fig:nodereport}} se dispone de las coordenadas -0.180812 y 38.960541 que corresponden al termino municipal de Gandía.} 
+Para ello esta el Mapa en la sección de \textit{Position} que gracias a la API de Google MAPS se ha podido implementar esta funcionalidad, en este caso el mapa es en vista satélite ya que al ser una aplicación medioambiental, se necesitara saber si el nodo esta en un núcleo urbano o en territorio natural, y aproximadamente a que altura se puede encontrar, costa o altas montañas. \textit{Para el ejemplo de la \textbf{Figura \ref{fig:mapimg}} se dispone de las coordenadas -0.180812 y 38.960541 que corresponden al termino municipal de Gandía.} 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.5\linewidth]{figuras/mapimg}
+	\caption{Mapa de la posición del nodo.}
+	\label{fig:mapimg}
+\end{figure}
+
+\clearpage
+Se ha implementado este mapa ( \textit{indicando en las opciones del mapa que su configuración de vista sea por satélite }) pues se puede apreciar cuando se trata de un núcleo urbano, terreno montañoso, ríos o mares con el fin de que cuando se recojan los datos el usuario tenga cierta informacion del área que se esta monitorizando, en el caso de la \textbf{Figura \ref{fig:mapimg}} se puede apreciar la montaña en la parte izquierda y el núcleo urbano en la parte derecha.
+
+
 
 \subsection{Obtener un informe}
 
@@ -160,14 +172,67 @@ Esta función generara un informe en formato JSON de la informacion recogida cad
 
 \subsection{Seguimiento de la información}
 
-Por ultimo el la función de monitorización, llamada \textit{monitoring} se ha implementado una gráfica utilizando la API de Chart.js que permitirá realizar un seguimiento los valores recogidos en cada hora de ese mismo día realizando un promedio de los valores obtenidos en esa hora del día, ya que implementar cada minuto seria visualmente cargado y podría desestabilizar la gráfica si se presentan valores anómalos. 
-Ademas presenta una gráfica diferente para cada valor a medir (temperatura, humedad, gases, luz y ruido) que implementado con AJAX realiza el cambio de gráfica sin necesidad de refrescar la página.
+Por ultimo el la función de monitorización, llamada \textit{seguimiento} se ha implementado una gráfica utilizando la API de Chart.js que permitirá realizar un seguimiento los valores recogidos en cada hora de ese mismo día realizando un promedio de los valores obtenidos en esa hora del día, ya que implementar cada minuto seria visualmente cargado y podría desestabilizar la gráfica si se presentan valores anómalos. 
+Ademas presenta una gráfica diferente para cada valor a medir (temperatura, humedad, gases, luz y ruido) que implementado con AJAX realiza el cambio de gráficos sin necesidad de refrescar la página.
+
+Este es el código que permite cambiar de gráfico sin necesidad de cambiar toda la pagina\cite{ajax}:\\
+
+\begin{lstlisting}[caption=Selector de Graficos, label=graficsel]
+ <script>
+	    function cambiarPestanna(divc,divc) {
+	    divc = document.getElementById(divc.id);
+	    listaPestannas = document.getElementById(divc.id);
+	    cdivc = document.getElementById('c'+divc.id);
+	    listacPestannas = document.getElementById('contenido'+divc.id);
+	    i=0;
+		while (typeof listacPestannas.getElementsByTagName('div')[i] != 'undefined'){
+		    $(document).ready(function(){
+			    $(listacPestannas.getElementsByTagName('div')[i]).css('display','none');
+			    $(listaPestannas.getElementsByTagName('li')[i]).css('background','');
+			    $(listaPestannas.getElementsByTagName('li')[i]).css('padding-bottom','');
+		    });
+		    i+=1;
+	    }
+	    $(document).ready(function(){
+		    $(cdivc).css('display','');
+		    $(divc).css('padding-bottom','2px');
+	    });
+    }
+</script>
+\end{lstlisting}
+
+Esta función recoge todas las ventanas que coinciden con el identificador pues cuando se seleccione el enlace recogerá a cual va cambiar, luego recorre todos los disponibles y los oculta para mostrar la gráfica asignada a la pestaña.
+
+Estas son dos ejemplos de las gráficas para mostrar la informacion recogidas por el nodo:
 
 \begin{figure}[!h]
 	\centering
 	\includegraphics[width=0.9\linewidth]{figuras/nodereports3}
-	\caption{Grafica perteneciente a la temperatura en el seguimiento}
+	\caption{Gráfica perteneciente a la temperatura en el seguimiento}
 	\label{fig:nodereport}
 \end{figure}
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.9\linewidth]{figuras/node4}
+	\caption{Gráfica perteneciente a la contaminación por CO en el seguimiento}
+	\label{fig:nodereport}
+\end{figure}
+
+(Uno de los principales problemas que se ha tenido a la hora de diseñar esta gráfica era que cuando recibía los datos esta no interpretaba bien la hora así que al dibujar el gráfico empezaba pero se ha solucionado aplicando un 0 a cada hora que el nodo ha estado deshabilitado con el fin de prevenir errores en las lecturas de la aplicación.
+
+También comentar que debido a los numerosos cambios de formato de una versión a otra de Chart.js la informacion es muy confusa pues en cada versión cambia la forma de implementar los atributos de la gráfica y por eso ha resultado muy complicado añadir una magnitud a los valores del eje Y por lo que se ha tenido que implementar con una leyenda que informe al usuario de la magnitud que se esta empleando para medir en esa gráfica.
+
+Otro problema es la selección del color, en este caso queda con color gris aunque se le esta asignando un color y puede ser debido a lo descrito anteriormente y pueda ser una llamada errónea en la librería)
+
+Aquí se presenta un ejemplo de una gráfica en las primeras de la librería de Chart.js:
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[width=0.7\linewidth]{figuras/charjs}
+	\caption{Gráfica perteneciente a la Temperatura (\textit{versión antigua Chart.js)}}
+	\label{fig:nodereport}
+\end{figure}
+
 
 
